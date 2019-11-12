@@ -1,0 +1,81 @@
+<% include ./partials/header %>
+
+
+<% if(error && error.length > 0){ %>
+<div class="alert alert-danger" role="alert">
+  <%= error %>
+</div>
+<% } %>
+
+<% if(success && success.length > 0){ %>
+<div class="alert alert-success" role="alert">
+  <%= success %>
+</div>
+<% } %>
+
+<% blogs.forEach(function(blog){ %>
+<div id="fichaMostrar" class="mt-5">
+   <div class="container text-uppercase">
+      <div class="jumbotron ">
+         <div class="text-center">
+            <h3><%=blog.nombreProyecto%></h3>
+         </div>
+         <div class="form-row mb-2 mt-4">
+            <div class="col-md-6">
+               <div class="col">
+               <small class="text-secondary">P.N.F:</small>    
+               <h5><%=blog.pnf%></h5>
+            </div>
+            </div>
+            <div class="col-md-6 text-right">
+               <div class="col-md-6 float-right">
+               <small class="text-secondary">Comunidad:</small>      
+               <h5><%=blog.nombreComunidad%></h5>
+            </div>
+            </div>
+         </div>
+         <div class="form-row">
+            <div class="col-md-6">
+               <div class="col-md-6">
+                  <small class="text-secondary">Profesor Tutor:</small> 
+                  <h6><%=blog.profTutor%></h6>
+                  </div>
+               <div class="col-md-6">
+                  <small class="text-secondary">Profesor Guia:</small>     
+                  <h6><%=blog.profGuia%></h6>
+               </div>
+         </div>
+            <div class="col-md-6 text-right">
+               <div class="col-md-6 float-right">
+                  <small class="text-secondary">Autores:</small>     
+                  <h6><%=blog.nombreEstudiante1%></h6>
+                  <h6><%=blog.nombreEstudiante2%></h6>
+                  <h6><%=blog.nombreEstudiante3%></h6>
+                  <h6><%=blog.nombreEstudiante4%></h6>
+                  <h6><%=blog.nombreEstudiante5%></h6>
+               </div>
+            </div>
+         </div>
+
+         <div class="form-row mb-2">
+            <div class="col text-right">
+               <div class="col float-right">
+                  <small class="text-secondary">Trayecto:</small>     
+                  <h4><%=blog.Trayecto%></h4>
+               </div>
+            </div>
+            </div>
+         <div class="form-row">
+         </div>
+         <h5><a href="/index/<%=blog._id %>">... Ver más</a></h5>
+      </div>
+   </div>
+</div>
+<% }) %>
+<% include ./partials/footer %>
+        
+        
+        
+        
+        
+        

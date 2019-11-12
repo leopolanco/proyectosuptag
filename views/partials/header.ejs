@@ -1,0 +1,77 @@
+<html>
+   <head>
+      <title>Proyectos</title>
+      <link rel="stylesheet"  type="text/css" href="/css/bootstrap.min.css">
+      <style type="text/css">
+      
+         html, body {
+            background: url(/images/bguptag.jpg) no-repeat center center fixed; 
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;}
+
+         .btn-warning{
+            padding: 10px 40px 10px 40px;
+         }
+         footer, nav{
+            background: #1C2331;
+            fixed;
+         }
+         footer a {
+            color: grey;
+         }
+         hr.style13 {
+            border-top: 1px solid #ffa400;
+            text-align: center;
+         }
+         footer{
+            margin-top:auto; 
+         }
+         .buscar {
+            text-transform:capitalize;
+         }
+          #fichaMostrar, input, textarea {
+            text-transform: uppercase;
+         }
+         
+         form {
+            display: block;
+            margin-top: 0em;
+            margin-block-end: 0em;
+         }
+      </style>
+   </head>
+   
+   <body>
+      <div class="shadow-lg">
+         <nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
+            <a class="navbar-brand" href="/inicio"><img class="pl-1 " src="/images/iconuptag.jpg"></a>
+
+               <ul class="navbar-nav mr-auto">
+                  <li class="nav-item">
+                     <a class="nav-link" href="/inicio">Inicio</span></a>
+                  </li>
+                  <li class="nav-item">
+                     <a class="nav-link" href="/archivar">Archivar</a>
+                  </li>
+                  <li class="nav-item">
+                     <a class="nav-link" href="#">Ayuda</a>
+                  </li>
+               </ul> 
+               
+               
+               
+               <form action="/index" method="GET" class="form-inline buscar">
+                   <div class="md-form my-0">
+                  <input style="text-transform:capitalize;"class="form-control mr-sm-2" name="Buscar" type="text" placeholder="Buscar">
+                  <input style="text-transform:capitalize;"class="btn btn-outline-warning my-2 my-sm-0" value="Buscar" type="submit">
+                   </div>
+               </form>
+               
+              
+                     <a class="text-light nav-link" href="/logout">Salir</a>
+
+                 
+         </nav>
+         </div>

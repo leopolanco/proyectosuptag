@@ -1,0 +1,114 @@
+<% include ./partials/header %>
+
+   <% if(success && success.length > 0){ %>
+         <div class="alert alert-success" role="alert">
+         <%= success %>
+         </div>
+   <% } %>
+<div class="container mt-3 pt-3 text-uppercase">
+    <div class="jumbotron ">
+        <div class="text-center">
+            <h3><%=blog.nombreProyecto%></h3>
+        </div>
+        <div class="form-row mb-2 mt-4">
+            <div class="col-md-6">
+                <div class="col">
+                    <small class="text-secondary">P.N.F:</small>
+                    <h5><%=blog.pnf%></h5>
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col-md-6">
+                <div class="col-md-6">
+                    <small class="text-secondary">Comunidad:</small>
+                    <h6><%=blog.nombreComunidad%></h6>
+                </div>
+                <div class="col-md-6">
+                    <small class="text-secondary">Municipio:</small>
+                    <h6><%=blog.Municipio%></h6>
+                </div>
+                <div class="col-md-6">
+                    <small class="text-secondary">Linea de Investigacion:</small>
+                    <h6><%=blog.lineaInv%></h6>
+                </div>
+            </div>
+            <div class="col-md-6 text-right">
+                <div class="col-md-6 float-right">
+                    <small class="text-secondary">Trayecto:</small>
+                    <h6><%=blog.Trayecto%></h6>
+                </div>
+                <div class="col-md-8 float-right">
+                    <small class="text-secondary">Seccion:</small>
+                    <h6><%=blog.Seccion%></h6>
+                </div>
+                <div class="col-md-6 float-right">
+                    <small class="text-secondary">Lapso Academico:</small>
+                    <h6><%=blog.lapsoAcademico%></h6>
+                </div>
+            </div>
+        </div>
+        <br>
+        <hr class="accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 100%;">
+        <br>
+
+        <div class="form-row">
+            <div class="col-md-3">
+                <div class="col">
+                    <small class="text-secondary">Autores:</small>
+                    <h6><%=blog.nombreEstudiante1%></h6>
+                    <h6><%=blog.nombreEstudiante2%></h6>
+                    <h6><%=blog.nombreEstudiante3%></h6>
+                    <h6><%=blog.nombreEstudiante4%></h6>
+                    <h6><%=blog.nombreEstudiante5%></h6>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="col">
+                    <small class="text-secondary">Calificacion:</small>
+                    <h6><%=blog.notaEstudiante1%></h6>
+                    <h6><%=blog.notaEstudiante2%></h6>
+                    <h6><%=blog.notaEstudiante3%></h6>
+                    <h6><%=blog.notaEstudiante4%></h6>
+                    <h6><%=blog.notaEstudiante5%></h6>
+                </div>
+            </div>
+            <div class="col-md-6 text-right">
+                <div class="col float-right">
+                    <small class="text-secondary">Profesor Tutor:</small>
+                    <h6><%=blog.profTutor%></h6>
+                </div>
+                <div class="col float-right">
+                    <small class="text-secondary">Profesor Guia:</small>
+                    <h6><%=blog.profGuia%></h6>
+                </div>
+            </div>
+        </div>
+        <br>
+        <hr class="accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 100%;">
+        <br>
+
+        <div class="form-row mt-2">
+            <div class="col">
+                <div class="col">
+                    <small class="text-secondary">Resumen:</small>
+
+                    <h6><%=blog.resumenProyecto%></h6>
+                </div>
+            </div>
+        </div>
+
+        <div style="float: right;" class="form-row mb-4 mt-3">
+            <div class="col">
+                <a class="btn btn-secondary" href="/index/<%=blog._id%>/edit">Editar</a>
+            </div>
+            <div class="col">
+                <form action="/index/<%=blog._id%>?_method=DELETE" method="POST">
+                    <button class="btn btn-danger">ELIMINAR</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<% include ./partials/footer %>
+        
