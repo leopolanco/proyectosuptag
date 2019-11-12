@@ -100,7 +100,7 @@ app.get("/", function(req, res) {
 
 //Ruta de registro
 app.get("/registro", function(req, res){
-    res.render("/home/ubuntu/environment/proyecto/views/registro.ejs");
+    res.render("../views/registro.ejs");
     
 });
 //Registro de cada usuario
@@ -122,7 +122,7 @@ app.post("/registro", function(req, res) {
 
 //Login
 app.get("/login", function(req, res){
-    res.render("/home/ubuntu/environment/proyecto/views/login.ejs");
+    res.render("../views/login.ejs");
 });
 app.post("/login", passport.authenticate('local',{
     successRedirect: "/inicio",
@@ -142,7 +142,7 @@ app.get("/logout", function(req, res){
 
 
 app.get("/inicio", isLoggedIn, function(req, res){
-    res.render("/home/ubuntu/environment/proyecto/views/inicio.ejs");
+    res.render("../views/inicio.ejs");
 });
 
 
@@ -160,7 +160,7 @@ app.get("/index", function(req, res){
               if(blogs.length < 0) {
                   req.flash("error", "No hubo coincidencias.");
               }
-              res.render("/home/ubuntu/environment/proyecto/views/index.ejs",{blogs:blogs, noMatch: noMatch});
+              res.render("../views/index.ejs",{blogs:blogs, noMatch: noMatch});
            }
         });
 
@@ -171,7 +171,7 @@ app.get("/index", function(req, res){
             console.log(err);
         } 
         else {
-            res.render("/home/ubuntu/environment/proyecto/views/index.ejs", {blogs: blogs});
+            res.render("../views/index.ejs", {blogs: blogs});
         }
     });
     }
@@ -189,7 +189,7 @@ app.post("/index", function(req, res){
     Blog.create(req.body.blog, function(err, newBlog){
        if(err){
            console.log(err);
-            res.render("/home/ubuntu/environment/proyecto/views/archivar.ejs");
+            res.render("../views/archivar.ejs");
         } 
         else {
            res.redirect("/index");
@@ -203,7 +203,7 @@ app.post("/index", function(req, res){
 app.get("/index/:id", function(req, res){
     Blog.findById(req.params.id, function(err, foundBlog){
         if(err){
-            res.redirect("/home/ubuntu/environment/proyecto/views/index.ejs");
+            res.redirect("../views/index.ejs");
         }
         else {
             res.render("show.ejs", {blog: foundBlog});
@@ -218,7 +218,7 @@ app.get("/index/:id/edit", isLoggedIn, function(req, res){
             res.redirect("/index");
         }
         else {
-            res.render("/home/ubuntu/environment/proyecto/views/edit.ejs", {blog: foundBlog});
+            res.render("../views/edit.ejs", {blog: foundBlog});
         }
     });
 });
@@ -257,50 +257,50 @@ app.delete("/index/:id", isLoggedIn, function(req, res){
 
 //Servimos los archivos estaticos
 app.get("/css/util.css", function(req, res){
-    res.sendFile("/home/ubuntu/environment/proyecto/public/css/util.css");
+    res.sendFile("../public/css/util.css");
 });
 app.get("/css/main.css", function(req, res){
-    res.sendFile("/home/ubuntu/environment/proyecto/public/css/main.css");
+    res.sendFile("../public/css/main.css");
 });
 app.get("/css/bootstrap.min.css", function(req, res){
-    res.sendFile("/home/ubuntu/environment/proyecto/public/css/bootstrap.min.css");
+    res.sendFile("../public/css/bootstrap.min.css");
 });
 app.get("/fonts/font-awesome-4.7.0/css/font-awesome.min.css", function(req, res){
-    res.sendFile("/home/ubuntu/environment/proyecto/public/fonts/font-awesome-4.7.0/css/font-awesome.min.css");
+    res.sendFile("../public/fonts/font-awesome-4.7.0/css/font-awesome.min.css");
 });
 app.get("/fonts/Linearicons-Free-v1.0.0/icon-font.min.css", function(req, res){
-    res.sendFile("/home/ubuntu/environment/proyecto/public/fonts/Linearicons-Free-v1.0.0/icon-font.min.css");
+    res.sendFile("../public/fonts/Linearicons-Free-v1.0.0/icon-font.min.css");
 });
 
 app.get("/fonts/poppins/Poppins-Regular.ttf", function(req, res){
-    res.sendFile("/home/ubuntu/environment/proyecto/public/fonts/poppins/Poppins-Regular.ttf");
+    res.sendFile("../public/fonts/poppins/Poppins-Regular.ttf");
 });
 app.get("/fonts/montserrat/Montserrat-Regular.ttf", function(req, res){
-    res.sendFile("/home/ubuntu/environment/proyecto/public/fonts/montserrat/Montserrat-Regular.ttf");
+    res.sendFile("../public/fonts/montserrat/Montserrat-Regular.ttf");
 });
 app.get("/fonts/montserrat/Montserrat-Bold.ttf", function(req, res){
-    res.sendFile("/home/ubuntu/environment/proyecto/public/fonts/montserrat/Montserrat-Bold.ttf");
+    res.sendFile("../public/fonts/montserrat/Montserrat-Bold.ttf");
 });
 //js
 app.get("/js/main.js", function(req, res){
-   res.sendFile("/home/ubuntu/environment/proyecto/public/js/main.js");
+   res.sendFile("../public/js/main.js");
 });
 app.get("/js/jquery-3.2.1.min.js", function(req, res){
-    res.sendFile("/home/ubuntu/environment/proyecto/public/js/jquery-3.2.1.min.js");
+    res.sendFile("../public/js/jquery-3.2.1.min.js");
 });
 
 //imagenes
 app.get("/images/bguptag.jpg", function(req, res){
-    res.sendFile("/home/ubuntu/environment/proyecto/public/images/bguptag.jpg");
+    res.sendFile("../public/images/bguptag.jpg");
 });
 app.get("/images/iconuptag.jpg", function(req, res){
-    res.sendFile("/home/ubuntu/environment/proyecto/public/images/iconuptag.jpg");
+    res.sendFile("../public/images/iconuptag.jpg");
 });
 app.get("/images/cclogo.png", function(req, res){
-    res.sendFile("/home/ubuntu/environment/proyecto/public/images/cclogo.png");
+    res.sendFile("../public/images/cclogo.png");
 });
 app.get("/images/bg-01.png", function(req, res){
-    res.sendFile("/home/ubuntu/environment/proyecto/public/images/bg-01.png");
+    res.sendFile("../public/images/bg-01.png");
 });
 
 
