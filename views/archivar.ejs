@@ -31,7 +31,7 @@
         <div class="form-row mb-3">
             <div class="col">
                <label for="proy[comunidad]">Comunidad:</label>
-               <input list="comunidades" class="form-control" name="proy[comunidad]" required>
+               <input list="comunidades" class="form-control text-uppercase" name="proy[comunidad]" required>
                <datalist id="comunidades">
                   <% arrayfinalcomunidad.forEach(function(proy){ %>
                   <option value="<%=proy%>">
@@ -45,7 +45,7 @@
     <%let arrayfinalmunicipio =[...new Set(arrayauxiliar)]%>
         <div class="col">
             <label for="proy[municipio]">Municipio:</label>
-            <input list="municipios" class="form-control" name="proy[municipio]" required>
+            <input list="municipios" class="form-control text-uppercase" name="proy[municipio]" required>
             <datalist id="municipios">
             <% arrayfinalmunicipio.forEach(function(proy){ %>
             <option value="<%=proy%>">
@@ -245,7 +245,7 @@
          </div>
          <div class="form-group mt-2">
             <small>Ingrese un resumen del proyecto</small>
-            <textarea name="proy[resumenProyecto]" class="form-control" rows="3" placeholder="Resumen del proyecto"></textarea>
+            <textarea name="proy[resumenProyecto]" class="form-control text-uppercase" rows="3" placeholder="Resumen del proyecto"></textarea>
          </div>
          <div style="float: right;">
             <button type="submit" class="btn btn-warning">Archivar proyecto</button>
