@@ -14,6 +14,8 @@ app                     = express();
 //mongoose.connect("mongodb://localhost/proyecto_app", { useNewUrlParser: true, useFindAndModify: false, useCreateIndex: true, useUnifiedTopology: true});
 mongoose.connect("mongodb+srv://leo:polanco@uptag-qexum.mongodb.net/test?retryWrites=true&w=majority", { useNewUrlParser: true, useFindAndModify: false, useCreateIndex: true, useUnifiedTopology: true});
 
+
+
 app.use(express.static("public"));
 app.use(methodOverride("_method"));
 app.use(bodyParser.json());
@@ -83,7 +85,7 @@ var Blog = mongoose.model("Blog", blogSchema);
 
 //Indexando todo el schema para poder utilizar busqueda
 blogSchema.index({
-  pnf:'text',
+    pnf:'text',
     nombreProyecto:'text',
     nombreComunidad:'text',
     Trayecto:'text',
@@ -143,7 +145,7 @@ app.get("/logout", function(req, res){
 });
 
 
-app.get("/inicio", isLoggedIn, function(req, res){
+app.get("/inicio", function(req, res){
     res.render("../views/inicio.ejs");
 });
 
@@ -177,6 +179,18 @@ app.get("/index", function(req, res){
         }
     });
     }
+});
+
+//Ruta de vista simple
+app.get("/indexsimple", function(req, res){
+     Blog.find({}, function(err, blogs){
+        if(err){
+            console.log(err);
+        } 
+        else {
+            res.render("../views/indexsimple.ejs", {blogs: blogs});
+        }
+    });
 });
 
 
@@ -217,7 +231,10 @@ app.get("/index/:id", function(req, res){
 app.get("/index/:id/edit", isLoggedIn, function(req, res){
     Blog.findById(req.params.id, function(err, foundBlog){
         if(err){
+            req.flash("error", "Su proyecto no pudo ser editado.");
+            console.log(err);
             res.redirect("/index");
+            
         }
         else {
             res.render("../views/edit.ejs", {blog: foundBlog});
@@ -229,6 +246,8 @@ app.put("/index/:id", isLoggedIn, function(req, res){
     
     Blog.findByIdAndUpdate(req.params.id, req.body.blog, function(err, updatedBlog){
         if(err){
+            req.flash("error", "Su proyecto no pudo ser editado.");
+            console.log(err);
             res.redirect("/index");
         }
         
@@ -243,7 +262,7 @@ app.put("/index/:id", isLoggedIn, function(req, res){
 
 //Ruta de eliminado
 app.delete("/index/:id", isLoggedIn, function(req, res){
-    req.flash("error", "Su proyecto fue eliminado.");
+    req.flash("error", "Su proyecto fue eliminado con exito.");
     Blog.findByIdAndRemove(req.params.id, function(err){
         if(err){
             res.redirect("/index");
@@ -304,6 +323,10 @@ app.get("/images/cclogo.png", function(req, res){
 app.get("/images/bg-01.png", function(req, res){
     res.sendFile("../public/images/bg-01.png");
 });
+
+
+
+
 
 
 

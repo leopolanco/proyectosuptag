@@ -65,8 +65,7 @@ function mostrar(id) {//Funcion para mostrar inputs de estudiantes en el formula
           $("#estud5").show(); 
      } 
     } 
-    
-    
+
 (function ($) {
     "use strict";
 
