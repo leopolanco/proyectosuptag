@@ -7,19 +7,19 @@
    <% } %>
    
 <div class="container">
-<a class="btn btn-dark mt-5" href="/indexsimple">Vista Simple</a></div>
+<a class="btn btn-dark mt-3" href="/indexsimple">Vista Simple</a></div>
    
    
 <div class="container mt-3 pt-3 text-uppercase">
     <div class="jumbotron ">
         <div class="text-center">
-            <h3><%=blog.nombreProyecto%></h3>
+            <h3><%=proy.tituloProyecto%></h3>
         </div>
         <div class="form-row mb-2 mt-4">
             <div class="col-md-6">
                 <div class="col">
                     <small class="text-secondary">P.N.F:</small>
-                    <h5><%=blog.pnf%></h5>
+                    <h5><%=proy.pnf%></h5>
                 </div>
             </div>
         </div>
@@ -27,29 +27,29 @@
             <div class="col-md-6">
                 <div class="col-md-6">
                     <small class="text-secondary">Comunidad:</small>
-                    <h6><%=blog.nombreComunidad%></h6>
+                    <h6><%=proy.comunidad%></h6>
                 </div>
                 <div class="col-md-6">
                     <small class="text-secondary">Municipio:</small>
-                    <h6><%=blog.Municipio%></h6>
+                    <h6><%=proy.municipio%></h6>
                 </div>
                 <div class="col-md-6">
                     <small class="text-secondary">Linea de Investigacion:</small>
-                    <h6><%=blog.lineaInv%></h6>
+                    <h6><%=proy.lineaInv%></h6>
                 </div>
             </div>
             <div class="col-md-6 text-right">
                 <div class="col-md-6 float-right">
                     <small class="text-secondary">Trayecto:</small>
-                    <h6><%=blog.Trayecto%></h6>
+                    <h6><%=proy.trayecto%></h6>
                 </div>
                 <div class="col-md-8 float-right">
                     <small class="text-secondary">Seccion:</small>
-                    <h6><%=blog.Seccion%></h6>
+                    <h6><%=proy.seccion%></h6>
                 </div>
                 <div class="col-md-6 float-right">
                     <small class="text-secondary">Lapso Academico:</small>
-                    <h6><%=blog.lapsoAcademico%></h6>
+                    <h6><%=proy.lapsoAcademico%></h6>
                 </div>
             </div>
         </div>
@@ -61,31 +61,31 @@
             <div class="col-md-3">
                 <div class="col">
                     <small class="text-secondary">Autores:</small>
-                    <h6><%=blog.nombreEstudiante1%></h6>
-                    <h6><%=blog.nombreEstudiante2%></h6>
-                    <h6><%=blog.nombreEstudiante3%></h6>
-                    <h6><%=blog.nombreEstudiante4%></h6>
-                    <h6><%=blog.nombreEstudiante5%></h6>
+                    <h6><%=proy.nombreEstudiante1%></h6>
+                    <h6><%=proy.nombreEstudiante2%></h6>
+                    <h6><%=proy.nombreEstudiante3%></h6>
+                    <h6><%=proy.nombreEstudiante4%></h6>
+                    <h6><%=proy.nombreEstudiante5%></h6>
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="col">
                     <small class="text-secondary">Calificacion:</small>
-                    <h6><%=blog.notaEstudiante1%></h6>
-                    <h6><%=blog.notaEstudiante2%></h6>
-                    <h6><%=blog.notaEstudiante3%></h6>
-                    <h6><%=blog.notaEstudiante4%></h6>
-                    <h6><%=blog.notaEstudiante5%></h6>
+                    <h6><%=proy.notaEstudiante1%></h6>
+                    <h6><%=proy.notaEstudiante2%></h6>
+                    <h6><%=proy.notaEstudiante3%></h6>
+                    <h6><%=proy.notaEstudiante4%></h6>
+                    <h6><%=proy.notaEstudiante5%></h6>
                 </div>
             </div>
             <div class="col-md-6 text-right">
                 <div class="col float-right">
                     <small class="text-secondary">Profesor Tutor:</small>
-                    <h6><%=blog.profTutor%></h6>
+                    <h6><%=proy.profTutor%></h6>
                 </div>
                 <div class="col float-right">
                     <small class="text-secondary">Profesor Guia:</small>
-                    <h6><%=blog.profGuia%></h6>
+                    <h6><%=proy.profGuia%></h6>
                 </div>
             </div>
         </div>
@@ -98,17 +98,17 @@
                 <div class="col">
                     <small class="text-secondary">Resumen:</small>
 
-                    <h6><%=blog.resumenProyecto%></h6>
+                    <h6><%=proy.resumenProyecto%></h6>
                 </div>
             </div>
         </div>
 
         <div style="float: right;" class="form-row mb-4 mt-3">
             <div class="col">
-                <a class="btn btn-secondary" href="/index/<%=blog._id%>/edit">Editar</a>
+                <a class="btn btn-secondary" href="/index/<%=proy._id%>/edit">Editar</a>
             </div>
             <div class="col">
-                <form action="/index/<%=blog._id%>?_method=DELETE" method="POST">
+                <form action="/index/<%=proy._id%>?_method=DELETE" method="POST">
                     <button class="btn btn-danger">ELIMINAR</button>
                 </form>
             </div>

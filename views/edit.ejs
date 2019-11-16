@@ -1,90 +1,135 @@
-<% include ./partials/header %>
+<% include ./partials/header %>  <!-- PARA INCLUIR EL HEADER, DEBAJO HAY OTRO PARA INCLUIR FOOTER TAMBIEN --> 
+
     <div class="container pt-3 mt-3">
         <div class="jumbotron  mt-4">
-            <form action="/index/<%=blog._id%>?_method=PUT" method="POST">
+            <form action="/index/<%=proy._id%>?_method=PUT" method="POST">
                 <small>Seleccione su PNF</small>
                 <br>
 
-                <% if (blog.pnf == "PNF en Electricidad") { %>
+ <!-- CONDICIONALES PARA LOS VALORES PREDETERMINADOS, PARA LA LINEA DE INVESTIGACION SE UTILIZA UNO PARECIDO --> 
+
+                <% if (proy.pnf == "PNF en Electricidad") { %>
                     <div class="form-check form-check-inline" style="padding-bottom: 20px">
-                        <input class="form-check-input" type="radio" name="blog[pnf]" value="PNF en Electricidad" onChange="mostrarlineainv(this.value);" checked>
+                        <input class="form-check-input" type="radio" name="proy[pnf]" value="PNF en Electricidad" onChange="mostrarlineainv(this.value);" checked>
                         <label class="form-check-label" for="PNF en Electricidad">PNF en Electricidad</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="blog[pnf]" value="PNF en Electronica" onChange="mostrarlineainv(this.value);">
+                        <input class="form-check-input" type="radio" name="proy[pnf]" value="PNF en Electronica" onChange="mostrarlineainv(this.value);">
                         <label class="form-check-label" for="PNF en Electronica">PNF en Electronica</label </div>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="blog[pnf]" value="PNF en Instrumentacion y Control" onChange="mostrarlineainv(this.value);">
+                            <input class="form-check-input" type="radio" name="proy[pnf]" value="PNF en Instrumentacion y Control" onChange="mostrarlineainv(this.value);">
                             <label class="form-check-label" for="PNF en Instrumentacion y Control">PNF en Instrumentacion y Control</label>
                         </div>
-                        <% } else if (blog.pnf == "PNF en Electronica") { %>
+                        <% } else if (proy.pnf == "PNF en Electronica") { %>
                             <div class="form-check form-check-inline" style="padding-bottom: 20px">
-                                <input class="form-check-input" type="radio" name="blog[pnf]" value="PNF en Electricidad" onChange="mostrarlineainv(this.value);">
+                                <input class="form-check-input" type="radio" name="proy[pnf]" value="PNF en Electricidad" onChange="mostrarlineainv(this.value);">
                                 <label class="form-check-label" for="PNF en Electricidad">PNF en Electricidad</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="blog[pnf]" value="PNF en Electronica" onChange="mostrarlineainv(this.value);" checked>
+                                <input class="form-check-input" type="radio" name="proy[pnf]" value="PNF en Electronica" onChange="mostrarlineainv(this.value);" checked>
                                 <label class="form-check-label" for="PNF en Electronica">PNF en Electronica</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="blog[pnf]" value="PNF en Instrumentacion y Control" onChange="mostrarlineainv(this.value);">
+                                <input class="form-check-input" type="radio" name="proy[pnf]" value="PNF en Instrumentacion y Control" onChange="mostrarlineainv(this.value);">
                                 <label class="form-check-label" for="PNF en Instrumentacion y Control">PNF en Instrumentacion y Control</label>
                             </div>
                             <% } else { %>
                                 <div class="form-check form-check-inline" style="padding-bottom: 20px">
-                                    <input class="form-check-input" type="radio" name="blog[pnf]" value="PNF en Electricidad" onChange="mostrarlineainv(this.value);">
+                                    <input class="form-check-input" type="radio" name="proy[pnf]" value="PNF en Electricidad" onChange="mostrarlineainv(this.value);">
                                     <label class="form-check-label" for="PNF en Electricidad">PNF en Electricidad</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="blog[pnf]" value="PNF en Electronica" onChange="mostrarlineainv(this.value);">
+                                    <input class="form-check-input" type="radio" name="proy[pnf]" value="PNF en Electronica" onChange="mostrarlineainv(this.value);">
                                     <label class="form-check-label" for="PNF en Electronica">PNF en Electronica</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="blog[pnf]" value="PNF en Instrumentacion y Control" checked>
+                                    <input class="form-check-input" type="radio" name="proy[pnf]" value="PNF en Instrumentacion y Control" checked>
                                     <label class="form-check-label" for="PNF en Instrumentacion y Control">PNF en Instrumentacion y Control</label>
                                 </div>
                                 <% } %>
 
                                     <div class="form-group">
                                         <label for="nombreproy">Nombre del Proyecto</label>
-                                        <input name="blog[nombreProyecto]" type="text" class="form-control form-control-lg" value="<%=blog.nombreProyecto%>" required>
+                                        <input name="proy[tituloProyecto]" type="text" class="form-control form-control-lg" value="<%=proy.tituloProyecto%>" required>
                                     </div>
-                                    <div class="form-row mb-3">
-                                        <div class="col">
-                                            <label for="Comunidad">Comunidad</label>
-                                            <input name="blog[nombreComunidad]" type="text" class="form-control" value="<%=blog.nombreComunidad%>" required>
-                                        </div>
-                                        <div class="col">
-                                            <label for="Municipio">Municipio</label>
-                                            <input name="blog[Municipio]" type="text" class="form-control" value="<%=blog.Municipio%>" required>
-                                        </div>
 
-                                    </div>
-                                    <div class="form-row mb-3">
-                                        <div class="col-md-6 mb-3">
-                                            <label for="profguia">Profesor Guia</label>
-                                            <input name="blog[profGuia]" type="text" class="form-control" value="<%=blog.profGuia%>" required>
-                                        </div>
-                                        <div class="col-md-6 ">
-                                            <label for="proftut">Profesor Tutor</label>
-                                            <input name="blog[profTutor]" type="text" class="form-control" value="<%=blog.profTutor%>" placeholder="Profesor Tutor" required>
-                                        </div>
+                 <!-- ALGORITMO PARA ELIMINAR REPETIDOS Y RECORDAR DATOS DE LA DB, SE UTILIZA EN CADA INPUT QUE SE NECESITE RECORDAR, HACE FALTA OPTIMIZAR ESTO, AUNQUE ASI FUNCIONA -->                        
+                                   <%var arrayauxiliar=[];%>
+            <%proys.forEach(function(proy){ %>
+            <%    arrayauxiliar.push(proy.comunidad);%>
+            <% }); %>
+            <%let arrayfinalcomunidad =[...new Set(arrayauxiliar)]%>
+            <div class="form-row mb-3">
+                <div class="col">
+                   <label for="proy[comunidad]">Comunidad:</label>
+                    <input list="comunidades" class="form-control" value="<%=proy.comunidad%>" name="proy[comunidad]" required>
+                    <datalist id="comunidades">
+                        <% arrayfinalcomunidad.forEach(function(proy){ %>
+                        <option value="<%=proy%>">
+                        <% }) %>
+                    </datalist>
+                </div>
+                                        <%var arrayauxiliar=[];%>
+            <%proys.forEach(function(proy){ %>
+            <%    arrayauxiliar.push(proy.municipio);%>
+            <% }); %>
+            <%let arrayfinalmunicipio =[...new Set(arrayauxiliar)]%>
+                <div class="col">
+                    <label for="proy[municipio]">Municipio:</label>
+                    <input list="municipios" class="form-control" value="<%=proy.municipio%>"  name="proy[municipio]" required>
+                    <datalist id="municipios">
+                        <% arrayfinalmunicipio.forEach(function(proy){ %>
+                        <option value="<%=proy%>">
+                        <% }) %>
+                    </datalist>
+                </div>
+            </div>
+
+                                    <%var arrayauxiliar=[];%>
+            <%proys.forEach(function(proy){ %>
+            <%    arrayauxiliar.push(proy.profGuia);%>
+            <% }); %>
+            <%let arrayfinalguia =[...new Set(arrayauxiliar)]%>
+            <div class="form-row mb-3">
+                <div class="col-md-6 mb-3">
+                    <label for="proy[profGuia]">Profesor Guia:</label>
+                    <input list="guias" class="form-control" value="<%=proy.profGuia%>" name="proy[profGuia]" required>
+                    <datalist id="guias">
+                        <% arrayfinalguia.forEach(function(proy){ %>
+                        <option value="<%=proy%>">
+                        <% }) %>
+                    </datalist>
+                </div>
+                <%var arrayauxiliar=[];%>
+            <%proys.forEach(function(proy){ %>
+            <%    arrayauxiliar.push(proy.profTutor);%>
+            <% }); %>
+            <%let arrayfinaltutor =[...new Set(arrayauxiliar)]%>    
+                <div class="col-md-6 ">
+                    <label for="proy[profTutor]">Tutor:</label>
+                    <input list="tutores" class="form-control" value="<%=proy.profTutor%>" name="proy[profTutor]" required>
+                    <datalist id="tutores">
+                        <% arrayfinaltutor.forEach(function(proy){ %>
+                        <option value="<%=proy%>">
+                        <% }) %>
+                    </datalist>
+                </div>
 
                                         <div class="col-md-2">
                                             <label>Status del Proyecto</label>
-                                            <select name="blog[statusProyecto]" class="custom-select" id="statusProyecto">
-                                                <option value="<%=blog.statusProyecto%>">
-                                                    <%=blog.statusProyecto%>
+                                            <select name="proy[statusProyecto]" class="custom-select" id="statusProyecto">
+                                                <option value="<%=proy.statusProyecto%>">
+                                                    <%=proy.statusProyecto%>
                                                 </option>
                                                 <option value="Culminado">CULMINADO</option>
                                                 <option value="No culminado">NO CULMINADO</option>
                                             </select>
                                         </div>
                                         <div class="col-md-2">
-                                            <label for="blog[Trayecto]">Trayecto</label>
-                                            <select name="blog[Trayecto]" class="custom-select" required>
-                                                <option value="<%=blog.Trayecto%>">
-                                                    <%=blog.Trayecto%>
+                                            <label for="proy[trayecto]">Trayecto</label>
+                                            <select name="proy[trayecto]" class="custom-select" required>
+                                                <option value="<%=proy.trayecto%>">
+                                                    <%=proy.trayecto%>
                                                 </option>
                                                 <option value="T1">T1</option>
                                                 <option value="T2">T2</option>
@@ -92,31 +137,54 @@
                                                 <option value="T4">T4</option>
                                             </select>
                                         </div>
-                                        <div class="col-md-2">
-                                            <label for="blog[Seccion]">Seccion</label>
-                                            <input name="blog[Seccion]" type="text" class="form-control" value="<%=blog.Seccion%>" placeholder="" required>
-                                        </div>
-                                        <div class="col-md-2">
-                                            <label for="blog[lapsoAcademico]">Lapso Academico</label>
-                                            <input name="blog[lapsoAcademico]" type="text" class="form-control" value="<%=blog.lapsoAcademico%>" placeholder="" required>
-                                        </div>
+                                        
+                                        
+                                        
+                                         <%var arrayauxiliar=[];%>
+            <%proys.forEach(function(proy){ %>
+            <%    arrayauxiliar.push(proy.seccion);%>
+            <% }); %>
+            <%let arrayfinalseccion =[...new Set(arrayauxiliar)]%>  
+                <div class="col-md-2">
+                    <label for="proy[seccion]">Seccion:</label>
+                    <input list="secciones" class="form-control" value="<%=proy.seccion%>" name="proy[seccion]" required>
+                    <datalist id="secciones">
+                        <% arrayfinalseccion.forEach(function(proy){ %>
+                        <option value="<%=proy%>">
+                        <% }) %>
+                    </datalist>
+                </div>
+                                        <%var arrayauxiliar=[];%>
+            <%proys.forEach(function(proy){ %>
+            <%    arrayauxiliar.push(proy.lapsoAcademico);%>
+            <% }); %>
+            <%let arrayfinallapsoAcademico =[...new Set(arrayauxiliar)]%>  
+                <div class="col-md-2">
+                    <label for="proy[lapsoAcademico]">Lapso Academico:</label>
+                    <input list="lapsosacademicos" class="form-control" value="<%=proy.lapsoAcademico%>" name="proy[lapsoAcademico]" required>
+                    <datalist id="lapsosacademicos">
+                        <% arrayfinallapsoAcademico.forEach(function(proy){ %>
+                        <option value="<%=proy%>">
+                        <% }) %>
+                    </datalist>
+                </div>
 
                                         <div class="col-md-4">
 
-                                            <% if (blog.pnf == "PNF en Electricidad") { %>
+                                            <% if (proy.pnf == "PNF en Electricidad") { %>
                                                 <label for="lineaInv">Linea de Investigacion</label>
 
-                                                <select id="lineaInvIyC" style="display: none;" name="blog[lineaInv]" class="custom-select" disabled>
-                                                    <option value="<%=blog.lineaInv%>">
-                                                        <%=blog.lineaInv%>
+                                                <select id="lineaInvIyC" style="display: none;" name="proy[lineaInv]" class="custom-select" disabled>
+                                                    <option value="<%=proy.lineaInv%>">
+                                                        <%=proy.lineaInv%>
                                                     </option>
                                                     <option value="-">-</option>
                                                     <option value="LineaInvestigacionInstrYCntrl">LineaInvestigacionInstrYCntrl</option>
                                                 </select>
 
-                                                <select id="lineaInvElectricidad" name="blog[lineaInv]" class="custom-select">
-                                                    <option value="<%=blog.lineaInv%>">
-                                                        <%=blog.lineaInv%>
+                                                <select id="lineaInvElectricidad" name="proy[lineaInv]" class="custom-select">
+                                                    <option value="<%=proy.lineaInv%>">
+                                                        <%=proy.lineaInv%>
                                                     </option>
                                                     <option value="-">-</option>
                                                     <option value="GESTIÓN DE ENERGÍA ELÉCTRICA">GESTIÓN DE ENERGÍA ELÉCTRICA</option>
@@ -126,9 +194,9 @@
                                                     <option value="AUTOMATIZACIÓN Y CONTROL">AUTOMATIZACIÓN Y CONTROL</option>
                                                 </select>
 
-                                                <select id="lineaInvElectronica" style="display: none;" name="blog[lineaInv]" class="custom-select" disabled>
-                                                    <option value="<%=blog.lineaInv%>">
-                                                        <%=blog.lineaInv%>
+                                                <select id="lineaInvElectronica" style="display: none;" name="proy[lineaInv]" class="custom-select" disabled>
+                                                    <option value="<%=proy.lineaInv%>">
+                                                        <%=proy.lineaInv%>
                                                     </option>
                                                     <option value="-">-</option>
                                                     <option value="LineaInvestigacionElectronica">LineaInvestigacionElectronica</option>
@@ -136,20 +204,20 @@
                                         </div>
                                     </div>
 
-                                    <% } else if (blog.pnf == "PNF en Electronica") { %>
+                                    <% } else if (proy.pnf == "PNF en Electronica") { %>
                                         <label for="lineaInv">Linea de Investigacion</label>
 
-                                        <select id="lineaInvIyC" style="display: none;" name="blog[lineaInv]" class="custom-select" disabled>
-                                            <option value="<%=blog.lineaInv%>">
-                                                <%=blog.lineaInv%>
+                                        <select id="lineaInvIyC" style="display: none;" name="proy[lineaInv]" class="custom-select" disabled>
+                                            <option value="<%=proy.lineaInv%>">
+                                                <%=proy.lineaInv%>
                                             </option>
                                             <option value="-">-</option>
                                             <option value="LineaInvestigacionInstrYCntrl">LineaInvestigacionInstrYCntrl</option>
                                         </select>
 
-                                        <select id="lineaInvElectricidad" style="display: none;" name="blog[lineaInv]" class="custom-select" disabled>
-                                            <option value="<%=blog.lineaInv%>">
-                                                <%=blog.lineaInv%>
+                                        <select id="lineaInvElectricidad" style="display: none;" name="proy[lineaInv]" class="custom-select" disabled>
+                                            <option value="<%=proy.lineaInv%>">
+                                                <%=proy.lineaInv%>
                                             </option>
                                             <option value="-">-</option>
                                             <option value="GESTIÓN DE ENERGÍA ELÉCTRICA">GESTIÓN DE ENERGÍA ELÉCTRICA</option>
@@ -159,9 +227,9 @@
                                             <option value="AUTOMATIZACIÓN Y CONTROL">AUTOMATIZACIÓN Y CONTROL</option>
                                         </select>
 
-                                        <select id="lineaInvElectronica" name="blog[lineaInv]" class="custom-select">
-                                            <option value="<%=blog.lineaInv%>">
-                                                <%=blog.lineaInv%>
+                                        <select id="lineaInvElectronica" name="proy[lineaInv]" class="custom-select">
+                                            <option value="<%=proy.lineaInv%>">
+                                                <%=proy.lineaInv%>
                                             </option>
                                             <option value="-">-</option>
                                             <option value="LineaInvestigacionElectronica">LineaInvestigacionElectronica</option>
@@ -170,17 +238,17 @@
         </div>
         <% } else { %>
             <label for="lineaInv">Linea de Investigacion</label>
-            <select id="lineaInvIyC" name="blog[lineaInv]" class="custom-select">
-                <option value="<%=blog.lineaInv%>">
-                    <%=blog.lineaInv%>
+            <select id="lineaInvIyC" name="proy[lineaInv]" class="custom-select">
+                <option value="<%=proy.lineaInv%>">
+                    <%=proy.lineaInv%>
                 </option>
                 <option value="-">-</option>
                 <option value="LineaInvestigacionInstrYCntrl">LineaInvestigacionInstrYCntrl</option>
             </select>
 
-            <select id="lineaInvElectricidad" style="display: none;" name="blog[lineaInv]" class="custom-select" disabled>
-                <option value="<%=blog.lineaInv%>">
-                    <%=blog.lineaInv%>
+            <select id="lineaInvElectricidad" style="display: none;" name="proy[lineaInv]" class="custom-select" disabled>
+                <option value="<%=proy.lineaInv%>">
+                    <%=proy.lineaInv%>
                 </option>
                 <option value="-">-</option>
                 <option value="GESTIÓN DE ENERGÍA ELÉCTRICA">GESTIÓN DE ENERGÍA ELÉCTRICA</option>
@@ -190,9 +258,9 @@
                 <option value="AUTOMATIZACIÓN Y CONTROL">AUTOMATIZACIÓN Y CONTROL</option>
             </select>
 
-            <select id="lineaInvElectronica" style="display: none;" name="blog[lineaInv]" class="custom-select" disabled>
-                <option value="<%=blog.lineaInv%>">
-                    <%=blog.lineaInv%>
+            <select id="lineaInvElectronica" style="display: none;" name="proy[lineaInv]" class="custom-select" disabled>
+                <option value="<%=proy.lineaInv%>">
+                    <%=proy.lineaInv%>
                 </option>
                 <option value="-">-</option>
                 <option value="LineaInvestigacionElectronica">LineaInvestigacionElectronica</option>
@@ -201,10 +269,10 @@
     </div>
     <% } %>
 
-        <label for="blog[cantIntegrantes]">Cantidad de Integrantes en el proyecto</label>
+        <label for="proy[cantIntegrantes]">Cantidad de Integrantes en el proyecto</label>
         <div class="form-row">
             <div class="col-md-2">
-                <select id="integrantes" name="blog[cantIntegrantes]" class="custom-select" value="<%=blog.cantIntegrantes%>" onChange="mostrar(this.value);" required>
+                <select id="integrantes" name="proy[cantIntegrantes]" class="custom-select" value="<%=proy.cantIntegrantes%>" onChange="mostrar(this.value);" required>
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -217,13 +285,13 @@
         <div id="estud1" class="form-row">
             <div class="col-md-4">
                 <label>Nombre y Apellido</label>
-                <input id="estud1" name="blog[nombreEstudiante1]" type="text" value="<%=blog.nombreEstudiante1%>" class="form-control" required>
+                <input id="estud1" name="proy[nombreEstudiante1]" type="text" value="<%=proy.nombreEstudiante1%>" class="form-control" required>
             </div>
             <div class="col-md-2">
                 <label>Nota asignada</label>
-                <select id="estud1" name="blog[notaEstudiante1]" class="custom-select" id="nota">
-                    <option value="<%=blog.notaEstudiante1%>">
-                        <%=blog.notaEstudiante1%>
+                <select id="estud1" name="proy[notaEstudiante1]" class="custom-select" id="nota">
+                    <option value="<%=proy.notaEstudiante1%>">
+                        <%=proy.notaEstudiante1%>
                     </option>
                     <option value="16">16</option>
                     <option value="17">17</option>
@@ -237,13 +305,13 @@
         <div id="estud2" class="form-row" style="display: none;">
             <div class="col-md-4">
                 <label>Nombre y Apellido</label>
-                <input id="estud2" name="blog[nombreEstudiante2]" value="<%=blog.nombreEstudiante2%>" type="text" class="form-control">
+                <input id="estud2" name="proy[nombreEstudiante2]" value="<%=proy.nombreEstudiante2%>" type="text" class="form-control">
             </div>
             <div class="col-md-2">
                 <label>Nota asignada</label>
-                <select id="estud2" name="blog[notaEstudiante2]" class="custom-select" id="nota">
-                    <option value="<%=blog.notaEstudiante2%>">
-                        <%=blog.notaEstudiante2%>
+                <select id="estud2" name="proy[notaEstudiante2]" class="custom-select" id="nota">
+                    <option value="<%=proy.notaEstudiante2%>">
+                        <%=proy.notaEstudiante2%>
                     </option>
                     <option value="16">16</option>
                     <option value="17">17</option>
@@ -256,13 +324,13 @@
         <div id="estud3" class="form-row" style="display: none;">
             <div class="col-md-4">
                 <label>Nombre y Apellido</label>
-                <input id="estud3" name="blog[nombreEstudiante3]" value="<%=blog.nombreEstudiante3%>" type="text" class="form-control">
+                <input id="estud3" name="proy[nombreEstudiante3]" value="<%=proy.nombreEstudiante3%>" type="text" class="form-control">
             </div>
             <div class="col-md-2">
                 <label>Nota asignada</label>
-                <select id="estud3" name="blog[notaEstudiante3]" class="custom-select" id="nota">
-                    <option value="<%=blog.notaEstudiante3%>">
-                        <%=blog.notaEstudiante3%>
+                <select id="estud3" name="proy[notaEstudiante3]" class="custom-select" id="nota">
+                    <option value="<%=proy.notaEstudiante3%>">
+                        <%=proy.notaEstudiante3%>
                     </option>
                     <option value="16">16</option>
                     <option value="17">17</option>
@@ -275,13 +343,13 @@
         <div id="estud4" class="form-row" style="display: none;">
             <div class="col-md-4">
                 <label>Nombre y Apellido</label>
-                <input id="estud4" name="blog[nombreEstudiante4]" value="<%=blog.nombreEstudiante4%>" type="text" class="form-control">
+                <input id="estud4" name="proy[nombreEstudiante4]" value="<%=proy.nombreEstudiante4%>" type="text" class="form-control">
             </div>
             <div class="col-md-2">
                 <label>Nota asignada</label>
-                <select id="estud4" name="blog[notaEstudiante4]" class="custom-select" id="nota">
-                    <option value="<%=blog.notaEstudiante4%>">
-                        <%=blog.notaEstudiante4%>
+                <select id="estud4" name="proy[notaEstudiante4]" class="custom-select" id="nota">
+                    <option value="<%=proy.notaEstudiante4%>">
+                        <%=proy.notaEstudiante4%>
                     </option>
                     <option value="16">16</option>
                     <option value="17">17</option>
@@ -295,13 +363,13 @@
         <div id="estud5" class="form-row" style="display: none;">
             <div class="col-md-4">
                 <label>Nombre y Apellido</label>
-                <input id="estud5" name="blog[nombreEstudiante5]" value="<%=blog.nombreEstudiante5%>" type="text" class="form-control">
+                <input id="estud5" name="proy[nombreEstudiante5]" value="<%=proy.nombreEstudiante5%>" type="text" class="form-control">
             </div>
             <div class="col-md-2">
                 <label>Nota asignada</label>
-                <select id="estud5" name="blog[notaEstudiante5]" class="custom-select" id="nota">
-                    <option value="<%=blog.notaEstudiante5%>">
-                        <%=blog.notaEstudiante5%>
+                <select id="estud5" name="proy[notaEstudiante5]" class="custom-select" id="nota">
+                    <option value="<%=proy.notaEstudiante5%>">
+                        <%=proy.notaEstudiante5%>
                     </option>
                     <option value="16">16</option>
                     <option value="17">17</option>
@@ -314,8 +382,8 @@
 
         <div class="form-group mt-2">
             <small>Ingrese un resumen del proyecto</small>
-            <textarea name="blog[resumenProyecto]" class="form-control" rows="3" placeholder="Resumen del proyecto" required>
-                <%=blog.resumenProyecto%>
+            <textarea name="proy[resumenProyecto]" class="form-control" rows="3" placeholder="Resumen del proyecto">
+                <%=proy.resumenProyecto%>
             </textarea>
         </div>
 
@@ -325,4 +393,4 @@
         </form>
         </div>
         </div>
-        <% include ./partials/footer %>
+<% include ./partials/footer %>

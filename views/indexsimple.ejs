@@ -56,10 +56,6 @@
                      <a class="nav-link" href="#">Ayuda</a>
                   </li>
                </ul> 
-               
-               
-               
-              
                      <a class="text-light nav-link" href="/logout">Salir</a>
 
                  
@@ -79,16 +75,15 @@
         </thead>
         
         <tbody>
-            <% blogs.forEach(function(blog){ %>
+            <% proys.forEach(function(proy){ %>
             <tr>
-                <td><%=blog.nombreProyecto%></td>
-                <td><%=blog.pnf%></td>
-                <td><%=blog.nombreComunidad%></td>
-                <td><%=blog.Trayecto%></td>
-                <td><%=blog.lapsoAcademico%></td>
-                <td><a href="/index/<%=blog._id %>">... Ver más</a></td>
+                <td><%=proy.tituloProyecto%></td>
+                <td><%=proy.pnf%></td>
+                <td><%=proy.comunidad%></td>
+                <td><%=proy.trayecto%></td>
+                <td><%=proy.lapsoAcademico%></td>
+                <td><a href="/index/<%=proy._id %>">... Ver más</a></td>
             </tr>
-            
             <% }) %>
            
            
@@ -96,7 +91,7 @@
     </table>
 </div>
 
-<footer id = "footer" class="fixed-bottom text-white-50 pt-3">
+<footer id = "footer" class=" text-white-50 pt-3">
    <div class="container">
       <div class="row">
          <div class=" col-md-3 mx-auto ">

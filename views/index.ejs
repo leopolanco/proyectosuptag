@@ -1,6 +1,7 @@
 <% include ./partials/header %>
 
-
+ <!-- CONDICIONALES PARA LOS ANUNCIOS, EN EL ARCHIVO PRINCIPAL(APP.JS) ESTAN SUS VALORES (LO QUE DICEN) --> 
+ 
 <% if(error && error.length > 0){ %>
 <div class="alert alert-danger" role="alert">
   <%= error %>
@@ -14,26 +15,26 @@
 <% } %>
 
 <div class="container">
-<a class="btn btn-dark mt-5" href="indexsimple">Vista Simple</a></div>
+<a class="btn btn-dark mt-3" href="indexsimple">Vista Simple</a></div>
 
-<% blogs.forEach(function(blog){ %>
+<% proys.forEach(function(proy){ %>
 <div id="fichaMostrar" class="mt-5">
    <div class="container text-uppercase">
       <div class="jumbotron ">
          <div class="text-center">
-            <h3><%=blog.nombreProyecto%></h3>
+            <h4><%=proy.tituloProyecto%></h4>
          </div>
-         <div class="form-row mb-2 mt-4">
+         <div class="form-row mb-2 mt-5">
             <div class="col-md-6">
                <div class="col">
                <small class="text-secondary">P.N.F:</small>    
-               <h5><%=blog.pnf%></h5>
+               <h6><%=proy.pnf%></h6>
             </div>
             </div>
             <div class="col-md-6 text-right">
-               <div class="col-md-6 float-right">
+               <div class="col-md-8 float-right">
                <small class="text-secondary">Comunidad:</small>      
-               <h5><%=blog.nombreComunidad%></h5>
+               <h6><%=proy.comunidad%></h6>
             </div>
             </div>
          </div>
@@ -41,21 +42,21 @@
             <div class="col-md-6">
                <div class="col-md-6">
                   <small class="text-secondary">Profesor Tutor:</small> 
-                  <h6><%=blog.profTutor%></h6>
+                  <h6><%=proy.profTutor%></h6>
                   </div>
                <div class="col-md-6">
                   <small class="text-secondary">Profesor Guia:</small>     
-                  <h6><%=blog.profGuia%></h6>
+                  <h6><%=proy.profGuia%></h6>
                </div>
          </div>
             <div class="col-md-6 text-right">
                <div class="col-md-6 float-right">
                   <small class="text-secondary">Autores:</small>     
-                  <h6><%=blog.nombreEstudiante1%></h6>
-                  <h6><%=blog.nombreEstudiante2%></h6>
-                  <h6><%=blog.nombreEstudiante3%></h6>
-                  <h6><%=blog.nombreEstudiante4%></h6>
-                  <h6><%=blog.nombreEstudiante5%></h6>
+                  <h6><%=proy.nombreEstudiante1%></h6>
+                  <h6><%=proy.nombreEstudiante2%></h6>
+                  <h6><%=proy.nombreEstudiante3%></h6>
+                  <h6><%=proy.nombreEstudiante4%></h6>
+                  <h6><%=proy.nombreEstudiante5%></h6>
                </div>
             </div>
          </div>
@@ -64,21 +65,15 @@
             <div class="col text-right">
                <div class="col float-right">
                   <small class="text-secondary">Trayecto:</small>     
-                  <h4><%=blog.Trayecto%></h4>
+                  <h4><%=proy.trayecto%></h4>
                </div>
             </div>
             </div>
          <div class="form-row">
          </div>
-         <h5><a href="/index/<%=blog._id %>">... Ver más</a></h5>
+         <h5><a href="/index/<%=proy._id %>">... Ver más</a></h5>
       </div>
    </div>
 </div>
 <% }) %>
 <% include ./partials/footer %>
-        
-        
-        
-        
-        
-        
