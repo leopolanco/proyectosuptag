@@ -9,47 +9,71 @@
  <!-- CONDICIONALES PARA LOS VALORES PREDETERMINADOS, PARA LA LINEA DE INVESTIGACION SE UTILIZA UNO PARECIDO --> 
 
                 <% if (proy.pnf == "PNF en Electricidad") { %>
-                    <div class="form-check form-check-inline" style="padding-bottom: 20px">
-                        <input class="form-check-input" type="radio" name="proy[pnf]" value="PNF en Electricidad" onChange="mostrarlineainv(this.value);" checked>
-                        <label class="form-check-label" for="PNF en Electricidad">PNF en Electricidad</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="proy[pnf]" value="PNF en Electronica" onChange="mostrarlineainv(this.value);">
-                        <label class="form-check-label" for="PNF en Electronica">PNF en Electronica</label </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="proy[pnf]" value="PNF en Instrumentacion y Control" onChange="mostrarlineainv(this.value);">
-                            <label class="form-check-label" for="PNF en Instrumentacion y Control">PNF en Instrumentacion y Control</label>
-                        </div>
+                
+                
+                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+         <div>
+            <label class=" btn btn-secondary mr-2">
+            <input type="radio" name="proy[pnf]"  value="PNF en Instrumentacion y Control"  onChange="mostrarlineainv(this.value);"> PNF en Instrumentacion y Control
+            </label>
+         </div>
+         <div>
+            <label class=" btn btn-secondary mr-2 ">
+            <input type="radio" name="proy[pnf]" value="PNF en Electricidad" onChange="mostrarlineainv(this.value);" checked> PNF en Electricidad
+            </label>
+         </div>
+         <div>
+            <label class=" btn btn-secondary mr-2">
+            <input type="radio" name="proy[pnf]" value="PNF en Electronica" onChange="mostrarlineainv(this.value);"> PNF en Electronica
+            </label>
+         </div>
+          </div>
+                        
+                        
+                        
+                        
                         <% } else if (proy.pnf == "PNF en Electronica") { %>
-                            <div class="form-check form-check-inline" style="padding-bottom: 20px">
-                                <input class="form-check-input" type="radio" name="proy[pnf]" value="PNF en Electricidad" onChange="mostrarlineainv(this.value);">
-                                <label class="form-check-label" for="PNF en Electricidad">PNF en Electricidad</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="proy[pnf]" value="PNF en Electronica" onChange="mostrarlineainv(this.value);" checked>
-                                <label class="form-check-label" for="PNF en Electronica">PNF en Electronica</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="proy[pnf]" value="PNF en Instrumentacion y Control" onChange="mostrarlineainv(this.value);">
-                                <label class="form-check-label" for="PNF en Instrumentacion y Control">PNF en Instrumentacion y Control</label>
-                            </div>
+                            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+         <div>
+            <label class=" btn btn-secondary mr-2">
+            <input type="radio" name="proy[pnf]"  value="PNF en Instrumentacion y Control"  onChange="mostrarlineainv(this.value);"> PNF en Instrumentacion y Control
+            </label>
+         </div>
+         <div>
+            <label class=" btn btn-secondary mr-2 ">
+            <input type="radio" name="proy[pnf]" value="PNF en Electricidad" onChange="mostrarlineainv(this.value);" > PNF en Electricidad
+            </label>
+         </div>
+         <div>
+            <label class=" btn btn-secondary mr-2 ">
+            <input type="radio" name="proy[pnf]" value="PNF en Electronica" onChange="mostrarlineainv(this.value);" checked > PNF en Electronica
+            </label>
+         </div>
+          </div>
+                      
                             <% } else { %>
-                                <div class="form-check form-check-inline" style="padding-bottom: 20px">
-                                    <input class="form-check-input" type="radio" name="proy[pnf]" value="PNF en Electricidad" onChange="mostrarlineainv(this.value);">
-                                    <label class="form-check-label" for="PNF en Electricidad">PNF en Electricidad</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="proy[pnf]" value="PNF en Electronica" onChange="mostrarlineainv(this.value);">
-                                    <label class="form-check-label" for="PNF en Electronica">PNF en Electronica</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="proy[pnf]" value="PNF en Instrumentacion y Control" checked>
-                                    <label class="form-check-label" for="PNF en Instrumentacion y Control">PNF en Instrumentacion y Control</label>
-                                </div>
+                                <div class="btn-group btn-group-toggle" data-toggle="buttons">
+         <div>
+            <label class=" btn btn-secondary mr-2 ">
+            <input type="radio" name="proy[pnf]"  value="PNF en Instrumentacion y Control"  onChange="mostrarlineainv(this.value);" checked> PNF en Instrumentacion y Control
+            </label>
+         </div>
+         <div>
+            <label class=" btn btn-secondary mr-2 ">
+            <input type="radio" name="proy[pnf]" value="PNF en Electricidad" onChange="mostrarlineainv(this.value);" > PNF en Electricidad
+            </label>
+         </div>
+         <div>
+            <label class=" btn btn-secondary mr-2">
+            <input type="radio" name="proy[pnf]" value="PNF en Electronica" onChange="mostrarlineainv(this.value);"  > PNF en Electronica
+            </label>
+         </div>
+          </div>
                                 <% } %>
+                                
 
                                     <div class="form-group">
-                                        <label for="nombreproy">Nombre del Proyecto</label>
+                                        <label for="nombreproy">Titulo del Proyecto</label>
                                         <input name="proy[tituloProyecto]" type="text" class="form-control form-control-lg" value="<%=proy.tituloProyecto%>" required>
                                     </div>
 

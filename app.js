@@ -10,6 +10,7 @@ var bodyParser = require("body-parser"),
     app = express();
 
 //Configuraciones generales para funcionamiento (utilizamos ejs para combinar js y html en un solo archivo)
+//mongoose.connect("mongodb://localhost/proyecto_app", { useNewUrlParser: true, useFindAndModify: false, useCreateIndex: true, useUnifiedTopology: true});
 mongoose.connect("mongodb+srv://leo:polanco@uptag-qexum.mongodb.net/test?retryWrites=true&w=majority", {
     useNewUrlParser: true,
     useFindAndModify: false,
@@ -54,16 +55,16 @@ function isLoggedIn(req, res, next) {
 
 //Schema de cada proyecto
 var proySchema = new mongoose.Schema({
-    tituloProyecto: String,      //1
+    tituloProyecto: String,      
     pnf: String,
-    comunidad: String,        //2
-    trayecto: String,        //3
-    seccion: Number,        //4
+    comunidad: String,        
+    trayecto: String,        
+    seccion: Number,        
     profGuia: String,
     profTutor: String,
     resumenProyecto: String,
     statusProyecto: String,
-    municipio: String,          //5
+    municipio: String,          
     lapsoAcademico: String,
     lineaInv: String,
     cantIntegrantes: String,
@@ -72,6 +73,11 @@ var proySchema = new mongoose.Schema({
     nombreEstudiante3: String,
     nombreEstudiante4: String,
     nombreEstudiante5: String,
+    cedulaEstudiante1: String,
+    cedulaEstudiante2: String,
+    cedulaEstudiante3: String,
+    cedulaEstudiante4: String,
+    cedulaEstudiante5: String,
     notaEstudiante1: String,
     notaEstudiante2: String,
     notaEstudiante3: String,
@@ -176,9 +182,7 @@ app.get("/index", function(req, res) {
             if (err) {
                 console.log(err);
             } else {
-                res.render("../views/index.ejs", {
-                    proys: proys
-                });
+                res.render("../views/index.ejs", {proys: proys});
             }
         });
     }
@@ -203,7 +207,7 @@ app.get("/archivar", isLoggedIn, function(req, res) {
         if (err) {
             console.log(err);
         } else {
-            res.render("archivar.ejs", {proys: proys});
+            res.render("../views/archivar.ejs", {proys: proys});
         }
     });
 
@@ -212,15 +216,26 @@ app.get("/archivar", isLoggedIn, function(req, res) {
 //Envio de formulario de creacion
 app.post("/index", isLoggedIn, function(req, res) {
     req.flash("success", "Su proyecto fue agregado.");
+    Proy.find({}, function(err, proys) {
+        if (err) {
+            console.log(err);
+        } else {
+    
     Proy.create(req.body.proy, function(err, newProy) {
         if (err) {
             console.log(err);
-            res.render("../views/archivar.ejs");
+            res.redirect("/archivar");
         } else {
             res.redirect("/index");
         }
+    });}
     });
 });
+
+
+
+
+
 
 //Ruta de muestra individual
 app.get("/index/:id", function(req, res) {

@@ -1,6 +1,6 @@
 <% include ./partials/header %>
 
- <!-- CONDICIONALES PARA LOS ANUNCIOS, EN EL ARCHIVO PRINCIPAL(APP.JS) ESTAN SUS VALORES (LO QUE DICEN) --> 
+ <!-- CONDICIONALES PARA LOS ANUNCIOS, EN EL ARCHIVO PRINCIPAL(APP.JS) ESTAN SUS VALORES (LO QUE ALERTAN) --> 
  
 <% if(error && error.length > 0){ %>
 <div class="alert alert-danger" role="alert">
@@ -15,10 +15,10 @@
 <% } %>
 
 <div class="container">
-<a class="btn btn-dark mt-3" href="/indexsimple">Vista Simple</a></div>
+<a class="btn btn-dark mt-4" href="/indexsimple">Vista Simple</a></div>
 
 <% proys.forEach(function(proy){ %>
-<div id="fichaMostrar" class="mt-5">
+<div id="fichaMostrar" class="mt-3">
    <div class="container text-uppercase">
       <div class="jumbotron ">
          <div class="text-center">
@@ -71,7 +71,7 @@
             </div>
          <div class="form-row">
          </div>
-         <h5><a href="/index/<%=proy._id %>">... Ver más</a></h5>
+         <h5><a class="btn btn-info" href="/index/<%=proy._id %>">Ver más</a></h5>
       </div>
    </div>
 </div>

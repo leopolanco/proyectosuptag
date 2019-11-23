@@ -35,9 +35,8 @@
             margin-top: 0em;
             margin-block-end: 0em;
          }
+         
       </style>
-      
-      
         </head>
       
    <body>
@@ -53,37 +52,58 @@
                      <a class="nav-link" href="/archivar">Archivar</a>
                   </li>
                   <li class="nav-item">
+                     <a class="nav-link" href="/index">Buscar</a>
+                  </li>
+                  <li class="nav-item">
                      <a class="nav-link" href="#">Ayuda</a>
                   </li>
                </ul> 
                      <a class="text-light nav-link" href="/logout">Salir</a>
-
-                 
          </nav>
+         
+         
+         
          </div>   
-<div class="container mt-5">
-<table id="tablaProy" class="display" style="width:100%">
-        <thead>
+<div class="mt-4">
+<table id="tablaProy" class="display table table-md table-bordered table-responsive-md " style="width:100%">
+        <thead class="thead-dark">
             <tr>
-                <th>Titulo</th>
-                <th>Pnf</th>
-                <th>Comunidad</th>
-                <th>Trayecto</th>
-                <th>Lapso Academico</th>
-                <th></th>
+               <th >PNF</th>
+               <th >LAPSO ACADEMICO</th>
+               <th >TRAYECTO</th>
+               <th >SECCIÓN</th>
+               <th >TITULO</th>
+               <th >COMUNIDAD</th>
+               <th >AUTOR 1</th>
+               <th >AUTOR 2</th>
+               <th >AUTOR 3</th>
+               <th >AUTOR 4</th>
+               <th >AUTOR 5</th>
+               <th></th>
             </tr>
         </thead>
         
         <tbody>
             <% proys.forEach(function(proy){ %>
+            
             <tr>
-                <td><%=proy.tituloProyecto%></td>
+
                 <td><%=proy.pnf%></td>
-                <td><%=proy.comunidad%></td>
-                <td><%=proy.trayecto%></td>
                 <td><%=proy.lapsoAcademico%></td>
-                <td><a href="/index/<%=proy._id %>">... Ver más</a></td>
+                <td><%=proy.trayecto%></td>
+                <td><%=proy.seccion%></td>
+                <td class="comment"><%=proy.tituloProyecto%> </td>
+                
+                <td><%=proy.comunidad%></td>
+                <td><%=proy.nombreEstudiante1%><br/> 27273550</td>
+                <td><%=proy.nombreEstudiante2%></td>
+                <td><%=proy.nombreEstudiante3%></td>
+                <td><%=proy.nombreEstudiante4%></td>
+                <td ><%=proy.nombreEstudiante5%></td>
+                <td><a class="btn btn-info" href="/index/<%=proy._id %>">Ver más</a></td>
+                
             </tr>
+           
             <% }) %>
            
            
@@ -147,6 +167,7 @@
 <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.html5.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+<script src="/js/main.js"></script>
 
 <script>
 
@@ -159,8 +180,23 @@ $(document).ready(function() {
         ]
     } );
 } );
-
 </script>
+
+
+
+<script type="text/javascript">
+	$(document).ready(function() {
+	
+		$(".comment").shorten({
+	"showChars" : 50,
+	"moreText"	: "más",
+	"lessText"	: "menos",
+});
+	
+	});
+</script>
+
+
 </body>
 
 </html>
