@@ -339,9 +339,31 @@ app.get("/images/iconuptag.jpg", function(req, res) {
 app.get("/images/cclogo.png", function(req, res) {
     res.sendFile("../public/images/cclogo.png");
 });
+app.get("/images/logopnfe.png", function(req, res) {
+    res.sendFile("../public/images/logopnfe.png");
+});
+app.get("/images/imageslogopnfiyc", function(req, res) {
+    res.sendFile("../public/imageslogopnfiyc.png");
+});
+app.get("/images/logopnfelectronica.png", function(req, res) {
+    res.sendFile("../public/images/logopnfelectronica.png");
+});
 app.get("/images/bg-01.png", function(req, res) {
     res.sendFile("../public/images/bg-01.png");
 });
+app.get("/images/logouptag.jpg", function(req, res) {
+    res.sendFile("../public/images/logouptag.jpg");
+});
+app.get("/images/logopnfi.jpg", function(req, res) {
+    res.sendFile("../public/images/logopnfi.jpg");
+});
+
+
+app.get("/test", function(req, res) {
+    res.render("../views/test.ejs");
+});
+
+
 
 //Funcion de seguridad
 function escapeRegex(text) {
