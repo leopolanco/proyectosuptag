@@ -1,5 +1,14 @@
-<% include ./partials/header %> <!-- PARA INCLUIR EL HEADER, DEBAJO HAY OTRO PARA INCLUIR FOOTER TAMBIEN --> 
-<div class="container pt-5 mt-3">
+<% include ./partials/header %> <!-- PARA INCLUIR EL HEADER, DEBAJO HAY OTRO PARA INCLUIR FOOTER TAMBIEN -->
+
+<!-- CONDICIONALES PARA LOS ANUNCIOS, EN EL ARCHIVO PRINCIPAL(APP.JS) ESTAN SUS VALORES (LO QUE ALERTAN) --> 
+
+
+<div class="container pt-5 mt-4">
+   <% if(error && error.length > 0){ %>
+<div class="alert alert-danger" role="alert">
+  <%= error %>
+</div>
+<% } %>
    <div class="jumbotron">
       <form method="POST" action="/index">
          <small>Seleccione su PNF</small>
@@ -91,13 +100,13 @@
          </div>
          <div class="col-md-2">
          <label>Status del Proyecto</label>
-         <select name="proy[statusProyecto]" class="custom-select" id="statusProyecto">
-         <option value="Culminado">CULMINADO</option>
-         <option value="No culminado">NO CULMINADO</option>
+         <select name="proy[statusProyecto]" class="custom-select" onChange="mostrarnotas(this.value);" id="statusProyecto" required>
+         <option value="NO CULMINADO">NO CULMINADO</option>
+         <option value="CULMINADO">CULMINADO</option>
          </select>
          </div>
          <div class="col-md-2">
-         <label for="proy[trayecto]">Trayecto</label>
+         <label for="proy[trayecto]">Trayecto:</label>
          <select name="proy[trayecto]" class="custom-select" required>
          <option value="T1">T1</option>
          <option value="T2">T2</option>
@@ -166,13 +175,17 @@
             </div>
          </div>
          <div id="estud1" class="form-row">
-            <div class="col-md-4">
-               <label>Nombre y Apellido</label>
+            <div class="col-md-3">
+               <label>Nombre y Apellido:</label>
                <input id="estud1" name="proy[nombreEstudiante1]" type="text" class="form-control" required>
             </div>
             <div class="col-md-2">
-               <label>Nota asignada</label>
-               <select id="estud1" name="proy[notaEstudiante1]" class="custom-select" id="nota">
+               <label>Cédula:</label>
+               <input id="estud1" name="proy[cedulaEstudiante1]" type="text" class="form-control" required>
+            </div>
+             <div id="notas" style="display: none;" class="col-md-2">
+               <label>Nota asignada:</label>
+               <select id="estud1" name="proy[notaEstudiante1]" class="custom-select" >
                   <option value="">-</option>
                   <option value="16">16</option>
                   <option value="17">17</option>
@@ -183,13 +196,17 @@
             </div>
          </div>
          <div id="estud2" class="form-row" style="display: none;">
-            <div class="col-md-4">
-               <label>Nombre y Apellido</label>
+            <div class="col-md-3">
+               <label>Nombre y Apellido:</label>
                <input id="estud2" name="proy[nombreEstudiante2]" type="text" class="form-control">
             </div>
             <div class="col-md-2">
-               <label>Nota asignada</label>
-               <select id="estud2" name="proy[notaEstudiante2]" class="custom-select" id="nota">
+               <label>Cédula:</label>
+               <input id="estud1" name="proy[cedulaEstudiante2]" type="text" class="form-control">
+            </div>
+             <div id="notas2" style="display: none;" class="col-md-2">
+               <label>Nota asignada:</label>
+               <select id="estud2" name="proy[notaEstudiante2]" class="custom-select" >
                   <option value="">-</option>
                   <option value="16">16</option>
                   <option value="17">17</option>
@@ -200,13 +217,17 @@
             </div>
          </div>
          <div id="estud3" class="form-row" style="display: none;">
-            <div class="col-md-4">
-               <label>Nombre y Apellido</label>
+            <div class="col-md-3">
+               <label>Nombre y Apellido:</label>
                <input id="estud3" name="proy[nombreEstudiante3]" type="text" class="form-control">
             </div>
             <div class="col-md-2">
-               <label>Nota asignada</label>
-               <select id="estud3" name="proy[notaEstudiante3]" class="custom-select" id="nota">
+               <label>Cédula:</label>
+               <input id="estud1" name="proy[cedulaEstudiante3]" type="text" class="form-control" >
+            </div>
+             <div id="notas3" style="display: none;" class="col-md-2">
+               <label>Nota asignada:</label>
+               <select id="estud3" name="proy[notaEstudiante3]" class="custom-select" >
                   <option value="">-</option>
                   <option value="16">16</option>
                   <option value="17">17</option>
@@ -217,13 +238,17 @@
             </div>
          </div>
          <div id="estud4" class="form-row" style="display: none;">
-            <div class="col-md-4">
-               <label>Nombre y Apellido</label>
+            <div class="col-md-3">
+               <label>Nombre y Apellido:</label>
                <input id="estud4" name="proy[nombreEstudiante4]" type="text" class="form-control">
             </div>
             <div class="col-md-2">
-               <label>Nota asignada</label>
-               <select id="estud4" name="proy[notaEstudiante4]" class="custom-select" id="nota">
+               <label>Cédula:</label>
+               <input id="estud1" name="proy[cedulaEstudiante4]" type="text" class="form-control" >
+            </div>
+             <div id="notas4" style="display: none;" class="col-md-2">
+               <label>Nota asignada:</label>
+               <select id="estud4" name="proy[notaEstudiante4]" class="custom-select" >
                   <option value="">-</option>
                   <option value="16">16</option>
                   <option value="17">17</option>
@@ -234,13 +259,17 @@
             </div>
          </div>
          <div id="estud5" class="form-row" style="display: none;">
-            <div class="col-md-4">
-               <label>Nombre y Apellido</label>
+            <div class="col-md-3">
+               <label>Nombre y Apellido:</label>
                <input id="estud5" name="proy[nombreEstudiante5]" type="text" class="form-control">
             </div>
             <div class="col-md-2">
-               <label>Nota asignada</label>
-               <select id="estud5" name="proy[notaEstudiante5]" class="custom-select" id="nota">
+               <label>Cédula:</label>
+               <input id="estud1" name="proy[cedulaEstudiante5]" type="text" class="form-control" >
+            </div>
+             <div id="notas5" style="display: none;" class="col-md-2">
+               <label>Nota asignada:</label>
+               <select id="estud5" name="proy[notaEstudiante5]" class="custom-select" >
                   <option value="">-</option>
                   <option value="16">16</option>
                   <option value="17">17</option>

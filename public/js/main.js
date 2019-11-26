@@ -66,6 +66,22 @@ function mostrar(id) {//Funcion para mostrar inputs de estudiantes en el formula
      } 
     } 
 
+function mostrarnotas(id) {//Funcion para mostrar input de notas, si esta culminado o no culminado
+
+        if (id == "CULMINADO") { 
+          $("#notas").show();
+          $("#notas2").show();
+          $("#notas3").show();
+          $("#notas4").show();
+          $("#notas5").show();
+      } else {
+          $("#notas").hide();
+          $("#notas2").hide();
+          $("#notas3").hide();
+          $("#notas4").hide();
+          $("#notas5").hide();
+      }
+}
 
 (function($) {
 	$.fn.shorten = function (settings) {

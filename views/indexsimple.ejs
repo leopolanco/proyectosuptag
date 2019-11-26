@@ -74,11 +74,11 @@
                <th >SECCIÓN</th>
                <th >TITULO</th>
                <th >COMUNIDAD</th>
-               <th >AUTOR 1</th>
-               <th >AUTOR 2</th>
-               <th >AUTOR 3</th>
-               <th >AUTOR 4</th>
-               <th >AUTOR 5</th>
+               <th >AUTOR  1</th>
+               <th >AUTOR  2</th>
+               <th >AUTOR  3</th>
+               <th >AUTOR <br/> 4</th>
+               <th >AUTOR  5</th>
                <th></th>
             </tr>
         </thead>
@@ -87,27 +87,21 @@
             <% proys.forEach(function(proy){ %>
             
             <tr>
-
                 <td><%=proy.pnf%></td>
                 <td><%=proy.lapsoAcademico%></td>
                 <td><%=proy.trayecto%></td>
                 <td><%=proy.seccion%></td>
                 <td class="comment"><%=proy.tituloProyecto%> </td>
-                
                 <td><%=proy.comunidad%></td>
-                <td><%=proy.nombreEstudiante1%><br/> 27273550</td>
-                <td><%=proy.nombreEstudiante2%></td>
-                <td><%=proy.nombreEstudiante3%></td>
-                <td><%=proy.nombreEstudiante4%></td>
-                <td ><%=proy.nombreEstudiante5%></td>
+                <td><%=proy.nombreEstudiante1%><br/><%=proy.cedulaEstudiante1%></td>
+                <td><%=proy.nombreEstudiante2%><br/><%=proy.cedulaEstudiante2%></td>
+                <td><%=proy.nombreEstudiante3%><br/><%=proy.cedulaEstudiante3%></td>
+                <td><%=proy.nombreEstudiante4%><br/><%=proy.cedulaEstudiante4%></td>
+                <td><%=proy.nombreEstudiante5%><br/><%=proy.cedulaEstudiante5%></td>
                 <td><a class="btn btn-info" href="/index/<%=proy._id %>">Ver más</a></td>
-                
             </tr>
-           
+            
             <% }) %>
-           
-           
-           
     </table>
 </div>
 

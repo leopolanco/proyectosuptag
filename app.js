@@ -55,20 +55,20 @@ function isLoggedIn(req, res, next) {
 
 //Schema de cada proyecto
 var proySchema = new mongoose.Schema({
-    tituloProyecto: String,      
-    pnf: String,
-    comunidad: String,        
-    trayecto: String,        
-    seccion: Number,        
+    tituloProyecto: {type: String, required: [true, 'Por favor ingrese el titulo del proyecto']},      
+    pnf: {type: String, required: [true, 'Por favor ingrese el pnf del proyecto']}, 
+    comunidad: {type: String, required: [true, 'Por favor ingrese la comunidad del proyecto']},        
+    trayecto: {type: String, required: [true, 'Por favor ingrese el trayecto del proyecto']},        
+    seccion: {type: Number, min: [1, 'La seccion minima es 1'],  max: [999, 'La seccion maxima es 999']},        
     profGuia: String,
     profTutor: String,
     resumenProyecto: String,
-    statusProyecto: String,
-    municipio: String,          
-    lapsoAcademico: String,
+    statusProyecto: {type: String, required: [true, 'Por favor ingrese el estatus del proyecto']},
+    municipio: {type: String, required: [true, 'Por favor ingrese el municipio del proyecto']},          
+    lapsoAcademico: {type: String, required: [true, 'Por favor ingrese el lapso academico del proyecto']},
     lineaInv: String,
     cantIntegrantes: String,
-    nombreEstudiante1: String,
+    nombreEstudiante1: {type: String, required: [true, 'Por favor ingrese integrante/s del proyecto']},
     nombreEstudiante2: String,
     nombreEstudiante3: String,
     nombreEstudiante4: String,
@@ -210,12 +210,12 @@ app.get("/archivar", isLoggedIn, function(req, res) {
             res.render("../views/archivar.ejs", {proys: proys});
         }
     });
-
 });
 
 //Envio de formulario de creacion
 app.post("/index", isLoggedIn, function(req, res) {
     req.flash("success", "Su proyecto fue agregado.");
+    
     Proy.find({}, function(err, proys) {
         if (err) {
             console.log(err);
@@ -223,6 +223,7 @@ app.post("/index", isLoggedIn, function(req, res) {
     
     Proy.create(req.body.proy, function(err, newProy) {
         if (err) {
+            req.flash("error", err.message);
             console.log(err);
             res.redirect("/archivar");
         } else {

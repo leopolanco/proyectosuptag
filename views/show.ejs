@@ -6,11 +6,11 @@
          </div>
    <% } %>
    
-<div class="container">
+<div class="container pt-5 mt-2">
 <a class="btn btn-dark mt-3" href="/indexsimple">Vista Simple</a></div>
    
    
-<div class="container mt-3 pt-3 text-uppercase">
+<div class="container mt-2 pt-2 text-uppercase">
     <div class="jumbotron ">
         <div class="text-center">
             <h3><%=proy.tituloProyecto%></h3>
@@ -53,9 +53,17 @@
                 </div>
             </div>
         </div>
-        <br>
+        <div class="form-row">
+            <div class="col-md-6">
+                <div class="col">
+                    <small class="text-secondary">Status del Proyecto:</small>
+                    <h6><%=proy.statusProyecto%></h6>
+                </div>
+            </div>
+        </div>
+        <br/>
         <hr class="accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 100%;">
-        <br>
+        <br/>
 
         <div class="form-row">
             <div class="col-md-3">
@@ -70,6 +78,16 @@
             </div>
             <div class="col-md-3">
                 <div class="col">
+                    <small class="text-secondary">C.I:</small>
+                    <h6><%=proy.cedulaEstudiante1%></h6>
+                    <h6><%=proy.cedulaEstudiante2%></h6>
+                    <h6><%=proy.cedulaEstudiante3%></h6>
+                    <h6><%=proy.cedulaEstudiante4%></h6>
+                    <h6><%=proy.cedulaEstudiante5%></h6>
+                </div>
+            </div>
+            <div class="col-md-1">
+                <div class="col">
                     <small class="text-secondary">Calificacion:</small>
                     <h6><%=proy.notaEstudiante1%></h6>
                     <h6><%=proy.notaEstudiante2%></h6>
@@ -78,7 +96,7 @@
                     <h6><%=proy.notaEstudiante5%></h6>
                 </div>
             </div>
-            <div class="col-md-6 text-right">
+            <div class="col-md-5 text-right">
                 <div class="col float-right">
                     <small class="text-secondary">Profesor Tutor:</small>
                     <h6><%=proy.profTutor%></h6>
@@ -116,4 +134,3 @@
     </div>
 </div>
 <% include ./partials/footer %>
-        

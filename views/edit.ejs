@@ -1,6 +1,6 @@
 <% include ./partials/header %>  <!-- PARA INCLUIR EL HEADER, DEBAJO HAY OTRO PARA INCLUIR FOOTER TAMBIEN --> 
 
-    <div class="container pt-3 mt-3">
+    <div class="container pt-5 mt-4">
         <div class="jumbotron  mt-4">
             <form action="/index/<%=proy._id%>?_method=PUT" method="POST">
                 <small>Seleccione su PNF</small>
@@ -307,9 +307,13 @@
         </div>
 
         <div id="estud1" class="form-row">
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <label>Nombre y Apellido</label>
                 <input id="estud1" name="proy[nombreEstudiante1]" type="text" value="<%=proy.nombreEstudiante1%>" class="form-control" required>
+            </div>
+            <div class="col-md-2">
+               <label>Cédula:</label>
+               <input id="estud1" name="proy[cedulaEstudiante1]" type="text" value="<%=proy.cedulaEstudiante1%>"class="form-control" required>
             </div>
             <div class="col-md-2">
                 <label>Nota asignada</label>
@@ -327,9 +331,13 @@
         </div>
 
         <div id="estud2" class="form-row" style="display: none;">
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <label>Nombre y Apellido</label>
                 <input id="estud2" name="proy[nombreEstudiante2]" value="<%=proy.nombreEstudiante2%>" type="text" class="form-control">
+            </div>
+            <div class="col-md-2">
+               <label>Cédula:</label>
+               <input id="estud1" name="proy[cedulaEstudiante2]" type="text" value="<%=proy.cedulaEstudiante2%>"class="form-control">
             </div>
             <div class="col-md-2">
                 <label>Nota asignada</label>
@@ -346,9 +354,13 @@
             </div>
         </div>
         <div id="estud3" class="form-row" style="display: none;">
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <label>Nombre y Apellido</label>
                 <input id="estud3" name="proy[nombreEstudiante3]" value="<%=proy.nombreEstudiante3%>" type="text" class="form-control">
+            </div>
+            <div class="col-md-2">
+               <label>Cédula:</label>
+               <input id="estud1" name="proy[cedulaEstudiante3]" type="text" value="<%=proy.cedulaEstudiante3%>"class="form-control">
             </div>
             <div class="col-md-2">
                 <label>Nota asignada</label>
@@ -365,9 +377,13 @@
             </div>
         </div>
         <div id="estud4" class="form-row" style="display: none;">
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <label>Nombre y Apellido</label>
                 <input id="estud4" name="proy[nombreEstudiante4]" value="<%=proy.nombreEstudiante4%>" type="text" class="form-control">
+            </div>
+            <div class="col-md-2">
+               <label>Cédula:</label>
+               <input id="estud1" name="proy[cedulaEstudiante4]" type="text" value="<%=proy.cedulaEstudiante4%>"class="form-control" >
             </div>
             <div class="col-md-2">
                 <label>Nota asignada</label>
@@ -385,9 +401,13 @@
         </div>
 
         <div id="estud5" class="form-row" style="display: none;">
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <label>Nombre y Apellido</label>
                 <input id="estud5" name="proy[nombreEstudiante5]" value="<%=proy.nombreEstudiante5%>" type="text" class="form-control">
+            </div>
+            <div class="col-md-2">
+               <label>Cédula:</label>
+               <input id="estud1" name="proy[cedulaEstudiante5]" type="text" value="<%=proy.cedulaEstudiante5%>"class="form-control">
             </div>
             <div class="col-md-2">
                 <label>Nota asignada</label>
