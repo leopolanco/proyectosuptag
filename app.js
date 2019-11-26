@@ -55,25 +55,25 @@ function isLoggedIn(req, res, next) {
 
 //Schema de cada proyecto
 var proySchema = new mongoose.Schema({
-    tituloProyecto: {type: String, required: [true, 'Por favor ingrese el titulo del proyecto']},      
+    tituloProyecto: {type: String, required: [true, 'Por favor ingrese el titulo del proyecto'], unique:true},      
     pnf: {type: String, required: [true, 'Por favor ingrese el pnf del proyecto']}, 
     comunidad: {type: String, required: [true, 'Por favor ingrese la comunidad del proyecto']},        
     trayecto: {type: String, required: [true, 'Por favor ingrese el trayecto del proyecto']},        
-    seccion: {type: Number, min: [1, 'La seccion minima es 1'],  max: [999, 'La seccion maxima es 999']},        
+    seccion: {type: Number, min: [1, 'La seccion minima es 1'],  max: [999, 'La seccion maxima es 999'], index:true},        
     profGuia: String,
     profTutor: String,
     resumenProyecto: String,
     statusProyecto: {type: String, required: [true, 'Por favor ingrese el estatus del proyecto']},
     municipio: {type: String, required: [true, 'Por favor ingrese el municipio del proyecto']},          
-    lapsoAcademico: {type: String, required: [true, 'Por favor ingrese el lapso academico del proyecto']},
+    lapsoAcademico: {type: String, required: [true, 'Por favor ingrese el lapso academico del proyecto'], index:true},
     lineaInv: String,
     cantIntegrantes: String,
-    nombreEstudiante1: {type: String, required: [true, 'Por favor ingrese integrante/s del proyecto']},
+    nombreEstudiante1: {type: String, required: [true, 'Por favor ingrese integrante/s del proyecto'], index:true },
     nombreEstudiante2: String,
     nombreEstudiante3: String,
     nombreEstudiante4: String,
     nombreEstudiante5: String,
-    cedulaEstudiante1: String,
+    cedulaEstudiante1: {type: String, required: [true, 'Por favor ingrese la cedula del integrante/s del proyecto']},
     cedulaEstudiante2: String,
     cedulaEstudiante3: String,
     cedulaEstudiante4: String,
@@ -91,17 +91,14 @@ var proySchema = new mongoose.Schema({
 
 var Proy = mongoose.model("Proy", proySchema);
 
-//Indexando todo el schema para poder utilizar busqueda
-proySchema.index({
-    pnf: 'text',
-    tituloProyecto: 'text',
-    comunidad: 'text',
-    trayecto: 'text',
-    profGuia: 'text',
-    profTutor: 'text',
-    statusProyecto: 'text',
-    municipio: 'text',
-});
+//Filtro, para que no se repitan los proyectos
+proySchema.index({lapsoAcademico:1, seccion:1, nombreEstudiante1:1}, {unique:true});
+
+
+
+
+
+//SE NECESITA HABILITAR LA BUSQUEDA!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 //Rutas de inicio
 app.get("/", function(req, res) {

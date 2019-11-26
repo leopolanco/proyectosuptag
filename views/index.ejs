@@ -2,7 +2,10 @@
 
  <!-- CONDICIONALES PARA LOS ANUNCIOS, EN EL ARCHIVO PRINCIPAL(APP.JS) ESTAN SUS VALORES (LO QUE ALERTAN) --> 
  
-<% if(error && error.length > 0){ %>
+
+
+<div class="container pt-5 mt-4">
+   <% if(error && error.length > 0){ %>
 <div class="alert alert-danger" role="alert">
   <%= error %>
 </div>
@@ -13,9 +16,7 @@
   <%= success %>
 </div>
 <% } %>
-
-<div class="container pt-5">
-<a class="btn btn-dark mt-4" href="/indexsimple">Vista Simple</a></div>
+<a class="btn btn-dark" href="/indexsimple">Vista Simple</a></div>
 
 <% proys.forEach(function(proy){ %>
 <div id="fichaMostrar" class="mt-3">
