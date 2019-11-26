@@ -249,7 +249,7 @@ app.get("/index/:id", function(req, res) {
 });
 
 //Ruta de edicion
-app.get("/index/:id/edit", function(req, res) {
+app.get("/index/:id/edit",isLoggedIn, function(req, res) {
     Proy.findById(req.params.id, function(err, foundProy) {
         if (err) {
             req.flash("error", "Su proyecto no pudo ser editado.");
