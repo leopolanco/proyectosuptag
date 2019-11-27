@@ -355,6 +355,15 @@ app.get("/images/logouptag.jpg", function(req, res) {
 app.get("/images/logopnfi.jpg", function(req, res) {
     res.sendFile("../public/images/logopnfi.jpg");
 });
+app.get("/images/fotoindex.png", function(req, res) {
+    res.sendFile("../public/images/fotoindex.png");
+});
+app.get("/images/fotoshow.jpg", function(req, res) {
+    res.sendFile("../public/images/fotoshow.jpg");
+});
+
+
+
 
 
 app.get("/test", function(req, res) {
