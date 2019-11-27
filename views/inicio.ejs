@@ -49,6 +49,13 @@
   width: 1em; 
   margin-left: -1em;
 }
+ .lineadiagonal {
+ -moz-transform: rotate(5deg);  
+   -o-transform: rotate(5deg);  
+ -webkit-transform: rotate(5deg);  
+  -ms-transform: rotate(5deg);  
+      transform: rotate(5deg); 
+   }
          
       </style>
    </head>
@@ -193,18 +200,13 @@
 			<div class="position-absolute w-100 h-100 " style="opacity: 1;  background: rgba(230, 230, 230, 0.7); ">
 			</div>
 		</div>
-		<div data-tilt data-tilt-reverse="true" data-tilt-perspective="250" class="position-absolute" style="width: 64px; height: 64px; left: -32px; top: 496px; z-index: 2;">
-			<div class="position-absolute w-100 h-100 " style="opacity: 1;  background: rgba(230, 230, 230, 0.7); ">
-				<div data-tilt data-tilt-reverse="true" data-tilt-perspective="250" class="position-absolute" style="width: 64px; height: 48px; left: 0px; top: 16px; background: #fff;"></div>
-			</div>
-		</div>
 		<div data-tilt data-tilt-reverse="true" data-tilt-perspective="250" class="position-absolute" style="width: 64px; height: 64px; left: 144px; top: 496px; z-index: 2;">
 			<div class="position-absolute w-100 h-100 " style="opacity: 1;  background: rgba(230, 230, 230, 0.7); ">
 				<div data-tilt data-tilt-reverse="true" data-tilt-perspective="250" class="position-absolute" style="width: 64px; height: 48px; left: 0px; top: 16px; background: #fff;"></div>
 			</div>
 		</div>
 		<div data-tilt data-tilt-reverse="true" data-tilt-perspective="250" class="position-absolute" style="width: 128px; height: 128px; left: 0px; top: 384px;">
-			<div class="position-absolute w-100 h-100 " style="opacity: 1;  background: linear-gradient(135deg, rgb(249, 170, 82) 0%, rgb(252, 102, 0) 100%); ">
+			<div class="position-absolute w-100 h-100 " style="opacity: 1;  background: linear-gradient(135deg, rgb(249, 170, 82) 0%, rgb(252, 102, 0) 100%); box-shadow: rgba(0, 0, 0, 0.1) 0px 7px 9px 0px; ">
 				<div style="opacity: 0.5;" class="position-absolute w-100 h-100"></div>
 			</div>
 		</div>
@@ -237,10 +239,12 @@
 			<div class="position-absolute w-100 h-100 " style="opacity: 1;  background: rgba(230, 230, 230, 0.7); ">
 			</div>
 		</div>
-		 
 		<div data-tilt data-tilt-reverse="true" data-tilt-perspective="250" class="position-absolute" style="width: 128px; height: 128px; left: 472px; top: 384px;">
 			<div data-tilt data-tilt-reverse="true" data-tilt-perspective="250"  class="w-100 h-100" style="background: linear-gradient(225deg, rgb(249, 170, 82) 0%, rgb(252, 102, 0) 100%);">
             </div>
+		</div>
+		<div data-tilt="" data-tilt-reverse="true" data-tilt-perspective="250" class="position-absolute" style="width: 32px; height: 32px; left: 456px; top: 368px; z-index: 2; will-change: transform; transform: perspective(250px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1);">
+			<div class="position-absolute w-100 h-100 " style="opacity: 1;  background: rgba(230, 230, 230, 0.3); "></div>
 		</div>
 		
 		<!-- LOGO DE INFORMATICA 
@@ -257,27 +261,27 @@
 	   
    </div>
    </div>
-   </div><!-- FIN DEL CONTAINER-->
+   </div>
+   <!-- FIN DEL CONTAINER-->
    
 
    
-   
-   <div class="pt-5 mt-5"><div class=" mt-5"></div> <!-- ESPACIADO-->
-   </div>
-   
+   <!-- ESPACIADO-->
+   <div class="pt-5 mt-5"><div class=" mt-5"></div></div>
+
 	<!--INICIO DE SECCION 1-->
-   <div class="container-fluid" style="background: #fafbfc; border-top:#ffa400 solid 1px;">
+   <div class="container-fluid" style="background: #f5f5f6; border-top:#ffa400 solid 1px;">
+   	
+   	
    	
 
-      <div class="mt-5 text-center"><h3 class="text-center" style="letter-spacing:2px">VISTA DE PROYECTOS DINAMICA Y SIMPLE</h3></div>
+      <div class="mt-5 text-center" ><h3 class="text-center" style="letter-spacing:2px">VISTA DE PROYECTOS DINAMICA Y SIMPLE</h3></div>
       
       
       <div class="mt-4" style="display: flex;justify-content: center;align-items: center;align-content: center;">
       	<div class=" font-weight-light h5" style="letter-spacing:2px; max-width:800px">Cada dato ingresado, puede ser visualizado por toda persona, dando así la posibilidad de mostrar cada trabajo, cada proyecto sociointegrador
       	a miles de usuarios; profesores, estudiantes y demás.</div>
       	</div>
-
-	   
 	<div class="container pt-5 pl-5">
 		<div class="row" style="padding-top:36px">
 			<div class="col-md-6"><img src="/images/fotoindex.png" width="565" height="330"></div>
@@ -294,7 +298,6 @@
 					</div>
 			</div>
 		</div>
-
 		<div class="row mt-5 pt-5 pb-5" >
 			<div class="col-md-6">
 				<div class=" pr-5 mt-5">
@@ -309,7 +312,6 @@
 					</ul>
 					</div>
 			</div>
-
 			<div class="col-md-6 pt-4"><img src="/images/fotoshow.jpg" width="565" height="330"></div>
 		</div>
 	</div>
@@ -319,52 +321,86 @@
    <!--FIN DE SECCION 1-->
    
    
+   <!--LINEA DIAGONAL-->
+   <div style="width:max; height:1px; background:#f5f5f6;">
+   	<div class="w-100 lineadiagonal" style="background:#f5f5f6; height:60px">
+   		<div class="w-100" style="background:#f5f5f6; height:60px"></div>
+   	</div>
+   	<div class="w-100 lineadiagonal" style="border-top:#ffa400 solid 1px; height:1px"></div>
+   </div>
+   <div style="width:50%; height:60px; background:#f5f5f6;" class="float-right"></div>
+   
+   
+   
+   
  	<!--INICIO DE SECCION 2-->
-   <div class="container-fluid" style="background: #fafbfc; border-top:#ffa400 solid 1px;">
+   <div class="container-fluid" style="background: white;margin-top:185px">
+   	
+   		
    	
 
-      <div class="mt-5 text-center"><h3 class="text-center" style="letter-spacing:2px">VISTA DE PROYECTOS DINAMICA Y SIMPLE</h3></div>
-      
-      
-      <div class="mt-4" style="display: flex;justify-content: center;align-items: center;align-content: center;">
-      	<div class=" font-weight-light h5" style="letter-spacing:2px; max-width:800px">Cada dato ingresado, puede ser visualizado por toda persona, dando así la posibilidad de mostrar cada trabajo, cada proyecto sociointegrador
-      	a miles de usuarios; profesores, estudiantes y demás.</div>
-      	</div>
+      <span class="text-left pl-5 h5" style="letter-spacing:2px">SISTEMA DE EXPORTADO</span>
+      <br/>
 
-	   
-	<div class="container pt-5 pl-5">
-		<div class="row" style="padding-top:36px">
-			<div class="col-md-6"><img src="/images/fotoindex.png" width="565" height="330"></div>
-			<div class="col-md-6 text-left">
-				<div class="container pt-4 pl-5 m-5">
-					<span style="color:rgb(204, 90, 14);" class="h2 pl-3  font-weight-light ">Listado extenso y a la vez, simple</span>
-					<ul class="pt-3 listaconpuntosnaranjas">
-						<li>Se muestran datos generales del proyecto.</li>
-						<br/>
-						<li>El estatus del proyecto está a simple vista, por si luego se necesita modificar cuando este culminado.</li>
-						<br/>
-						<li>Un enlace para acceder a la vista individual de cada proyecto sociointegrador.</li>
+      <div class="mt-3 pl-5" style="display: flex;justify-content: left;align-items: left;align-content: left;">
+      	<div class=" font-weight-light h5" style="letter-spacing:2px; max-width:600px">La base de datos permite exportar proyectos sociointegrador a archivos excel o pdf, de forma general o siguiendo parámetros indicados por el usuario.</div>
+      	</div>
+      	
+      	
+      	
+      	<br/>
+
+	<div class="container pt-5 pl-4 pb-5">
+		<div style="padding-top:20px">
+			<ul style="list-style-type: none;">
+						<li>
+							<div class="row">
+								<div class="col-5"><span class="h4 font-weight-light" style="color:rgb(204, 90, 14); ">En busqueda general, apriete este botón para continuar a exportar.</span></div>
+								<div class="col-5"><div class="text-center"><img  src="/images/fotobotonvistasimple.png" width="192" height="112"></div></div>
+							</div>
+						</li>
+						<br/><br/>
+						<li>
+							<div class="row">
+								<div class="col-5"><span class="h4 font-weight-light" style="color:rgb(204, 90, 14); ">Luego, apriete el botón de su preferencia para exportar.</span></div>
+								<div class="col-5"><div class="text-center"><img  src="/images/botonesexportar.png" width="192" height="112"></div></div>
+							</div>
+						</li>
 					</ul>
+
+					
 					</div>
 			</div>
 		</div>
 
-		<div class="row mt-5 pt-5 pb-5" >
-			<div class="col-md-6">
-				<div class=" pr-5 mt-5">
-					<span style="color:rgb(204, 90, 14);" class="h2 pl-3  font-weight-light ">Vista individual para acceso</span>
-					<span style="color:rgb(204, 90, 14);" class="h2 pl-3  font-weight-light ">universal</span>
-					<ul class="pt-4 listaconpuntosnaranjas">
-						<li>Se muestran datos especificos del proyecto y de sus integrantes.</li>
-						<br/>
-						<li>La vista individual y la general puede ser accesada tanto por visitantes como por usuarios registrados.</li>
-						<br/>
-						<li>Se permite al usuario con derechos; editar y eliminar el proyecto desde aquí.</li>
-					</ul>
+		<div class="container">
+		<div class="row mt-5 pt-4 pb-5 pl-4" >
+			<div class="col-md-4">
+				<div class=" text-center pr-5 mt-5">
+					<span style="color:rgb(204, 90, 14);" class="h2 pl-5  font-weight-light ">Y listo.</span>
+					<br/>
+					<br/>
+					<span style="color:rgb(204, 90, 14);" class="h2 pl-5  font-weight-light ">------></span>
+
 					</div>
 			</div>
 
-			<div class="col-md-6 pt-4"><img src="/images/fotoshow.jpg" width="565" height="330"></div>
+
+
+
+		<div class="col-md-8">
+			<ul style="list-style-type: none;">
+						<li class="text-center"><img src="/images/indexsimple.png" width="565" height="240">
+						</li>
+						
+						<li class="text-center"><img src="/images/flechanaranja.png" width="50" height="96">
+						</li>
+						
+						<li class="text-center"><img src="/images/fotoexcel.png" width="565" height="240">
+						</li>
+					</ul>
+			</div>
+			</div>
 		</div>
 	</div>
 
@@ -372,53 +408,57 @@
    
    <!--FIN DE SECCION 2-->	
    
+   <!--LINEA DIAGONAL-->
+   <div style="width:max; height:1px; background:white;">
+   	<div class="w-100 lineadiagonal" style="background:white; height:60px">
+   		<div class="w-100" style="background:white; height:60px"></div>
+   	</div>
+   	<div class="w-100 lineadiagonal" style="border-top:#ffa400 solid 1px; height:1px"></div>
+   </div>
+   <div style="width:50%; height:60px; background:white;" class="float-right"></div>   
+   
+   
+   
+   
+   
+   
+   
    <!--INICIO DE SECCION 3-->
-   <div class="container-fluid" style="background: #fafbfc; border-top:#ffa400 solid 1px;">
+   <div class="container-fluid" style="background: #fafbfc; border-top:#ffa400 solid 1px; ">
    	
 
-      <div class="mt-5 text-center"><h3 class="text-center" style="letter-spacing:2px">VISTA DE PROYECTOS DINAMICA Y SIMPLE</h3></div>
+      <div class="mt-5 text-center"><h3 class="text-center" style="letter-spacing:2px;  margin-top:185px">REGISTRO EXTENSO, COMPLETO Y CÓMODO</h3></div>
       
       
       <div class="mt-4" style="display: flex;justify-content: center;align-items: center;align-content: center;">
-      	<div class=" font-weight-light h5" style="letter-spacing:2px; max-width:800px">Cada dato ingresado, puede ser visualizado por toda persona, dando así la posibilidad de mostrar cada trabajo, cada proyecto sociointegrador
-      	a miles de usuarios; profesores, estudiantes y demás.</div>
+      	<div class=" font-weight-light h5" style="letter-spacing:2px; max-width:800px">Esta base de datos está diseñada para facilitar el ingreso de cada proyecto sociointegrador, tambien dando la posibilidad
+      	de editarlos y eliminarlos con facilidad.</div>
       	</div>
 
 	   
 	<div class="container pt-5 pl-5">
 		<div class="row" style="padding-top:36px">
-			<div class="col-md-6"><img src="/images/fotoindex.png" width="565" height="330"></div>
+			<div class="col-md-6"><img src="/images/fotoarchivar.png" width="565" height="330"></div>
 			<div class="col-md-6 text-left">
-				<div class="container pt-4 pl-5 m-5">
-					<span style="color:rgb(204, 90, 14);" class="h2 pl-3  font-weight-light ">Listado extenso y a la vez, simple</span>
+				<div class="container  pl-5 m-5">
+					<span style="color:rgb(204, 90, 14);" class="h2 pl-3  font-weight-light ">Formulario de ultima generación</span>
 					<ul class="pt-3 listaconpuntosnaranjas">
-						<li>Se muestran datos generales del proyecto.</li>
+						<li>Se recuerdan los datos que fueron ingresados en otros proyectos.</li>
 						<br/>
-						<li>El estatus del proyecto está a simple vista, por si luego se necesita modificar cuando este culminado.</li>
+						<li>Las lineas de investigacion son dinamicas, cambian dependiendo del PNF que se seleccione.</li>
 						<br/>
-						<li>Un enlace para acceder a la vista individual de cada proyecto sociointegrador.</li>
+						<li>Si el proyecto sociointegrador esta culminado, se abre la opcion para ingresar la nota asignada a cada integrante.</li>
+						<br/>
+						<li>Diseñada para evitar duplicados.</li>
 					</ul>
-					</div>
+				</div>
 			</div>
 		</div>
-
-		<div class="row mt-5 pt-5 pb-5" >
-			<div class="col-md-6">
-				<div class=" pr-5 mt-5">
-					<span style="color:rgb(204, 90, 14);" class="h2 pl-3  font-weight-light ">Vista individual para acceso</span>
-					<span style="color:rgb(204, 90, 14);" class="h2 pl-3  font-weight-light ">universal</span>
-					<ul class="pt-4 listaconpuntosnaranjas">
-						<li>Se muestran datos especificos del proyecto y de sus integrantes.</li>
-						<br/>
-						<li>La vista individual y la general puede ser accesada tanto por visitantes como por usuarios registrados.</li>
-						<br/>
-						<li>Se permite al usuario con derechos; editar y eliminar el proyecto desde aquí.</li>
-					</ul>
-					</div>
-			</div>
-
-			<div class="col-md-6 pt-4"><img src="/images/fotoshow.jpg" width="565" height="330"></div>
 		</div>
+	
+	<div class="text-center pb-5 pt-4">
+	<span style="color:rgb(204, 90, 14);" class="h6 font-weight-light"></span>
+	</div>
 	</div>
 
    </div>

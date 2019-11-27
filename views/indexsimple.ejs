@@ -93,11 +93,11 @@
                 <td><%=proy.seccion%></td>
                 <td class="comment"><%=proy.tituloProyecto%> </td>
                 <td><%=proy.comunidad%></td>
-                <td><%=proy.nombreEstudiante1%><br/><%=proy.cedulaEstudiante1%></td>
-                <td><%=proy.nombreEstudiante2%><br/><%=proy.cedulaEstudiante2%></td>
-                <td><%=proy.nombreEstudiante3%><br/><%=proy.cedulaEstudiante3%></td>
-                <td><%=proy.nombreEstudiante4%><br/><%=proy.cedulaEstudiante4%></td>
-                <td><%=proy.nombreEstudiante5%><br/><%=proy.cedulaEstudiante5%></td>
+                <td><%=proy.nombreEstudiante1%> <br/><%=proy.cedulaEstudiante1%></td>
+                <td><%=proy.nombreEstudiante2%> <br/><%=proy.cedulaEstudiante2%></td>
+                <td><%=proy.nombreEstudiante3%> <br/><%=proy.cedulaEstudiante3%></td>
+                <td><%=proy.nombreEstudiante4%> <br/><%=proy.cedulaEstudiante4%></td>
+                <td><%=proy.nombreEstudiante5%> <br/><%=proy.cedulaEstudiante5%></td>
                 <td><a class="btn btn-info" href="/index/<%=proy._id %>">Ver más</a></td>
             </tr>
             
@@ -153,6 +153,8 @@
    </div>
    </footer>
    
+   
+
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.1/js/dataTables.buttons.min.js"></script>
@@ -161,10 +163,9 @@
 <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.html5.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
-<script src="/js/main.js"></script>
+<script src="/js/main.js"></script> 
 
 <script>
-
 $(document).ready(function() {
     $('#tablaProy').DataTable( {
         dom: 'Bfrtip',
@@ -175,8 +176,6 @@ $(document).ready(function() {
     } );
 } );
 </script>
-
-
 
 <script type="text/javascript">
 	$(document).ready(function() {

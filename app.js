@@ -320,13 +320,7 @@ app.get("/fonts/montserrat/Montserrat-Regular.ttf", function(req, res) {
 app.get("/fonts/montserrat/Montserrat-Bold.ttf", function(req, res) {
     res.sendFile("../public/fonts/montserrat/Montserrat-Bold.ttf");
 });
-//js
-app.get("/js/main.js", function(req, res) {
-    res.sendFile("../public/js/main.js");
-});
-app.get("/js/jquery-3.2.1.min.js", function(req, res) {
-    res.sendFile("../public/js/jquery-3.2.1.min.js");
-});
+
 //imagenes
 app.get("/images/bguptag.jpg", function(req, res) {
     res.sendFile("../public/images/bguptag.jpg");
@@ -361,7 +355,28 @@ app.get("/images/fotoindex.png", function(req, res) {
 app.get("/images/fotoshow.jpg", function(req, res) {
     res.sendFile("../public/images/fotoshow.jpg");
 });
-
+app.get("/images/fotobotonvistasimple.png", function(req, res) {
+    res.sendFile("../public/images/fotobotonvistasimple.png");
+});
+app.get("/images/botonesexportar.png", function(req, res) {
+    res.sendFile("../public/images/botonesexportar.png");
+});
+app.get("/images/fotoexcel.png", function(req, res) {
+    res.sendFile("../public/images/fotoexcel.png");
+});
+app.get("/images/indexsimple.png", function(req, res) {
+    res.sendFile("../public/images/indexsimple.png");
+});
+app.get("/images/flechanaranja.png", function(req, res) {
+    res.sendFile("../public/images/flechanaranja.png");
+});
+//js
+app.get("/js/main.js", function(req, res) {
+    res.sendFile("../public/js/main.js");
+});
+app.get("/js/jquery-3.2.1.min.js", function(req, res) {
+    res.sendFile("../public/js/jquery-3.2.1.min.js");
+});
 
 
 
