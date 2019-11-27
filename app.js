@@ -5,7 +5,7 @@ var bodyParser = require("body-parser"),
     mongoose = require("mongoose"),
     passport = require("passport"),
     LocalStrategy = require("passport-local"),
-    User = require("./public/js/user"), //archivo de user
+    User = require("./static/js/user"), //archivo de user
     flash = require('connect-flash'),
     app = express();
 
@@ -17,7 +17,7 @@ mongoose.connect("mongodb+srv://leo:polanco@uptag-qexum.mongodb.net/test?retryWr
     useCreateIndex: true,
     useUnifiedTopology: true
 });
-app.use(express.static("public"));
+app.use(express.static("static"));
 app.use(methodOverride("_method"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
@@ -298,84 +298,102 @@ app.delete("/index/:id", isLoggedIn, function(req, res) {
     });
 });
 
+
+app.get("/ayuda", function(req, res) {
+    res.render("../views/ayuda.ejs");
+});
+
+
+
+
+
+
 //Servimos los archivos estaticos
 app.get("/css/util.css", function(req, res) {
-    res.sendFile("../public/css/util.css");
+    res.sendFile("../static/css/util.css");
 });
 app.get("/css/main.css", function(req, res) {
-    res.sendFile("../public/css/main.css");
+    res.sendFile("../static/css/main.css");
 });
 app.get("/css/bootstrap.min.css", function(req, res) {
-    res.sendFile("../public/css/bootstrap.min.css");
+    res.sendFile("../static/css/bootstrap.min.css");
 });
 app.get("/fonts/font-awesome-4.7.0/css/font-awesome.min.css", function(req, res) {
-    res.sendFile("../public/fonts/font-awesome-4.7.0/css/font-awesome.min.css");
+    res.sendFile("../static/fonts/font-awesome-4.7.0/css/font-awesome.min.css");
 });
 app.get("/fonts/poppins/Poppins-Regular.ttf", function(req, res) {
-    res.sendFile("../public/fonts/poppins/Poppins-Regular.ttf");
+    res.sendFile("../static/fonts/poppins/Poppins-Regular.ttf");
 });
 app.get("/fonts/montserrat/Montserrat-Regular.ttf", function(req, res) {
-    res.sendFile("../public/fonts/montserrat/Montserrat-Regular.ttf");
+    res.sendFile("../static/fonts/montserrat/Montserrat-Regular.ttf");
 });
 app.get("/fonts/montserrat/Montserrat-Bold.ttf", function(req, res) {
-    res.sendFile("../public/fonts/montserrat/Montserrat-Bold.ttf");
+    res.sendFile("../static/fonts/montserrat/Montserrat-Bold.ttf");
 });
+
+app.get("/manual", function(req, res) {
+    res.download("../static/manualsis.docx");
+});
+
 
 //imagenes
 app.get("/images/bguptag.jpg", function(req, res) {
-    res.sendFile("../public/images/bguptag.jpg");
+    res.sendFile("../static/images/bguptag.jpg");
 });
 app.get("/images/iconuptag.jpg", function(req, res) {
-    res.sendFile("../public/images/iconuptag.jpg");
+    res.sendFile("../static/images/iconuptag.jpg");
 });
 app.get("/images/cclogo.png", function(req, res) {
-    res.sendFile("../public/images/cclogo.png");
+    res.sendFile("../static/images/cclogo.png");
 });
 app.get("/images/logopnfe.png", function(req, res) {
-    res.sendFile("../public/images/logopnfe.png");
+    res.sendFile("../static/images/logopnfe.png");
 });
 app.get("/images/imageslogopnfiyc", function(req, res) {
-    res.sendFile("../public/imageslogopnfiyc.png");
+    res.sendFile("../static/imageslogopnfiyc.png");
 });
 app.get("/images/logopnfelectronica.png", function(req, res) {
-    res.sendFile("../public/images/logopnfelectronica.png");
+    res.sendFile("../static/images/logopnfelectronica.png");
 });
 app.get("/images/bg-01.png", function(req, res) {
-    res.sendFile("../public/images/bg-01.png");
+    res.sendFile("../static/images/bg-01.png");
 });
 app.get("/images/logouptag.jpg", function(req, res) {
-    res.sendFile("../public/images/logouptag.jpg");
+    res.sendFile("../static/images/logouptag.jpg");
 });
 app.get("/images/logopnfi.jpg", function(req, res) {
-    res.sendFile("../public/images/logopnfi.jpg");
+    res.sendFile("../static/images/logopnfi.jpg");
 });
 app.get("/images/fotoindex.png", function(req, res) {
-    res.sendFile("../public/images/fotoindex.png");
+    res.sendFile("../static/images/fotoindex.png");
 });
 app.get("/images/fotoshow.jpg", function(req, res) {
-    res.sendFile("../public/images/fotoshow.jpg");
+    res.sendFile("../static/images/fotoshow.jpg");
 });
 app.get("/images/fotobotonvistasimple.png", function(req, res) {
-    res.sendFile("../public/images/fotobotonvistasimple.png");
+    res.sendFile("../static/images/fotobotonvistasimple.png");
 });
 app.get("/images/botonesexportar.png", function(req, res) {
-    res.sendFile("../public/images/botonesexportar.png");
+    res.sendFile("../static/images/botonesexportar.png");
 });
 app.get("/images/fotoexcel.png", function(req, res) {
-    res.sendFile("../public/images/fotoexcel.png");
+    res.sendFile("../static/images/fotoexcel.png");
 });
 app.get("/images/indexsimple.png", function(req, res) {
-    res.sendFile("../public/images/indexsimple.png");
+    res.sendFile("../static/images/indexsimple.png");
 });
 app.get("/images/flechanaranja.png", function(req, res) {
-    res.sendFile("../public/images/flechanaranja.png");
+    res.sendFile("../static/images/flechanaranja.png");
+});
+app.get("/images/fotoarchivar.png", function(req, res) {
+    res.sendFile("../static/images/fotoarchivar.png");
 });
 //js
 app.get("/js/main.js", function(req, res) {
-    res.sendFile("../public/js/main.js");
+    res.sendFile("../static/js/main.js");
 });
 app.get("/js/jquery-3.2.1.min.js", function(req, res) {
-    res.sendFile("../public/js/jquery-3.2.1.min.js");
+    res.sendFile("../static/js/jquery-3.2.1.min.js");
 });
 
 
