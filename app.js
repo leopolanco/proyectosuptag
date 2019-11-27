@@ -304,8 +304,9 @@ app.get("/ayuda", function(req, res) {
 });
 
 
-
-
+app.get("/manual", function(req, res) {
+    res.download("../public/manualsis.docx");
+});
 
 
 //Servimos los archivos estaticos
@@ -330,11 +331,6 @@ app.get("/fonts/montserrat/Montserrat-Regular.ttf", function(req, res) {
 app.get("/fonts/montserrat/Montserrat-Bold.ttf", function(req, res) {
     res.sendFile("../static/fonts/montserrat/Montserrat-Bold.ttf");
 });
-
-app.get("/manual", function(req, res) {
-    res.download("../static/manualsis.docx");
-});
-
 
 //imagenes
 app.get("/images/bguptag.jpg", function(req, res) {
