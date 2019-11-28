@@ -88,14 +88,10 @@ var proySchema = new mongoose.Schema({
         default: Date.now
     }
 });
-
 var Proy = mongoose.model("Proy", proySchema);
 
 //Filtro, para que no se repitan los proyectos
 proySchema.index({lapsoAcademico:1, seccion:1, nombreEstudiante1:1}, {unique:true});
-
-
-
 
 
 //SE NECESITA HABILITAR LA BUSQUEDA!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -113,6 +109,7 @@ app.get("/registro", function(req, res) {
     res.render("../views/registro.ejs");
 
 });
+
 //Registro de cada usuario
 app.post("/registro", function(req, res) {
     var newUser = new User({
@@ -141,7 +138,7 @@ app.post("/login", passport.authenticate('local', {
     res.redirect('/inicio');
 });
 
-//Salida
+//Logout o salida
 app.get("/logout", function(req, res) {
     req.flash("success", "Usted ha salido.");
     req.logout();
@@ -230,11 +227,6 @@ app.post("/index", isLoggedIn, function(req, res) {
     });
 });
 
-
-
-
-
-
 //Ruta de muestra individual
 app.get("/index/:id", function(req, res) {
     Proy.findById(req.params.id, function(err, foundProy) {
@@ -298,12 +290,10 @@ app.delete("/index/:id", isLoggedIn, function(req, res) {
     });
 });
 
-
+//Pagina de ayuda, seguida por los archivos descargables
 app.get("/ayuda", function(req, res) {
     res.render("../views/ayuda.ejs");
 });
-
-
 app.get("/manual", function(req, res) {
     res.download("../public/manualsis.docx");
 });
@@ -318,18 +308,6 @@ app.get("/css/main.css", function(req, res) {
 });
 app.get("/css/bootstrap.min.css", function(req, res) {
     res.sendFile("../static/css/bootstrap.min.css");
-});
-app.get("/fonts/font-awesome-4.7.0/css/font-awesome.min.css", function(req, res) {
-    res.sendFile("../static/fonts/font-awesome-4.7.0/css/font-awesome.min.css");
-});
-app.get("/fonts/poppins/Poppins-Regular.ttf", function(req, res) {
-    res.sendFile("../static/fonts/poppins/Poppins-Regular.ttf");
-});
-app.get("/fonts/montserrat/Montserrat-Regular.ttf", function(req, res) {
-    res.sendFile("../static/fonts/montserrat/Montserrat-Regular.ttf");
-});
-app.get("/fonts/montserrat/Montserrat-Bold.ttf", function(req, res) {
-    res.sendFile("../static/fonts/montserrat/Montserrat-Bold.ttf");
 });
 
 //imagenes
@@ -392,14 +370,9 @@ app.get("/js/jquery-3.2.1.min.js", function(req, res) {
     res.sendFile("../static/js/jquery-3.2.1.min.js");
 });
 
-
-
-
 app.get("/test", function(req, res) {
     res.render("../views/test.ejs");
 });
-
-
 
 //Funcion de seguridad
 function escapeRegex(text) {

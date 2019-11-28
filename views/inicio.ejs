@@ -1,104 +1,5 @@
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-      <title>Proyectos</title>
-      <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
-      <style type="text/css">
-
-         html, body {
-            background: url() no-repeat center center fixed; 
-            -webkit-background-size: cover;
-            -moz-background-size: cover;
-            -o-background-size: cover;
-            background-size: cover;
-         }
-         footer, nav{
-            background: #1C2331;
-            fixed;
-         }
-         footer a {
-            color: grey;
-         }
-         hr.style13 {
-            border-top: 1px solid #ffa400;
-            text-align: center;
-         }
-         footer{
-            margin-top:auto; 
-         }
-
-         .lead {
-    font-size: 1.4rem;
-    line-height: 1.5;
-   font-weight: 450;
-}
-
-		h3{
-			font-weight: 450;
-		}
-		img {
-  border-radius: 2%;
-}
-.listaconpuntosnaranjas {
-  list-style: none; 
-}
-
-.listaconpuntosnaranjas li::before {
-  content: "\2022";  
-  color: rgb(255, 116, 23); 
-  font-weight: bold; 
-  display: inline-block; 
-  width: 1em; 
-  margin-left: -1em;
-}
- .lineadiagonal {
- -moz-transform: rotate(5deg);  
-   -o-transform: rotate(5deg);  
- -webkit-transform: rotate(5deg);  
-  -ms-transform: rotate(5deg);  
-      transform: rotate(5deg); 
-   }
-         
-      </style>
-   </head>
-   
-   <body>
-      <div class="shadow-lg">
-         <nav class="navbar navbar-expand-lg mr-auto navbar-dark bg-dark fixed-top ">
-            <a class="navbar-brand" href="/inicio"><img class="pl-1 " src="/images/iconuptag.jpg"></a>
-
-               <ul class="navbar-nav mr-auto">
-                  <li class="nav-item">
-                     <a class="nav-link" href="/inicio">Inicio</a>
-                  
-                  <li class="nav-item">
-                     <a class="nav-link" href="/archivar">Archivar</a>
-                  
-                  <li class="nav-item">
-                     <a class="nav-link" href="/index">Buscar</a>
-                  
-                  <li class="nav-item">
-                     <a class="nav-link" href="/ayuda">Ayuda</a>
-                  
-               </ul> 
-               
-               
-               <!-- DESHABILITADA BARRA DE BUSQUEDA
-               <form action="/index" method="GET" class="form-inline buscar">
-                   <div class="md-form my-0">
-                  <input style="text-transform:capitalize;"class="form-control mr-sm-2" name="Buscar" type="text" placeholder="Buscar">
-                  <input style="text-transform:capitalize;"class="btn btn-outline-warning my-2 my-sm-0" value="Buscar" type="submit">
-                   </div>
-               </form>
-               -->
-              
-                     <a class="text-light nav-link" href="/logout">Salir</a>
-
-                 
-         </nav>
-         </div>
-         
-         
-         
-         
+<% include ./partials/header %>
+       <div style="background:white">
          <div class="container-fluid">
       <div class="row">
          
@@ -317,9 +218,7 @@
 	</div>
 
    </div>
-   
    <!--FIN DE SECCION 1-->
-   
    
    <!--LINEA DIAGONAL-->
    <div style="width:max; height:1px; background:#f5f5f6;">
@@ -329,10 +228,7 @@
    	<div class="w-100 lineadiagonal" style="border-top:#ffa400 solid 1px; height:1px"></div>
    </div>
    <div style="width:50%; height:60px; background:#f5f5f6;" class="float-right"></div>
-   
-   
-   
-   
+
  	<!--INICIO DE SECCION 2-->
    <div class="container-fluid" style="background: white;margin-top:185px">
    	
@@ -371,7 +267,7 @@
 					
 					</div>
 			</div>
-		</div>
+		
 
 		<div class="container">
 		<div class="row mt-5 pt-4 pb-5 pl-4" >
@@ -402,11 +298,9 @@
 			</div>
 			</div>
 		</div>
-	</div>
-
-   </div>
-   
-   <!--FIN DE SECCION 2-->	
+	
+</div>
+      <!--FIN DE SECCION 2-->	
    
    <!--LINEA DIAGONAL-->
    <div style="width:max; height:1px; background:white;">
@@ -416,13 +310,7 @@
    	<div class="w-100 lineadiagonal" style="border-top:#ffa400 solid 1px; height:1px"></div>
    </div>
    <div style="width:50%; height:60px; background:white;" class="float-right"></div>   
-   
-   
-   
-   
-   
-   
-   
+
    <!--INICIO DE SECCION 3-->
    <div class="container-fluid" style="background: #fafbfc; border-top:#ffa400 solid 1px; ">
    	
@@ -460,15 +348,7 @@
 	<span style="color:rgb(204, 90, 14);" class="h6 font-weight-light"></span>
 	</div>
 	</div>
-
-   </div>
-   
    <!--FIN DE SECCION 3-->
    
-   
-   
-
-
-   
-</div>
+ </div>
 <% include ./partials/footer %>
