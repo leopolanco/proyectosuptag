@@ -300,6 +300,8 @@ app.get("/manual", function(req, res) {
 
 
 //Servimos los archivos estaticos
+
+//css
 app.get("/css/util.css", function(req, res) {
     res.sendFile("../static/css/util.css");
 });
@@ -369,6 +371,37 @@ app.get("/js/main.js", function(req, res) {
 app.get("/js/jquery-3.2.1.min.js", function(req, res) {
     res.sendFile("../static/js/jquery-3.2.1.min.js");
 });
+
+//datatables(indexsimple)
+
+//css
+app.get("/datatables/css/buttons.dataTables.min.css", function(req, res) {
+    res.sendFile("../static/css/buttons.dataTables.min.css");
+});
+app.get("/datatables/css/jquery.dataTables.min.css", function(req, res) {
+    res.sendFile("../static/css/jquery.dataTables.min.css");
+});
+//js
+app.get("/datatables/js/buttons.html5.min.js", function(req, res) {
+    res.sendFile("../static/js/buttons.html5.min.js");
+});
+app.get("/datatables/js/buttons.jqueryui.min.js", function(req, res) {
+    res.sendFile("../static/js/buttons.jqueryui.min.js");
+});
+app.get("/datatables/js/dataTables.buttons.min.js", function(req, res) {
+    res.sendFile("../static/js/dataTables.buttons.min.js");
+});
+app.get("/datatables/js/jquery-3.3.1.js", function(req, res) {
+    res.sendFile("../static/js/jquery-3.3.1.js");
+});
+app.get("/datatables/js/jquery.dataTables.min.js", function(req, res) {
+    res.sendFile("../static/js/jquery.dataTables.min.js");
+});
+app.get("/datatables/js/jszip.min.js", function(req, res) {
+    res.sendFile("../static/js/jszip.min.js");
+});
+
+
 
 app.get("/test", function(req, res) {
     res.render("../views/test.ejs");

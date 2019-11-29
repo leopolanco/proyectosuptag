@@ -1,61 +1,102 @@
-<head>
-	<title>Registro</title>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+<% include ./partials/header %>
 
-	<link rel="stylesheet" type="text/css" href="/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-	<link rel="stylesheet" type="text/css" href="fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
-	<link rel="stylesheet" type="text/css" href="/css/util.css">
-	<link rel="stylesheet" type="text/css" href="/css/main.css">
+ <style type="text/css">
+body{
+    margin: 0;
+    font-size: .9rem;
+    font-weight: 400;
+    line-height: 1.6;
+    color: #212529;
+    text-align: left;
+    background-color: #f5f8fa;
+}
 
-</head>
-<body style="background-color: #666666;">
-	
-	<div class="limiter">
-		<div class="container-login">
-						<h4><%= error %></h4>
-			<div class="wrap-login">
-				<form class="login-form validate-form" method="POST" action="/registro">
-					<span class="login-form-title p-b-43">
-						Registrarse
-					</span>
-					
-					
-					<div class="wrap-input validate-input" data-validate = "Registre un nombre de usuario">
-						<input class="input" type="text" name="username" >
-						<span class="focus-input"></span>
-						<span class="label-input">Registre su usuario</span>
-					</div>
-					
-					
-					<div class="wrap-input validate-input" data-validate="Registre su contraseña">
-						<input class="input" type="password" name="password" >
-						<span class="focus-input"></span>
-						<span class="label-input">Contraseña</span>
-					</div>
-			
-					<div class="flex-sb-m w-full p-t-3 p-b-32">		
-					</div>
-			
-					<div class="container-login-form-btn-warning">
-						<button class="login-form-btn">
-							Registrar
-						</button>
-					</div>
-					<a class="mt-5" href="/login">
-							Volver
-						</a>
-					
-				</form>
+.navbar-laravel
+{
+    box-shadow: 0 2px 4px rgba(0,0,0,.04);
+}
 
-			<div class="login-more">
-			    <div class="container ml-3 pl-3">
-         </div>
-		</div>
-		</div>
-	</div>
 
-	<script src="/js/jquery-3.2.1.min.js"></script>
-    <script src="/js/main.js"></script>
+.my-form
+{
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+}
 
-</body>
+.my-form .row
+{
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.login-form
+{
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+}
+
+.login-form .row
+{
+    margin-left: 0;
+    margin-right: 0;
+}
+ </style>
+ 
+ 
+   <div class="container mt-5 pt-5">
+      <div class="jumbotron w-100 bg-white" style="height:720px;">
+         
+         
+
+        <div class="row justify-content-center" style="height:600px">
+            <div class="col-md-8">
+            	<h4><%= error %></h4>
+				<h4><%= success %></h4>
+                <div class="card">
+                    <div class="card-header font-weight-light h1">Registro</div>
+                    <div class="card-body">
+                        <form action="/registro" method="POST">
+                            <div class="form-group row">
+                                <label for="username" class="col-md-4 col-form-label text-md-right h3">Usuario:</label>
+                                <div class="col-md-6">
+                                    <input type="text" id="username" class="form-control" name="email-address" required autofocus>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="password" class="col-md-4 col-form-label text-md-right h3">Contraseña:</label>
+                                <div class="col-md-6">
+                                    <input type="password" id="password" class="form-control" name="password" required>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <div class="col-md-6 offset-md-4">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" name="remember"> Recordarme
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 offset-md-4">
+                                <button type="submit" class="btn btn-primary">
+                                    Registrarse
+                                </button>
+                            </div>
+                    </div>
+                    </form>
+                    <div class="text-center"> 
+                    <a href="/login" class="btn btn-info m-3 w-50 " style="height:50px">
+                                    Volver
+                                </a>
+                                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+</div>
+<% include ./partials/footer %>
