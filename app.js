@@ -59,7 +59,7 @@ var proySchema = new mongoose.Schema({
     pnf: {type: String, required: [true, 'Por favor ingrese el pnf del proyecto']}, 
     comunidad: {type: String, required: [true, 'Por favor ingrese la comunidad del proyecto']},        
     trayecto: {type: String, required: [true, 'Por favor ingrese el trayecto del proyecto']},        
-    seccion: {type: Number, min: [1, 'La seccion minima es 1'],  max: [999, 'La seccion maxima es 999'], index:true},        
+    seccion: {type: String,  index:true},        
     profGuia: String,
     profTutor: String,
     resumenProyecto: String,
@@ -172,7 +172,7 @@ app.get("/index", function(req, res) {
 
     } else {
         //Todos los archivos
-        Proy.find({}, function(err, proys) {
+        Proy.find({}).sort({ _id: 'desc' }).exec(function(err, proys) {
             if (err) {
                 console.log(err);
             } else {
@@ -184,7 +184,7 @@ app.get("/index", function(req, res) {
 
 //Ruta de vista simple
 app.get("/indexsimple", function(req, res) {
-    Proy.find({}, function(err, proys) {
+    Proy.find({}).sort({ _id: 'desc' }).exec(function(err, proys) {
         if (err) {
             console.log(err);
         } else {
