@@ -17,9 +17,7 @@
       </div>
       
       <a class="btn btn-dark  mt-3 mr-2" href="/index">Buscar proyectos</a>
-      <% if(!currentUser){%>
-      <a class="btn btn-dark  mt-3" href="/login">Ingresar</a>
-      <% } else { %>
+      <% if(currentUser){%>
       <a class="btn btn-dark  mt-3" href="#">Bienvenido <%=currentUser.username%></a>
       <% } %>
       </div>
