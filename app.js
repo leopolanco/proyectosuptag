@@ -271,7 +271,8 @@ app.delete("/index/:id", isLoggedIn, function(req, res) {
 });
 
 //Pagina de ayuda, seguida por los archivos descargables
-app.get("/ayuda", function(req, res) { //El comando crea el respaldo de la base de datos desde la cmd
+app.get("/ayuda", function(req, res) { 
+    //El comando crea el respaldo de la base de datos desde la cmd
     exec('mongoexport --forceTableScan --host uptag-shard-0/uptag-shard-00-00-qexum.mongodb.net:27017,uptag-shard-00-01-qexum.mongodb.net:27017,uptag-shard-00-02-qexum.mongodb.net:27017 --ssl --username leo --password polanco --authenticationDatabase admin --db test --collection proys --type json  --out ./public/datosdb.json');
     res.render("../views/ayuda.ejs");
 });
