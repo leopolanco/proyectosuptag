@@ -121,7 +121,8 @@
                 </div>
             </div>
         </div>
-
+        
+        <% if(currentUser){ %>
         <div style="float: right;" class="form-row mb-4 mt-3">
             <div class="col">
                 <a class="btn btn-secondary" href="/index/<%=proy._id%>/edit">Editar</a>
@@ -132,6 +133,7 @@
                 </form>
             </div>
         </div>
+        <% } %>
     </div>
 </div>
 <% include ./partials/footer %>

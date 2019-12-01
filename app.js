@@ -7,7 +7,8 @@ var bodyParser = require("body-parser"),
     LocalStrategy = require("passport-local"),
     User = require("./static/js/user"), //archivo de user
     flash = require('connect-flash'),
-    app = express();
+    app = express(),
+    {exec} = require('child_process');
 
 //Configuraciones generales para funcionamiento (utilizamos ejs para combinar js y html en un solo archivo)
 //mongoose.connect("mongodb://localhost/proyecto_app", { useNewUrlParser: true, useFindAndModify: false, useCreateIndex: true, useUnifiedTopology: true});
@@ -16,7 +17,7 @@ mongoose.connect("mongodb+srv://leo:polanco@uptag-qexum.mongodb.net/test?retryWr
     useFindAndModify: false,
     useCreateIndex: true,
     useUnifiedTopology: true
-});
+});// Conectar a la db, si se necesita entrar desde el cmd, se escribe "mongo mongodb+srv://leo:polanco@uptag-qexum.mongodb.net"
 app.use(express.static("static"));
 app.use(methodOverride("_method"));
 app.use(bodyParser.json());
@@ -36,6 +37,11 @@ app.use(passport.session());
 passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
+
+app.use(function(req, res, next) { //Definimos currentuser para todas las paginas
+    res.locals.currentUser = req.user;
+    next();
+});
 
 //funcion de avisos
 app.use(function(req, res, next) {
@@ -117,7 +123,7 @@ app.post("/registro", function(req, res) {
     });
     User.register(newUser, req.body.password, function(err, User) {
         if (err) {
-            req.flash("error", "Este usuario ya esta registrado.");
+            req.flash("error", err);
             console.log(err);
             return res.redirect('/registro');
         }
@@ -147,31 +153,6 @@ app.get("/logout", function(req, res) {
 
 //Ruta de muestra general
 app.get("/index", function(req, res) {
-    //Buscar cada archivo individual
-    var noMatch = null;
-    if (req.query.Buscar) {
-        const regex = new RegExp(escapeRegex(req.query.Buscar), 'gi');
-
-        Proy.find({
-            $text: {
-                $search: regex
-            },
-        }, function(err, proys) {
-            if (err) {
-                console.log(err);
-            } else {
-                if (proys.length < 0) {
-                    req.flash("error", "No hubo coincidencias.");
-                }
-                res.render("../views/index.ejs", {
-                    proys: proys,
-                    noMatch: noMatch
-                });
-            }
-        });
-
-    } else {
-        //Todos los archivos
         Proy.find({}).sort({ _id: 'desc' }).exec(function(err, proys) {
             if (err) {
                 console.log(err);
@@ -179,9 +160,8 @@ app.get("/index", function(req, res) {
                 res.render("../views/index.ejs", {proys: proys});
             }
         });
-    }
 });
-
+    
 //Ruta de vista simple
 app.get("/indexsimple", function(req, res) {
     Proy.find({}).sort({ _id: 'desc' }).exec(function(err, proys) {
@@ -291,11 +271,15 @@ app.delete("/index/:id", isLoggedIn, function(req, res) {
 });
 
 //Pagina de ayuda, seguida por los archivos descargables
-app.get("/ayuda", function(req, res) {
+app.get("/ayuda", function(req, res) { //El comando crea el respaldo de la base de datos desde la cmd
+    exec('mongoexport --forceTableScan --host uptag-shard-0/uptag-shard-00-00-qexum.mongodb.net:27017,uptag-shard-00-01-qexum.mongodb.net:27017,uptag-shard-00-02-qexum.mongodb.net:27017 --ssl --username leo --password polanco --authenticationDatabase admin --db test --collection proys --type json  --out ./public/datosdb.json');
     res.render("../views/ayuda.ejs");
 });
 app.get("/manual", function(req, res) {
-    res.download("../public/manualsis.docx");
+    res.download("./public/manualsis.docx");
+});
+app.get("/datosdb", function(req, res) {
+    res.download("./public/datosdb.json");
 });
 
 
@@ -404,13 +388,14 @@ app.get("/datatables/js/jszip.min.js", function(req, res) {
 
 
 app.get("/test", function(req, res) {
-    res.render("../views/test.ejs");
+    Proy.find({}, function(err, proys) {
+        if (err) {
+            console.log(err);
+        } else {
+            res.render("../views/test.ejs", {proys: proys});
+        }
+    });
 });
-
-//Funcion de seguridad
-function escapeRegex(text) {
-    return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
-}
 
 //Aviso de funcionamiento
 app.listen(process.env.PORT, process.env.IP, function() {
