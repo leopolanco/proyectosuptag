@@ -17,7 +17,7 @@ mongoose.connect("mongodb+srv://leo:polanco@uptag-qexum.mongodb.net/test?retryWr
     useFindAndModify: false,
     useCreateIndex: true,
     useUnifiedTopology: true
-});// Conectar a la db, si se necesita entrar desde el cmd, se escribe "mongo mongodb+srv://leo:polanco@uptag-qexum.mongodb.net"
+});//Si se necesita entrar desde el cmd, se escribe "mongo mongodb+srv://leo:polanco@uptag-qexum.mongodb.net"
 app.use(express.static("static"));
 app.use(methodOverride("_method"));
 app.use(bodyParser.json());
@@ -96,8 +96,6 @@ var proySchema = new mongoose.Schema({
 });
 var Proy = mongoose.model("Proy", proySchema);
 
-//Filtro, para que no se repitan los proyectos
-proySchema.index({lapsoAcademico:1, seccion:1, nombreEstudiante1:1}, {unique:true});
 
 
 //SE NECESITA HABILITAR LA BUSQUEDA!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -352,9 +350,6 @@ app.get("/images/fotoarchivar.png", function(req, res) {
 //js
 app.get("/js/main.js", function(req, res) {
     res.sendFile("../static/js/main.js");
-});
-app.get("/js/jquery-3.2.1.min.js", function(req, res) {
-    res.sendFile("../static/js/jquery-3.2.1.min.js");
 });
 
 //datatables(indexsimple)
