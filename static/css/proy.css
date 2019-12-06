@@ -1,0 +1,106 @@
+         html, body {
+            background: url(/images/bguptag.jpg) no-repeat center center fixed; 
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;}
+
+         .btn-warning{
+            padding: 10px 40px 10px 40px;
+         }
+         footer, nav, .bg-dark{
+            background: #1C2331!important;
+            background-color:#1C2331!important;
+         }
+         footer a {
+            color: grey;
+         }
+         .style13 {
+            border-top: 1px solid #ffa400;
+            text-align: center;
+            width: 60px;
+         }
+         footer{
+            margin-top:auto; 
+         }
+         .buscar {
+            text-transform:capitalize;
+         }
+         
+         form {
+            display: block;
+            margin-top: 0em;
+            margin-block-end: 0em;
+         }
+         
+         .lead {
+             font-size: 1.4rem;
+             line-height: 1.5;
+         }
+         
+      	h3, .lead {
+         	font-weight: 400;
+         }
+         img {
+           border-radius: 2%;
+         }
+         .listaconpuntosnaranjas {
+           list-style: none; 
+         }
+         
+         .listaconpuntosnaranjas li::before {
+           content: "\2022";  
+           color: rgb(255, 116, 23); 
+           font-weight: bold; 
+           display: inline-block; 
+           width: 1em; 
+           margin-left: -1em;
+         }
+          .lineadiagonal {
+          -moz-transform: rotate(5deg);  
+            -o-transform: rotate(5deg);  
+       -webkit-transform: rotate(5deg);  
+           -ms-transform: rotate(5deg);  
+               transform: rotate(5deg); 
+            }
+            .container-fluid{
+               overflow:hidden;
+            }
+            .form-control {
+                border: 0;
+            }
+            
+            
+            .busqueda{
+              width: 0px;
+              transition: all 0.5s ease;
+            }
+            
+            .input-busqueda, .select-busqueda{
+              border: 0px;
+              width: 0%;
+              outline: none;
+              color: rgb(142, 145, 152);
+              transition: all 0.3s ease;
+            }
+            
+            .busqueda .fa{
+              color:rgb(255, 116, 23);
+              position: absolute;
+              right: 19px;
+              top: 6px;
+              font-size: 1.1em;
+              cursor: pointer;
+            }
+            
+            .busqueda.active{
+              width: 500px;
+              transition: all 0.5s ease;
+            }
+            
+            .input-busqueda.active {
+              width: 65%;
+            }
+            .select-busqueda.active{
+              width: 25%;
+            }

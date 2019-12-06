@@ -83,6 +83,41 @@ function mostrarnotas(id) {//Funcion para mostrar input de notas, si esta culmin
       }
 }
 
+function asistbusqueda(id) {//Funcion para asistir la busqueda del header
+        
+        if (id == "pnf") { 
+          var eleccionbusqueda = pnf;
+      }  
+
+       if (id == "estatus") { 
+          var eleccionbusqueda = statusProyecto; 
+      }  
+
+      if (id == "comunidad") { 
+          var eleccionbusqueda = comunidad;
+      } 
+   
+      if (id == "municipio") { 
+          var eleccionbusqueda = municipio;
+      } 
+
+//
+     if (id == "lapso-academico") { 
+          var eleccionbusqueda = lapsoAcademico; 
+     } 
+     if (id == "trayecto") { 
+          var eleccionbusqueda = trayecto;
+     } 
+        
+        
+        
+
+      
+}
+
+
+
+
 (function($) {
 	$.fn.shorten = function (settings) {
 	

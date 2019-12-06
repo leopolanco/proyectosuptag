@@ -38,16 +38,20 @@ passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
-app.use(function(req, res, next) { //Definimos currentuser para todas las paginas
-    res.locals.currentUser = req.user;
-    next();
-});
 
-//funcion de avisos
+//Para activar estas funciones en todas las paginas, documentacion: https://expressjs.com/es/guide/using-middleware.html
 app.use(function(req, res, next) {
     res.locals.error = req.flash("error");
     res.locals.success = req.flash("success");
-    next();
+    res.locals.currentUser = req.user;
+    Proy.find({}).sort({ _id: 'desc' }).exec(function(err, proys) {
+                if (err) {
+                    console.log(err);
+                } else {
+                    res.locals.proys = proys;
+                }
+                next();
+            });
 });
 
 //Funcion para verificar login
@@ -61,29 +65,29 @@ function isLoggedIn(req, res, next) {
 
 //Schema de cada proyecto
 var proySchema = new mongoose.Schema({
-    tituloProyecto: {type: String, required: [true, 'Por favor ingrese el titulo del proyecto'], unique:true},      
-    pnf: {type: String, required: [true, 'Por favor ingrese el pnf del proyecto']}, 
-    comunidad: {type: String, required: [true, 'Por favor ingrese la comunidad del proyecto']},        
-    trayecto: {type: String, required: [true, 'Por favor ingrese el trayecto del proyecto']},        
-    seccion: {type: String,  index:true},        
-    profGuia: String,
-    profTutor: String,
+    tituloProyecto:    {type: String, required: [true, 'Por favor ingrese el titulo del proyecto'], unique:true,  text:true},      
+    pnf:               {type: String, required: [true, 'Por favor ingrese el pnf del proyecto'],  text:true}, 
+    comunidad:         {type: String, required: [true, 'Por favor ingrese la comunidad del proyecto'],  text:true},        
+    trayecto:          {type: String, required: [true, 'Por favor ingrese el trayecto del proyecto'],  text:true},        
+    seccion:           {type: String,   text:true},        
+    profGuia:          {type: String,   text:true}, 
+    profTutor:         {type: String,   text:true}, 
     resumenProyecto: String,
-    statusProyecto: {type: String, required: [true, 'Por favor ingrese el estatus del proyecto']},
-    municipio: {type: String, required: [true, 'Por favor ingrese el municipio del proyecto']},          
-    lapsoAcademico: {type: String, required: [true, 'Por favor ingrese el lapso academico del proyecto'], index:true},
-    lineaInv: String,
+    statusProyecto:    {type: String, required: [true, 'Por favor ingrese el estatus del proyecto']},
+    municipio:         {type: String, required: [true, 'Por favor ingrese el municipio del proyecto']},          
+    lapsoAcademico:    {type: String, required: [true, 'Por favor ingrese el lapso academico del proyecto'],  text:true},
+    lineaInv:          {type: String,   text:true}, 
     cantIntegrantes: String,
-    nombreEstudiante1: {type: String, required: [true, 'Por favor ingrese integrante/s del proyecto'], index:true },
-    nombreEstudiante2: String,
-    nombreEstudiante3: String,
-    nombreEstudiante4: String,
-    nombreEstudiante5: String,
+    nombreEstudiante1: {type: String, required: [true, 'Por favor ingrese integrante/s del proyecto'],  text:true },
+    nombreEstudiante2: {type: String,   text:true}, 
+    nombreEstudiante3: {type: String,   text:true}, 
+    nombreEstudiante4: {type: String,   text:true}, 
+    nombreEstudiante5: {type: String,   text:true}, 
     cedulaEstudiante1: {type: String, required: [true, 'Por favor ingrese la cedula del integrante/s del proyecto']},
-    cedulaEstudiante2: String,
-    cedulaEstudiante3: String,
-    cedulaEstudiante4: String,
-    cedulaEstudiante5: String,
+    cedulaEstudiante2: {type: String,   text:true}, 
+    cedulaEstudiante3: {type: String,   text:true}, 
+    cedulaEstudiante4: {type: String,   text:true}, 
+    cedulaEstudiante5: {type: String,   text:true}, 
     notaEstudiante1: String,
     notaEstudiante2: String,
     notaEstudiante3: String,
@@ -96,7 +100,7 @@ var proySchema = new mongoose.Schema({
 });
 var Proy = mongoose.model("Proy", proySchema);
 
-
+proySchema.index({ '$**': 'text' });
 
 //SE NECESITA HABILITAR LA BUSQUEDA!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
@@ -111,7 +115,6 @@ app.get("/inicio", function(req, res) {
 //Ruta de registro
 app.get("/registro", function(req, res) {
     res.render("../views/registro.ejs");
-
 });
 
 //Registro de cada usuario
@@ -151,59 +154,56 @@ app.get("/logout", function(req, res) {
 
 //Ruta de muestra general
 app.get("/index", function(req, res) {
-        Proy.find({}).sort({ _id: 'desc' }).exec(function(err, proys) {
-            if (err) {
-                console.log(err);
-            } else {
-                res.render("../views/index.ejs", {proys: proys});
-            }
-        });
+        if (req.query.search) {
+            Proy.find({$text: { $search: req.query.search}}, function(err, proys) {
+                if (err) {
+                    console.log(err);
+                } else {
+                    res.render("../views/index.ejs", {proys: proys});
+                }
+            });
+        } else {
+            Proy.find({}).sort({ _id: 'desc' }).exec(function(err, proys) {
+                if (err) {
+                    console.log(err);
+                } else {
+                    res.render("../views/index.ejs", {proys: proys});
+                }
+            });
+        }
 });
     
-//Ruta de vista simple
-app.get("/indexsimple", function(req, res) {
-    Proy.find({}).sort({ _id: 'desc' }).exec(function(err, proys) {
+
+//Envio de formulario de creacion
+app.post("/index", isLoggedIn, function(req, res) {
+    req.flash("success", "Su proyecto fue agregado.");
+    Proy.find({}, function(err, proys) {
         if (err) {
             console.log(err);
         } else {
-            res.render("../views/indexsimple.ejs", {
-                proys: proys
+            Proy.create(req.body.proy, function(err, newProy) {
+                if (err) {
+                    req.flash("error", err.message);
+                    console.log(err);
+                    res.redirect("/archivar");
+                } else {
+                    res.redirect("/index");
+                }
             });
         }
     });
 });
 
-//Ruta de archivar o guardar
-app.get("/archivar", isLoggedIn, function(req, res) {
-    Proy.find({}, function(err, proys) {
-        if (err) {
-            console.log(err);
-        } else {
-            res.render("../views/archivar.ejs", {proys: proys});
-        }
-    });
+//Ruta de vista simple
+app.get("/indexsimple", function(req, res) {
+            res.render("../views/indexsimple.ejs");
 });
 
-//Envio de formulario de creacion
-app.post("/index", isLoggedIn, function(req, res) {
-    req.flash("success", "Su proyecto fue agregado.");
-    
-    Proy.find({}, function(err, proys) {
-        if (err) {
-            console.log(err);
-        } else {
-    
-    Proy.create(req.body.proy, function(err, newProy) {
-        if (err) {
-            req.flash("error", err.message);
-            console.log(err);
-            res.redirect("/archivar");
-        } else {
-            res.redirect("/index");
-        }
-    });}
-    });
+//Ruta de archivar o guardar
+app.get("/archivar", isLoggedIn, function(req, res) {
+            res.render("../views/archivar.ejs");
 });
+
 
 //Ruta de muestra individual
 app.get("/index/:id", function(req, res) {
@@ -293,6 +293,9 @@ app.get("/css/main.css", function(req, res) {
 });
 app.get("/css/bootstrap.min.css", function(req, res) {
     res.sendFile("../static/css/bootstrap.min.css");
+});
+app.get("/css/proy.css", function(req, res) {
+    res.sendFile("../static/css/proy.css");
 });
 
 //imagenes
@@ -384,13 +387,7 @@ app.get("/datatables/js/jszip.min.js", function(req, res) {
 
 
 app.get("/test", function(req, res) {
-    Proy.find({}, function(err, proys) {
-        if (err) {
-            console.log(err);
-        } else {
-            res.render("../views/test.ejs", {proys: proys});
-        }
-    });
+            res.render("../views/test.ejs");
 });
 
 //Aviso de funcionamiento

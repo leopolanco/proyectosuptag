@@ -2,84 +2,11 @@
    <head>
       <title>Proyectos</title>
       <link rel="stylesheet"  type="text/css" href="/css/bootstrap.min.css">
+      <link rel="stylesheet" type="text/css" href="/css/proy.css">
       <link rel="stylesheet" type="text/css" href="/datatables/css/jquery.dataTables.min.css">
       <link rel="stylesheet" type="text/css" href="/datatables/css/buttons.dataTables.min.css">
+      <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
-      <style type="text/css">
-      
-         html, body {
-            background: url(/images/bguptag.jpg) no-repeat center center fixed; 
-            -webkit-background-size: cover;
-            -moz-background-size: cover;
-            -o-background-size: cover;
-            background-size: cover;}
-
-         .btn-warning{
-            padding: 10px 40px 10px 40px;
-         }
-         footer, nav{
-            background: #1C2331;
-         }
-         footer a {
-            color: grey;
-         }
-         .style13 {
-            border-top: 1px solid #ffa400;
-            text-align: center;
-            width: 60px;
-         }
-         footer{
-            margin-top:auto; 
-         }
-         .buscar {
-            text-transform:capitalize;
-         }
-         
-          #fichaMostrar, input, textarea {
-            text-transform: uppercase;
-         }
-         
-         form {
-            display: block;
-            margin-top: 0em;
-            margin-block-end: 0em;
-         }
-         
-         .lead {
-             font-size: 1.4rem;
-             line-height: 1.5;
-            font-weight: 450;
-         }
-         
-      	h3 {
-         	font-weight: 450;
-         }
-         img {
-           border-radius: 2%;
-         }
-         .listaconpuntosnaranjas {
-           list-style: none; 
-         }
-         
-         .listaconpuntosnaranjas li::before {
-           content: "\2022";  
-           color: rgb(255, 116, 23); 
-           font-weight: bold; 
-           display: inline-block; 
-           width: 1em; 
-           margin-left: -1em;
-         }
-          .lineadiagonal {
-          -moz-transform: rotate(5deg);  
-            -o-transform: rotate(5deg);  
-       -webkit-transform: rotate(5deg);  
-           -ms-transform: rotate(5deg);  
-               transform: rotate(5deg); 
-            }
-            .container-fluid{
-               overflow:hidden;
-            }
-      </style>
    </head>
    
    <body>
@@ -106,14 +33,48 @@
                   </li>
                </ul> 
                </div>
-               <!-- BARRA DE BUSQUEDA 
-               <form action="/index" method="GET" class="form-inline buscar">
-                   <div class="md-form my-0">
-                  <input style="text-transform:capitalize;"class="form-control mr-sm-2" name="Buscar" type="text" placeholder="Buscar">
-                  <input style="text-transform:capitalize;"class="btn btn-outline-warning my-2 my-sm-0" value="Buscar" type="submit">
-                   </div>
-               </form>
-               -->
+
+
+
+
+        <form action="/index" method="GET" class="nav navbar-nav navbar-right">
+  <div class="busqueda  input-group bg-dark">
+     
+     
+     
+     
+     <%var arrayauxiliar=[];%>
+    <%proys.forEach(function(proy){ %>
+    <%    arrayauxiliar.push(proy.eleccionbusqueda);%>
+    <% }); %>
+    <%let arrayfinal =[...new Set(arrayauxiliar)]%>
+    <input list="listabusq" type="text" class="form-inline input-busqueda border-bottom bg-dark" placeholder="Buscar" name="search">
+    <datalist id="listabusq" class="bg-dark">
+         <option value="">
+      <% arrayfinal.forEach(function(proy){ %>
+         <option value="<%=proy%>">
+         <% }) %>      
+         </datalist>   
+
+            <select class="form-inline select-busqueda bg-dark border-bottom">
+               <option value="">General</option>
+               <option value="pnf" onChange="asistbusqueda(this.value);">PNF</option>
+               <option value="Estatus" onChange="asistbusqueda(this.value);">Estatus</option>
+               <option value="comunidad" onChange="asistbusqueda(this.value);">Comunidad</option>
+               <option value="municipio" onChange="asistbusqueda(this.value);">Municipio</option>
+               <option value="profesor" onChange="asistbusqueda(this.value);">Profesor</option>
+               <option value="estudiante" onChange="asistbusqueda(this.value);">Estudiante</option>
+               <option value="lapso-academico" onChange="asistbusqueda(this.value);">Lapso Academico</option>
+               <option value="trayecto" onChange="asistbusqueda(this.value);">Trayecto</option>
+            </select>
+    <i class=" fa fa-search"></i>
+  </div>
+</form>
+        
+        
+
+
+
                
                <ul class="nav navbar-nav navbar-right">
                   <div class="collapse navbar-collapse text-right">
