@@ -271,14 +271,14 @@ app.delete("/index/:id", isLoggedIn, function(req, res) {
 //Pagina de ayuda, seguida por los archivos descargables
 app.get("/ayuda", function(req, res) { 
     //El comando crea el respaldo de la base de datos desde la cmd
-    exec('mongoexport --forceTableScan --host uptag-shard-0/uptag-shard-00-00-qexum.mongodb.net:27017,uptag-shard-00-01-qexum.mongodb.net:27017,uptag-shard-00-02-qexum.mongodb.net:27017 --ssl --username leo --password polanco --authenticationDatabase admin --db test --collection proys --type json  --out ./public/datosdb.json');
+    exec('mongoexport --forceTableScan --host uptag-shard-0/uptag-shard-00-00-qexum.mongodb.net:27017,uptag-shard-00-01-qexum.mongodb.net:27017,uptag-shard-00-02-qexum.mongodb.net:27017 --ssl --username leo --password polanco --authenticationDatabase admin --db test --collection proys --type json  --out ./public/BASE-DE-DATOS-DE-PROYECTOS-SOCIOINTEGRADORES-RESPALDO.json');
     res.render("../views/ayuda.ejs");
 });
-app.get("/manual", function(req, res) {
-    res.download("./public/manualsis.docx");
+app.get("/MANUAL-DE-SISTEMA-DE-BASE-DE-DATOS-DE-PROYECTOS-SOCIOINTEGRADORES", function(req, res) {
+    res.download("./public/MANUAL-DE-SISTEMA-DE-BASE-DE-DATOS-DE-PROYECTOS-SOCIOINTEGRADORES.docx");
 });
-app.get("/datosdb", function(req, res) {
-    res.download("./public/datosdb.json");
+app.get("/BASE-DE-DATOS-DE-PROYECTOS-SOCIOINTEGRADORES-RESPALDO", function(req, res) {
+    res.download("./public/BASE-DE-DATOS-DE-PROYECTOS-SOCIOINTEGRADORES-RESPALDO.json");
 });
 
 

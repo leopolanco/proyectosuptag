@@ -220,16 +220,16 @@ function asistbusqueda(id) {//Funcion para asistir la busqueda del header
           
       } 
 
-     if (id == "Lapso-Academico") { 
+     if (id == "LapsoAcademico") { 
          
           $("#listabusqpnf").prop("disabled", true); 
           $("#general").prop("disabled", true); 
           $("#listabusqestatus").prop("disabled", true); 
           $("#listabusqcomunidad").prop("disabled", true);
-          $("#listabusqmunicipio").prop("disabled", false);
+          $("#listabusqmunicipio").prop("disabled", true);
           $("#listabusqprof").prop("disabled", true);
           $("#listabusqestud").prop("disabled", true);
-          $("#listabusqlapsoacad").prop("disabled", true);
+          $("#listabusqlapsoacad").prop("disabled", false);
           $("#listabustrayecto").prop("disabled", true);
          
           $("#listabusqpnf").hide(); 
@@ -321,6 +321,12 @@ if (e.keyCode == 13)
     $('#busqform').submit();
 }
 });
+
+$(document).ready(function(){
+        $(".fa-search").click(function(){
+          $(".busqueda, .input-busqueda, .select-busqueda").toggleClass("active");
+        });
+      });
 
 
 (function($) {
