@@ -37,42 +37,140 @@
 
 
 
-        <form action="/index" method="GET" class="nav navbar-nav navbar-right">
+        <form action="/index" method="GET" id="busqform">
   <div class="busqueda  input-group bg-dark">
-     
-     
-     
-     
-     <%var arrayauxiliar=[];%>
-    <%proys.forEach(function(proy){ %>
-    <%    arrayauxiliar.push(proy.eleccionbusqueda);%>
-    <% }); %>
-    <%let arrayfinal =[...new Set(arrayauxiliar)]%>
-    <input list="listabusq" type="text" class="form-inline input-busqueda border-bottom bg-dark" placeholder="Buscar" name="search">
-    <datalist id="listabusq" class="bg-dark">
-         <option value="">
-      <% arrayfinal.forEach(function(proy){ %>
-         <option value="<%=proy%>">
-         <% }) %>      
-         </datalist>   
+      
+      
+      
+<!-- ESTAS FUNCIONES ESTAN FALLANDO Y MOLESTANDO EL FORM,  PUEDE SER QUE FALTE CERRAR ALGO (</> ASI) U OTRA COSA, REVISAR -->       
+      
+<%var arrayauxiliar=[];%>
+               <%proys.forEach(function(proy){ %>
+               <%    arrayauxiliar.push(proy.pnf);%>
+               <% }); %>
+               <%let finalpnf =[...new Set(arrayauxiliar)]%>
+               <input list="llistabusqpnf" id="listabusqpnf" type="text" class="form-inline input-busqueda border-bottom bg-dark" placeholder="Buscar" name="search" style="display: none;" disabled >
+               <datalist  id="llistabusqpnf" class="bg-dark">
+                  
+                  <% finalpnf.forEach(function(proy){ %>
+                  <option value="<%=proy%>">
+                  <% }) %>      
+               </datalist>
+               
+<%var arrayauxiliar=[];%>
+               <%proys.forEach(function(proy){ %>
+               <%    arrayauxiliar.push(proy.comunidad);%>
+               <% }); %>
+               <%let finalc =[...new Set(arrayauxiliar)]%>
+               <input list="llistabusqcomunidad" id="listabusqcomunidad" type="text" class="form-inline input-busqueda border-bottom bg-dark" placeholder="Buscar" name="search" style="display: none;" disabled >
+               <datalist  id="llistabusqcomunidad" class="bg-dark">
+                  
+                  <% finalc.forEach(function(proy){ %>
+                  <option value="<%=proy%>">
+                  <% }) %>      
+               </datalist>               
 
-            <select class="form-inline select-busqueda bg-dark border-bottom">
-               <option value="">General</option>
-               <option value="pnf" onChange="asistbusqueda(this.value);">PNF</option>
-               <option value="Estatus" onChange="asistbusqueda(this.value);">Estatus</option>
-               <option value="comunidad" onChange="asistbusqueda(this.value);">Comunidad</option>
-               <option value="municipio" onChange="asistbusqueda(this.value);">Municipio</option>
-               <option value="profesor" onChange="asistbusqueda(this.value);">Profesor</option>
-               <option value="estudiante" onChange="asistbusqueda(this.value);">Estudiante</option>
-               <option value="lapso-academico" onChange="asistbusqueda(this.value);">Lapso Academico</option>
-               <option value="trayecto" onChange="asistbusqueda(this.value);">Trayecto</option>
+                  <%var arrayauxiliar=[];%>
+                  <%proys.forEach(function(proy){ %>
+                  <%    arrayauxiliar.push(proy.municipio);%>
+                  <% }); %>
+                  <%let finalm =[...new Set(arrayauxiliar)]%>
+                  <input list="llistabusqmunicipio" id="listabusqmunicipio" type="text" class="form-inline input-busqueda border-bottom bg-dark" placeholder="Buscar" name="search" style="display: none;" disabled >
+                  <datalist  id="llistabusqmunicipio" class="bg-dark">
+                     
+                     <% finalm.forEach(function(proy){ %>
+                     <option value="<%=proy%>">
+                     <% }) %>      
+                  </datalist>
+                  
+                  
+               <%var arrayauxiliar=[];%>
+               <%proys.forEach(function(proy){ %>
+               <%    arrayauxiliar.push(proy.profGuia);%>
+               <%    arrayauxiliar.push(proy.profTutor);%>
+               <% }); %>
+               <%let finalprof =[...new Set(arrayauxiliar)]%>
+               <input list="llistabusqprof" id="listabusqprof" type="text" class="form-inline input-busqueda border-bottom bg-dark" placeholder="Buscar" name="search" style="display: none;" disabled >
+               <datalist  id="llistabusqprof" class="bg-dark" >
+                  <% finalprof.forEach(function(proy){ %>
+                  <option value="<%=proy%>">
+                  <% }) %>      
+               </datalist>
+              
+                  <%var arrayauxiliar=[];%>               
+                  <%proys.forEach(function(proy){ %>
+                  <%    arrayauxiliar.push(proy.nombreEstudiante1);%>
+                  <%    arrayauxiliar.push(proy.nombreEstudiante2);%>
+                  <%    arrayauxiliar.push(proy.nombreEstudiante3);%>
+                  <%    arrayauxiliar.push(proy.nombreEstudiante4);%>
+                  <%    arrayauxiliar.push(proy.nombreEstudiante5);%>
+                  <% }); %>
+                  <%let finale =[...new Set(arrayauxiliar)]%>
+                  <input list="llistabusqestud" id="listabusqestud" type="text" class="form-inline input-busqueda border-bottom bg-dark" placeholder="Buscar" name="search" style="display: none;" disabled >
+                  <datalist  id="llistabusqestud" class="bg-dark">
+                     
+                     <% finale.forEach(function(proy){ %>
+                     <option value="<%=proy%>">
+                     <% }) %>      
+                  </datalist>
+<%var arrayauxiliar=[];%>
+                  <%proys.forEach(function(proy){ %>
+                  <%    arrayauxiliar.push(proy.lapsoAcademico);%>
+                  <% }); %>
+                  <%let finall =[...new Set(arrayauxiliar)]%>
+                  <input list="llistabusqlapsoacad" id="listabusqlapsoacad" type="text" class="form-inline input-busqueda border-bottom bg-dark" placeholder="Buscar" name="search" style="display: none;" disabled >
+                  <datalist  id="llistabusqlapsoacad" class="bg-dark">
+                     
+                     <% finall.forEach(function(proy){ %>
+                     <option value="<%=proy%>">
+                     <% }) %>      
+                  </datalist>
+<select id ="listabustrayecto" name="search" class="form-inline input-busqueda border-bottom bg-dark" style="display: none;" disabled>
+                     <option value="T1">T1</option>
+                     <option value="T2">T2</option>
+                     <option value="T3">T3</option>
+                     <option value="T4">T4</option>
+                 </select>
+<select id ="listabusqestatus" name="search" class="form-inline input-busqueda border-bottom bg-dark" style="display: none;"   disabled>
+                     <option value="CULMINADO">CULMINADO</option>
+                     <option value="NO CULMINADO">NO CULMINADO</option>
+                </select>                 
+                                 
+
+    <input  id="general" type="text" class="form-inline input-busqueda border-bottom bg-dark" placeholder="Buscar" name="search" style="">
+
+
+            <select class="form-inline select-busqueda bg-dark border-bottom" onChange="asistbusqueda(this.value);">
+               <option value="general" >General</option>
+               <option value="PNF" >PNF</option>
+               <option value="Estatus" >Estatus</option>
+               <option value="Comunidad" >Comunidad</option>
+               <option value="Municipio" >Municipio</option>
+               <option value="Profesor" >Profesor</option>
+               <option value="Estudiante" >Estudiante</option>
+               <option value="Lapso-Academico" >Lapso Academico</option>
+               <option value="Trayecto" >Trayecto</option>
+                  
+  
+                  </datalist>
             </select>
-    <i class=" fa fa-search"></i>
+    
   </div>
+  
 </form>
         
         
-
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+<i class=" pr-2 fa fa-search"><span class="pl-2">Busqueda</span></i>
 
 
                

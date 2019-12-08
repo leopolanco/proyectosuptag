@@ -84,11 +84,8 @@
               transition: all 0.3s ease;
             }
             
-            .busqueda .fa{
+            .fa{
               color:rgb(255, 116, 23);
-              position: absolute;
-              right: 19px;
-              top: 20%;
               font-size: 1.1em;
               cursor: pointer;
             }

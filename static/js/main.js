@@ -85,37 +85,242 @@ function mostrarnotas(id) {//Funcion para mostrar input de notas, si esta culmin
 
 function asistbusqueda(id) {//Funcion para asistir la busqueda del header
         
-        if (id == "pnf") { 
-          var eleccionbusqueda = pnf;
+        if (id == "PNF") { 
+            
+          $("#listabusqpnf").prop("disabled", false);
+          $("#general").prop("disabled", true); 
+          $("#listabusqestatus").prop("disabled", true); 
+          $("#listabusqcomunidad").prop("disabled", true);
+          $("#listabusqmunicipio").prop("disabled", true);
+          $("#listabusqprof").prop("disabled", true);
+          $("#listabusqestud").prop("disabled", true);
+          $("#listabusqlapsoacad").prop("disabled", true);
+          $("#listabustrayecto").prop("disabled", true);
+            
+          $("#listabusqpnf").show();
+          $("#general").hide(); 
+          $("#listabusqestatus").hide(); 
+          $("#listabusqcomunidad").hide();
+          $("#listabusqmunicipio").hide();
+          $("#listabusqprof").hide();
+          $("#listabusqestud").hide();
+          $("#listabusqlapsoacad").hide();
+          $("#listabustrayecto").hide();
+           
+          $("#listabusqpnf").prop("disabled", false);
+          $("#general").prop("disabled", true); 
+          $("#listabusqestatus").prop("disabled", true); 
+          $("#listabusqcomunidad").prop("disabled", true);
+          $("#listabusqmunicipio").prop("disabled", true);
+          $("#listabusqprof").prop("disabled", true);
+          $("#listabusqestud").prop("disabled", true);
+          $("#listabusqlapsoacad").prop("disabled", true);
+          $("#listabustrayecto").prop("disabled", true);
       }  
 
-       if (id == "estatus") { 
-          var eleccionbusqueda = statusProyecto; 
+       if (id == "Estatus") { 
+           
+          $("#listabusqpnf").prop("disabled", true); 
+          $("#general").prop("disabled", true); 
+          $("#listabusqestatus").prop("disabled", false);
+          $("#listabusqcomunidad").prop("disabled", true);
+          $("#listabusqmunicipio").prop("disabled", true);
+          $("#listabusqprof").prop("disabled", true);
+          $("#listabusqestud").prop("disabled", true);
+          $("#listabusqlapsoacad").prop("disabled", true);
+          $("#listabustrayecto").prop("disabled", true);
+           
+           
+          $("#listabusqpnf").hide(); 
+          $("#general").hide(); 
+          $("#listabusqestatus").show();
+          $("#listabusqcomunidad").hide();
+          $("#listabusqmunicipio").hide();
+          $("#listabusqprof").hide();
+          $("#listabusqestud").hide();
+          $("#listabusqlapsoacad").hide();
+          $("#listabustrayecto").hide();
+          
+          
+        
       }  
 
-      if (id == "comunidad") { 
-          var eleccionbusqueda = comunidad;
+      if (id == "Comunidad") { 
+          
+          $("#listabusqpnf").prop("disabled", true); 
+          $("#general").prop("disabled", true); 
+          $("#listabusqestatus").prop("disabled", true); 
+          $("#listabusqcomunidad").prop("disabled", false);
+          $("#listabusqmunicipio").prop("disabled", true);
+          $("#listabusqprof").prop("disabled", true);
+          $("#listabusqestud").prop("disabled", true);
+          $("#listabusqlapsoacad").prop("disabled", true);
+          $("#listabustrayecto").prop("disabled", true);
+          
+          $("#listabusqpnf").hide(); 
+          $("#general").hide(); 
+          $("#listabusqestatus").hide(); 
+          $("#listabusqcomunidad").show();
+          $("#listabusqmunicipio").hide();
+          $("#listabusqprof").hide();
+          $("#listabusqestud").hide();
+          $("#listabusqlapsoacad").hide();
+          $("#listabustrayecto").hide();
+          
+          
+       
       } 
-   
-      if (id == "municipio") { 
-          var eleccionbusqueda = municipio;
-      } 
-
-//
-     if (id == "lapso-academico") { 
-          var eleccionbusqueda = lapsoAcademico; 
-     } 
-     if (id == "trayecto") { 
-          var eleccionbusqueda = trayecto;
-     } 
-        
-        
-        
-
       
+    if (id == "Profesor") { 
+        
+          $("#listabusqpnf").prop("disabled", true); 
+          $("#general").prop("disabled", true); 
+          $("#listabusqestatus").prop("disabled", true); 
+          $("#listabusqcomunidad").prop("disabled", true);
+          $("#listabusqmunicipio").prop("disabled", true);
+          $("#listabusqprof").prop("disabled", false);
+          $("#listabusqestud").prop("disabled", true);
+          $("#listabusqlapsoacad").prop("disabled", true);
+          $("#listabustrayecto").prop("disabled", true);
+        
+          $("#listabusqpnf").hide(); 
+          $("#general").hide(); 
+          $("#listabusqestatus").hide(); 
+          $("#listabusqcomunidad").hide();
+          $("#listabusqmunicipio").hide();
+          $("#listabusqprof").show();
+          $("#listabusqestud").hide();
+          $("#listabusqlapsoacad").hide();
+          $("#listabustrayecto").hide();
+          
+          
+      }
+      if (id == "Municipio") { 
+
+          $("#listabusqpnf").prop("disabled", true); 
+          $("#general").prop("disabled", true); 
+          $("#listabusqestatus").prop("disabled", true); 
+          $("#listabusqcomunidad").prop("disabled", true);
+          $("#listabusqmunicipio").prop("disabled", false);
+          $("#listabusqprof").prop("disabled", true);
+          $("#listabusqestud").prop("disabled", true);
+          $("#listabusqlapsoacad").prop("disabled", true);
+          $("#listabustrayecto").prop("disabled", true);
+          
+          $("#listabusqpnf").hide(); 
+          $("#general").hide(); 
+          $("#listabusqestatus").hide(); 
+          $("#listabusqcomunidad").hide();
+          $("#listabusqmunicipio").show();
+          $("#listabusqprof").hide();
+          $("#listabusqestud").hide();
+          $("#listabusqlapsoacad").hide();
+          $("#listabustrayecto").hide();
+          
+          
+      } 
+
+     if (id == "Lapso-Academico") { 
+         
+          $("#listabusqpnf").prop("disabled", true); 
+          $("#general").prop("disabled", true); 
+          $("#listabusqestatus").prop("disabled", true); 
+          $("#listabusqcomunidad").prop("disabled", true);
+          $("#listabusqmunicipio").prop("disabled", false);
+          $("#listabusqprof").prop("disabled", true);
+          $("#listabusqestud").prop("disabled", true);
+          $("#listabusqlapsoacad").prop("disabled", true);
+          $("#listabustrayecto").prop("disabled", true);
+         
+          $("#listabusqpnf").hide(); 
+          $("#general").hide(); 
+          $("#listabusqestatus").hide(); 
+          $("#listabusqcomunidad").hide();
+          $("#listabusqmunicipio").hide();
+          $("#listabusqprof").hide();
+          $("#listabusqestud").hide();
+          $("#listabusqlapsoacad").show();
+          $("#listabustrayecto").hide();
+          
+          
+     } 
+     if (id == "Trayecto") { 
+         
+          $("#listabusqpnf").prop("disabled", true); 
+          $("#general").prop("disabled", true); 
+          $("#listabusqestatus").prop("disabled", true); 
+          $("#listabusqcomunidad").prop("disabled", true);
+          $("#listabusqmunicipio").prop("disabled", true);
+          $("#listabusqprof").prop("disabled", true);
+          $("#listabusqestud").prop("disabled", true);
+          $("#listabusqlapsoacad").prop("disabled", true);
+          $("#listabustrayecto").prop("disabled", false);
+         
+          $("#listabusqpnf").hide(); 
+          $("#general").hide(); 
+          $("#listabusqestatus").hide(); 
+          $("#listabusqcomunidad").hide();
+          $("#listabusqmunicipio").hide();
+          $("#listabusqprof").hide();
+          $("#listabusqestud").hide();
+          $("#listabusqlapsoacad").hide();
+          $("#listabustrayecto").show();
+          
+          
+     }
+     if (id == "Estudiante") { 
+          $("#listabusqpnf").prop("disabled", true); 
+          $("#general").prop("disabled", true); 
+          $("#listabusqestatus").prop("disabled", true); 
+          $("#listabusqcomunidad").prop("disabled", true);
+          $("#listabusqmunicipio").prop("disabled", true);
+          $("#listabusqprof").prop("disabled", true);
+          $("#listabusqestud").prop("disabled", false);
+          $("#listabusqlapsoacad").prop("disabled", true);
+          $("#listabustrayecto").prop("disabled", true);
+         
+          $("#listabusqpnf").hide(); 
+          $("#general").hide(); 
+          $("#listabusqestatus").hide(); 
+          $("#listabusqcomunidad").hide();
+          $("#listabusqmunicipio").hide();
+          $("#listabusqprof").hide();
+          $("#listabusqestud").show();
+          $("#listabusqlapsoacad").hide();
+          $("#listabustrayecto").hide();
+          
+          
+     }
+     if (id == "general") { 
+          
+          $("#listabusqpnf").prop("disabled", true); 
+          $("#general").prop("disabled", false); 
+          $("#listabusqestatus").prop("disabled", true); 
+          $("#listabusqcomunidad").prop("disabled", true);
+          $("#listabusqmunicipio").prop("disabled", true);
+          $("#listabusqprof").prop("disabled", true);
+          $("#listabusqestud").prop("disabled", true);
+          $("#listabusqlapsoacad").prop("disabled", true);
+          $("#listabustrayecto").prop("disabled", true);
+          $("#listabusqpnf").hide(); 
+          $("#general").show(); 
+          $("#listabusqestatus").hide(); 
+          $("#listabusqcomunidad").hide();
+          $("#listabusqmunicipio").hide();
+          $("#listabusqprof").hide();
+          $("#listabusqestud").hide();
+          $("#listabusqlapsoacad").hide();
+          $("#listabustrayecto").hide();
+     }
 }
 
 
+$('body').keypress(function(e){
+if (e.keyCode == 13)
+{
+    $('#busqform').submit();
+}
+});
 
 
 (function($) {
