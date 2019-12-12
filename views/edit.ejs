@@ -73,7 +73,7 @@
 
                                     <div class="form-group">
                                         <label for="nombreproy">Titulo del Proyecto</label>
-                                        <input name="proy[tituloProyecto]" type="text" class="form-control form-control-lg" value="<%=proy.tituloProyecto%>" required>
+                                        <input oninput="this.value = this.value.toUpperCase()" name="proy[tituloProyecto]" type="text" class="form-control form-control-lg" value="<%=proy.tituloProyecto%>" required>
                                     </div>
 
                  <!-- ALGORITMO PARA ELIMINAR REPETIDOS Y RECORDAR DATOS DE LA DB, SE UTILIZA EN CADA INPUT QUE SE NECESITE RECORDAR, HACE FALTA OPTIMIZAR ESTO, AUNQUE ASI FUNCIONA -->                        
@@ -85,7 +85,7 @@
             <div class="form-row mb-3">
                 <div class="col">
                    <label for="proy[comunidad]">Comunidad:</label>
-                    <input list="comunidades" class="form-control" value="<%=proy.comunidad%>" name="proy[comunidad]" required>
+                    <input oninput="this.value = this.value.toUpperCase()" list="comunidades" class="form-control" value="<%=proy.comunidad%>" name="proy[comunidad]" required>
                     <datalist id="comunidades">
                         <% arrayfinalcomunidad.forEach(function(proy){ %>
                         <option value="<%=proy%>">
@@ -99,7 +99,7 @@
             <%let arrayfinalmunicipio =[...new Set(arrayauxiliar)]%>
                 <div class="col">
                     <label for="proy[municipio]">Municipio:</label>
-                    <input list="municipios" class="form-control" value="<%=proy.municipio%>"  name="proy[municipio]" required>
+                    <input oninput="this.value = this.value.toUpperCase()" list="municipios" class="form-control" value="<%=proy.municipio%>"  name="proy[municipio]" required>
                     <datalist id="municipios">
                         <% arrayfinalmunicipio.forEach(function(proy){ %>
                         <option value="<%=proy%>">
@@ -116,7 +116,7 @@
             <div class="form-row mb-3">
                 <div class="col-md-6 mb-3">
                     <label for="proy[profGuia]">Profesor Guia:</label>
-                    <input list="guias" class="form-control" value="<%=proy.profGuia%>" name="proy[profGuia]" required>
+                    <input oninput="this.value = this.value.toUpperCase()" list="guias" class="form-control" value="<%=proy.profGuia%>" name="proy[profGuia]" required>
                     <datalist id="guias">
                         <% arrayfinalguia.forEach(function(proy){ %>
                         <option value="<%=proy%>">
@@ -130,7 +130,7 @@
             <%let arrayfinaltutor =[...new Set(arrayauxiliar)]%>    
                 <div class="col-md-6 ">
                     <label for="proy[profTutor]">Tutor:</label>
-                    <input list="tutores" class="form-control" value="<%=proy.profTutor%>" name="proy[profTutor]" required>
+                    <input oninput="this.value = this.value.toUpperCase()" list="tutores" class="form-control" value="<%=proy.profTutor%>" name="proy[profTutor]" required>
                     <datalist id="tutores">
                         <% arrayfinaltutor.forEach(function(proy){ %>
                         <option value="<%=proy%>">
@@ -170,7 +170,7 @@
             <%let arrayfinalseccion =[...new Set(arrayauxiliar)]%>  
                 <div class="col-md-2">
                     <label for="proy[seccion]">Seccion:</label>
-                    <input list="secciones" class="form-control" value="<%=proy.seccion%>" name="proy[seccion]" required>
+                    <input oninput="this.value = this.value.toUpperCase()" list="secciones" class="form-control" value="<%=proy.seccion%>" name="proy[seccion]" required>
                     <datalist id="secciones">
                         <% arrayfinalseccion.forEach(function(proy){ %>
                         <option value="<%=proy%>">
@@ -184,7 +184,7 @@
             <%let arrayfinallapsoAcademico =[...new Set(arrayauxiliar)]%>  
                 <div class="col-md-2">
                     <label for="proy[lapsoAcademico]">Lapso Academico:</label>
-                    <input list="lapsosacademicos" class="form-control" value="<%=proy.lapsoAcademico%>" name="proy[lapsoAcademico]" required>
+                    <input oninput="this.value = this.value.toUpperCase()" list="lapsosacademicos" class="form-control" value="<%=proy.lapsoAcademico%>" name="proy[lapsoAcademico]" required>
                     <datalist id="lapsosacademicos">
                         <% arrayfinallapsoAcademico.forEach(function(proy){ %>
                         <option value="<%=proy%>">
@@ -308,11 +308,11 @@
         <div id="estud1" class="form-row">
             <div class="col-md-3">
                 <label>Nombre y Apellido</label>
-                <input id="estud1" name="proy[nombreEstudiante1]" type="text" value="<%=proy.nombreEstudiante1%>" class="form-control" required>
+                <input oninput="this.value = this.value.toUpperCase()" id="estud1" name="proy[nombreEstudiante1]" type="text" value="<%=proy.nombreEstudiante1%>" class="form-control" required>
             </div>
             <div class="col-md-2">
                <label>Cédula:</label>
-               <input id="estud1" name="proy[cedulaEstudiante1]" type="text" value="<%=proy.cedulaEstudiante1%>"class="form-control" required>
+               <input oninput="this.value = this.value.toUpperCase()" id="estud1" name="proy[cedulaEstudiante1]" type="text" value="<%=proy.cedulaEstudiante1%>"class="form-control" required>
             </div>
             <div class="col-md-2">
                 <label>Nota asignada</label>
@@ -332,11 +332,11 @@
         <div id="estud2" class="form-row" style="display: none;">
             <div class="col-md-3">
                 <label>Nombre y Apellido</label>
-                <input id="estud2" name="proy[nombreEstudiante2]" value="<%=proy.nombreEstudiante2%>" type="text" class="form-control">
+                <input oninput="this.value = this.value.toUpperCase()" id="estud2" name="proy[nombreEstudiante2]" value="<%=proy.nombreEstudiante2%>" type="text" class="form-control">
             </div>
             <div class="col-md-2">
                <label>Cédula:</label>
-               <input id="estud1" name="proy[cedulaEstudiante2]" type="text" value="<%=proy.cedulaEstudiante2%>"class="form-control">
+               <input oninput="this.value = this.value.toUpperCase()" id="estud1" name="proy[cedulaEstudiante2]" type="text" value="<%=proy.cedulaEstudiante2%>"class="form-control">
             </div>
             <div class="col-md-2">
                 <label>Nota asignada</label>
@@ -355,11 +355,11 @@
         <div id="estud3" class="form-row" style="display: none;">
             <div class="col-md-3">
                 <label>Nombre y Apellido</label>
-                <input id="estud3" name="proy[nombreEstudiante3]" value="<%=proy.nombreEstudiante3%>" type="text" class="form-control">
+                <input oninput="this.value = this.value.toUpperCase()" id="estud3" name="proy[nombreEstudiante3]" value="<%=proy.nombreEstudiante3%>" type="text" class="form-control">
             </div>
             <div class="col-md-2">
                <label>Cédula:</label>
-               <input id="estud1" name="proy[cedulaEstudiante3]" type="text" value="<%=proy.cedulaEstudiante3%>"class="form-control">
+               <input oninput="this.value = this.value.toUpperCase()" id="estud1" name="proy[cedulaEstudiante3]" type="text" value="<%=proy.cedulaEstudiante3%>"class="form-control">
             </div>
             <div class="col-md-2">
                 <label>Nota asignada</label>
@@ -378,11 +378,11 @@
         <div id="estud4" class="form-row" style="display: none;">
             <div class="col-md-3">
                 <label>Nombre y Apellido</label>
-                <input id="estud4" name="proy[nombreEstudiante4]" value="<%=proy.nombreEstudiante4%>" type="text" class="form-control">
+                <input oninput="this.value = this.value.toUpperCase()" id="estud4" name="proy[nombreEstudiante4]" value="<%=proy.nombreEstudiante4%>" type="text" class="form-control">
             </div>
             <div class="col-md-2">
                <label>Cédula:</label>
-               <input id="estud1" name="proy[cedulaEstudiante4]" type="text" value="<%=proy.cedulaEstudiante4%>"class="form-control" >
+               <input oninput="this.value = this.value.toUpperCase()" id="estud1" name="proy[cedulaEstudiante4]" type="text" value="<%=proy.cedulaEstudiante4%>"class="form-control" >
             </div>
             <div class="col-md-2">
                 <label>Nota asignada</label>
@@ -402,11 +402,11 @@
         <div id="estud5" class="form-row" style="display: none;">
             <div class="col-md-3">
                 <label>Nombre y Apellido</label>
-                <input id="estud5" name="proy[nombreEstudiante5]" value="<%=proy.nombreEstudiante5%>" type="text" class="form-control">
+                <input oninput="this.value = this.value.toUpperCase()" id="estud5" name="proy[nombreEstudiante5]" value="<%=proy.nombreEstudiante5%>" type="text" class="form-control">
             </div>
             <div class="col-md-2">
                <label>Cédula:</label>
-               <input id="estud1" name="proy[cedulaEstudiante5]" type="text" value="<%=proy.cedulaEstudiante5%>"class="form-control">
+               <input oninput="this.value = this.value.toUpperCase()" id="estud1" name="proy[cedulaEstudiante5]" type="text" value="<%=proy.cedulaEstudiante5%>"class="form-control">
             </div>
             <div class="col-md-2">
                 <label>Nota asignada</label>
@@ -425,7 +425,7 @@
 
         <div class="form-group mt-2">
             <small>Ingrese un resumen del proyecto</small>
-            <textarea name="proy[resumenProyecto]" class="form-control" rows="3" placeholder="Resumen del proyecto">
+            <textarea oninput="this.value = this.value.toUpperCase()" name="proy[resumenProyecto]" class="form-control" rows="3" placeholder="Resumen del proyecto">
                 <%=proy.resumenProyecto%>
             </textarea>
         </div>

@@ -60,6 +60,7 @@ function isLoggedIn(req, res, next) {
         return next();
     }
     req.flash("error", "Debe ingresar para continuar.");
+    req.session.returnTo = req.originalUrl; //Funcion para recordar la ultima pagina a la que se quiso acceder antes de salir el aviso de login
     res.redirect("/login");
 }
 
@@ -142,7 +143,8 @@ app.post("/login", passport.authenticate('local', {
     successRedirect: "/inicio",
     failureRedirect: "/login",
 }), function(req, res) {
-    res.redirect('/inicio');
+    res.redirect(req.session.returnTo || '/');
+    delete req.session.returnTo;
 });
 
 //Logout o salida

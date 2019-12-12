@@ -16,24 +16,24 @@
          <div class="btn-group btn-group-toggle" data-toggle="buttons">
          <div>
             <label class=" btn btn-secondary mr-2">
-            <input type="radio" name="proy[pnf]"  value="PNF en Instrumentacion y Control" onclick=".active" onChange="mostrarlineainv(this.value);"  required> PNF en Instrumentacion y Control
+            <input  type="radio" name="proy[pnf]"  value="PNF en Instrumentacion y Control"  onChange="mostrarlineainv(this.value);"  required> PNF en Instrumentacion y Control
             </label>
          </div>
          <div>
             <label class=" btn btn-secondary mr-2">
-            <input type="radio" name="proy[pnf]" value="PNF en Electricidad" onChange="mostrarlineainv(this.value);" required> PNF en Electricidad
+            <input  type="radio" name="proy[pnf]" value="PNF en Electricidad" onChange="mostrarlineainv(this.value);" required> PNF en Electricidad
             </label>
          </div>
          <div>
             <label class=" btn btn-secondary mr-2">
-            <input type="radio" name="proy[pnf]" value="PNF en Electronica" onChange="mostrarlineainv(this.value);" required> PNF en Electronica
+            <input  type="radio" name="proy[pnf]" value="PNF en Electronica" onChange="mostrarlineainv(this.value);" required> PNF en Electronica
             </label>
          </div>
           </div>
 
          <div class="form-group">
             <label for="tituloProyecto">Titulo del Proyecto</label>
-            <input name="proy[tituloProyecto]" type="text" class="form-control form-control-lg" placeholder="Titulo del Proyecto" title="nombre" required autofocus>
+            <input oninput="this.value = this.value.toUpperCase()" name="proy[tituloProyecto]" type="text" class="form-control form-control-lg" placeholder="Titulo del Proyecto" title="nombre"  required autofocus>
          </div>
     <!-- ALGORITMO PARA ELIMINAR REPETIDOS Y RECORDAR DATOS DE LA DB, SE UTILIZA EN CADA INPUT QUE SE NECESITE RECORDAR, HACE FALTA OPTIMIZAR ESTO, AUNQUE ASI FUNCIONA --> 
 
@@ -45,7 +45,7 @@
         <div class="form-row mb-3">
             <div class="col">
                <label for="proy[comunidad]">Comunidad:</label>
-               <input list="comunidades" class="form-control text-uppercase" placeholder="Comunidad" name="proy[comunidad]" required>
+               <input oninput="this.value = this.value.toUpperCase()" list="comunidades" class="form-control text-uppercase" placeholder="Comunidad" name="proy[comunidad]" required>
                <datalist id="comunidades">
                   <% arrayfinalcomunidad.forEach(function(proy){ %>
                   <option value="<%=proy%>">
@@ -59,7 +59,7 @@
     <%let arrayfinalmunicipio =[...new Set(arrayauxiliar)]%>
         <div class="col">
             <label for="proy[municipio]">Municipio:</label>
-            <input list="municipios" class="form-control text-uppercase" placeholder="Municipio" name="proy[municipio]" required>
+            <input oninput="this.value = this.value.toUpperCase()" list="municipios" class="form-control text-uppercase" placeholder="Municipio" name="proy[municipio]" required>
             <datalist id="municipios">
             <% arrayfinalmunicipio.forEach(function(proy){ %>
             <option value="<%=proy%>">
@@ -75,7 +75,7 @@
          <div class="form-row mb-3">
          <div class="col-md-6 mb-3">
          <label for="proy[profGuia]">Profesor Guia:</label>
-         <input list="guias" class="form-control" name="proy[profGuia]" placeholder="Profesor Guia" required>
+         <input oninput="this.value = this.value.toUpperCase()" list="guias" class="form-control" name="proy[profGuia]" placeholder="Profesor Guia" required>
          <datalist id="guias">
          <% arrayfinalguia.forEach(function(proy){ %>
          <option value="<%=proy%>">
@@ -89,7 +89,7 @@
     <%let arrayfinaltutor =[...new Set(arrayauxiliar)]%>
          <div class="col-md-6 ">
          <label for="proy[profTutor]">Tutor:</label>
-         <input list="tutores" class="form-control" name="proy[profTutor]" placeholder="Profesor Tutor" required>
+         <input oninput="this.value = this.value.toUpperCase()" list="tutores" class="form-control" name="proy[profTutor]" placeholder="Profesor Tutor" required>
          <datalist id="tutores">
          <% arrayfinaltutor.forEach(function(proy){ %>
          <option value="<%=proy%>">
@@ -119,7 +119,7 @@
     <%let arrayfinalseccion =[...new Set(arrayauxiliar)]%>
         <div class="col-md-2">
          <label for="proy[seccion]">Seccion:</label>
-         <input list="secciones" class="form-control" name="proy[seccion]" placeholder="Sección" required>
+         <input oninput="this.value = this.value.toUpperCase()" list="secciones" class="form-control" name="proy[seccion]" placeholder="Sección" required>
          <datalist id="secciones">
          <% arrayfinalseccion.forEach(function(proy){ %>
          <option value="<%=proy%>">
@@ -133,7 +133,7 @@
     <%let arrayfinallapsoAcademico =[...new Set(arrayauxiliar)]%>
          <div class="col-md-2">
          <label for="proy[lapsoAcademico]">Lapso Academico:</label>
-         <input list="lapsosacademicos" class="form-control" name="proy[lapsoAcademico]" required>
+         <input oninput="this.value = this.value.toUpperCase()" list="lapsosacademicos" class="form-control" name="proy[lapsoAcademico]" required>
          <datalist id="lapsosacademicos">
          <% arrayfinallapsoAcademico.forEach(function(proy){ %>
          <option value="<%=proy%>">
@@ -175,11 +175,11 @@
          <div id="estud1" class="form-row">
             <div class="col-md-3">
                <label>Nombre y Apellido:</label>
-               <input id="estud1" name="proy[nombreEstudiante1]" type="text" class="form-control" required>
+               <input oninput="this.value = this.value.toUpperCase()" id="estud1" name="proy[nombreEstudiante1]" type="text" class="form-control" required>
             </div>
             <div class="col-md-2">
                <label>Cédula:</label>
-               <input id="estud1" name="proy[cedulaEstudiante1]" type="text" class="form-control" required>
+               <input oninput="this.value = this.value.toUpperCase()" id="estud1" name="proy[cedulaEstudiante1]" type="text" class="form-control" required>
             </div>
              <div id="notas" style="display: none;" class="col-md-2">
                <label>Nota asignada:</label>
@@ -196,11 +196,11 @@
          <div id="estud2" class="form-row" style="display: none;">
             <div class="col-md-3">
                <label>Nombre y Apellido:</label>
-               <input id="estud2" name="proy[nombreEstudiante2]" type="text" class="form-control">
+               <input oninput="this.value = this.value.toUpperCase()" id="estud2" name="proy[nombreEstudiante2]" type="text" class="form-control">
             </div>
             <div class="col-md-2">
                <label>Cédula:</label>
-               <input id="estud1" name="proy[cedulaEstudiante2]" type="text" class="form-control">
+               <input oninput="this.value = this.value.toUpperCase()" id="estud1" name="proy[cedulaEstudiante2]" type="text" class="form-control">
             </div>
              <div id="notas2" style="display: none;" class="col-md-2">
                <label>Nota asignada:</label>
@@ -217,11 +217,11 @@
          <div id="estud3" class="form-row" style="display: none;">
             <div class="col-md-3">
                <label>Nombre y Apellido:</label>
-               <input id="estud3" name="proy[nombreEstudiante3]" type="text" class="form-control">
+               <input oninput="this.value = this.value.toUpperCase()" id="estud3" name="proy[nombreEstudiante3]" type="text" class="form-control">
             </div>
             <div class="col-md-2">
                <label>Cédula:</label>
-               <input id="estud1" name="proy[cedulaEstudiante3]" type="text" class="form-control" >
+               <input oninput="this.value = this.value.toUpperCase()" id="estud1" name="proy[cedulaEstudiante3]" type="text" class="form-control" >
             </div>
              <div id="notas3" style="display: none;" class="col-md-2">
                <label>Nota asignada:</label>
@@ -238,11 +238,11 @@
          <div id="estud4" class="form-row" style="display: none;">
             <div class="col-md-3">
                <label>Nombre y Apellido:</label>
-               <input id="estud4" name="proy[nombreEstudiante4]" type="text" class="form-control">
+               <input oninput="this.value = this.value.toUpperCase()" id="estud4" name="proy[nombreEstudiante4]" type="text" class="form-control">
             </div>
             <div class="col-md-2">
                <label>Cédula:</label>
-               <input id="estud1" name="proy[cedulaEstudiante4]" type="text" class="form-control" >
+               <input oninput="this.value = this.value.toUpperCase()" id="estud1" name="proy[cedulaEstudiante4]" type="text" class="form-control" >
             </div>
              <div id="notas4" style="display: none;" class="col-md-2">
                <label>Nota asignada:</label>
@@ -259,11 +259,11 @@
          <div id="estud5" class="form-row" style="display: none;">
             <div class="col-md-3">
                <label>Nombre y Apellido:</label>
-               <input id="estud5" name="proy[nombreEstudiante5]" type="text" class="form-control">
+               <input oninput="this.value = this.value.toUpperCase()" id="estud5" name="proy[nombreEstudiante5]" type="text" class="form-control">
             </div>
             <div class="col-md-2">
                <label>Cédula:</label>
-               <input id="estud1" name="proy[cedulaEstudiante5]" type="text" class="form-control" >
+               <input oninput="this.value = this.value.toUpperCase()" id="estud1" name="proy[cedulaEstudiante5]" type="text" class="form-control" >
             </div>
              <div id="notas5" style="display: none;" class="col-md-2">
                <label>Nota asignada:</label>
@@ -279,7 +279,7 @@
          </div>
          <div class="form-group mt-2">
             <small>Ingrese un resumen del proyecto</small>
-            <textarea name="proy[resumenProyecto]" class="form-control text-uppercase" rows="3" placeholder="Resumen del proyecto"></textarea>
+            <textarea oninput="this.value = this.value.toUpperCase()" name="proy[resumenProyecto]" class="form-control text-uppercase" rows="3" placeholder="Resumen del proyecto"></textarea>
          </div>
          <div style="float: right;">
             <button type="submit" class="btn btn-warning">Archivar proyecto</button>
