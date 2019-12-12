@@ -58,7 +58,7 @@
             <br>
             <a href="/inicio">Inicio</a>
             <br>
-            <a href="/index">Buscar</a>
+            <a href="/index">Base de datos</a>
             <br>
             <a href="/archivar">Archivar</a>
             <br>
@@ -90,6 +90,18 @@
    </div>
    </footer>
 
+
+<script>
+      $(document).ready(function(){
+        $(".fa-search").click(function(){
+          $(".busqueda, .input-busqueda, .select-busqueda").toggleClass("active");
+        });
+      });
+</script>
+
+
+
+
 <script type="text/javascript" src="/datatables/js/jquery-3.3.1.js"></script>
 <script type="text/javascript" src="/datatables/js/jquery.dataTables.min.js"></script>
 <script type="text/javascript" src="/datatables/js/dataTables.buttons.min.js"></script>
@@ -98,6 +110,10 @@
 <script type="text/javascript" src="/datatables/js/buttons.html5.min.js"></script>
 
 <script src="/js/main.js"></script> 
+
+
+
+
 
 <script>
 $(document).ready(function() {
@@ -120,14 +136,6 @@ $(document).ready(function() {
 });
 	
 	});
-</script>
-
-<script>
-      $(document).ready(function(){
-        $(".fa-search").click(function(){
-          $(".busqueda, .input-busqueda, .select-busqueda").toggleClass("active");
-        });
-      });
 </script>
 
 </body>
