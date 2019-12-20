@@ -7,8 +7,7 @@ var bodyParser = require("body-parser"),
     LocalStrategy = require("passport-local"),
     User = require("./static/js/user"), //archivo de user
     flash = require('connect-flash'),
-    app = express(),
-    {exec} = require('child_process');
+    app = express();
 
 //Configuraciones generales para funcionamiento (utilizamos ejs para combinar js y html en un solo archivo)
 //mongoose.connect("mongodb://localhost/proyecto_app", { useNewUrlParser: true, useFindAndModify: false, useCreateIndex: true, useUnifiedTopology: true});
@@ -60,7 +59,6 @@ function isLoggedIn(req, res, next) {
         return next();
     }
     req.flash("error", "Debe ingresar para continuar.");
-    req.session.returnTo = req.originalUrl; //Funcion para recordar la ultima pagina a la que se quiso acceder antes de salir el aviso de login
     res.redirect("/login");
 }
 
@@ -143,9 +141,11 @@ app.post("/login", passport.authenticate('local', {
     successRedirect: "/inicio",
     failureRedirect: "/login",
 }), function(req, res) {
-    res.redirect(req.session.returnTo || '/');
-    delete req.session.returnTo;
+    res.redirect('/inicio');
 });
+
+
+
 
 //Logout o salida
 app.get("/logout", function(req, res) {
@@ -157,7 +157,8 @@ app.get("/logout", function(req, res) {
 //Ruta de muestra general
 app.get("/index", function(req, res) {
         if (req.query.search) {
-            Proy.find({$text: { $search: req.query.search}}, function(err, proys) {
+   
+            Proy.find({$text: { $search: `"${req.query.search}"`} }, function(err, proys) {
                 if (err) {
                     console.log(err);
                 } else {
