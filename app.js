@@ -7,7 +7,9 @@ var bodyParser = require("body-parser"),
     LocalStrategy = require("passport-local"),
     User = require("./static/js/user"), //archivo de user
     flash = require('connect-flash'),
+    { exec } = require('child_process'),
     app = express();
+    
 
 //Configuraciones generales para funcionamiento (utilizamos ejs para combinar js y html en un solo archivo)
 //mongoose.connect("mongodb://localhost/proyecto_app", { useNewUrlParser: true, useFindAndModify: false, useCreateIndex: true, useUnifiedTopology: true});
@@ -331,6 +333,9 @@ app.get("/images/logopnfi.jpg", function(req, res) {
 });
 app.get("/images/fotoindex.png", function(req, res) {
     res.sendFile("../static/images/fotoindex.png");
+});
+app.get("/images/mirarabajo.png", function(req, res) {
+    res.sendFile("../static/images/mirarabajo.png");
 });
 app.get("/images/fotoshow.jpg", function(req, res) {
     res.sendFile("../static/images/fotoshow.jpg");
