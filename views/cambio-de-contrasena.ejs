@@ -1,13 +1,10 @@
 <% include ./partials/header %>
-	
-
 
 <style type="text/css">
 
 
 a {
-	font-size: 14px;
-	line-height: 1.7;
+
 	color: #666666;
 	margin: 0px;
 	transition: all 0.4s;
@@ -285,21 +282,43 @@ iframe {
 		<div class="container-login">
 
 				<div class="float-center p-5  border bg-white" style="border-radius: 8%;">
-				<form action="/login" method="POST" class="login-form validate-form">
-					<div class="h2 font-weight-light pb-5 mb-5 ">
-						Ingresar como usuario
+				    <div class="p-1 bg-white">
+				    <h4 class="font-weight-light"><%= error %></h4>
+			        <h4 class="font-weight-light"><%= success %></h4>
+				<form action="/cambio-de-contrasena" method="POST" class="login-form validate-form">
+					<div class="h2 font-weight-light pt-4 pb-3 mb-5 pr-4 pl-4 ">
+						Cambiar contraseña
 					</div>
 
-					<div class="wrap-input validate-input" data-validate = "Ingrese un email valido: ex@abc.xyz">
-						<input class="input" type="text" name="username" placeholder="Email">
-						<span class="focus-input"></span>
+        <div class="pb-3"> 
+					<div class="wrap-input validate-input" data-validate = "Ingrese un email válido: ve@nz.la">
+						<input class="input " type="text" name="email" placeholder="Email">
+						<span class="focus-input "></span>
 						<span class="symbol-input">
 							<i class="fa fa-envelope" aria-hidden="true"></i>
 						</span>
 					</div>
-
+				</div>
+                    
+        <div class="pb-3"> 
+          <div class="wrap-input validate-input " data-validate = "Ingrese su código de seguridad">
+						<input class="input" type="text" name="codigo" placeholder="Código de seguridad">
+						<span class="focus-input"></span>
+						<span class="symbol-input">
+							<i class="fa fa-key " aria-hidden="true"></i>
+						</span>
+					</div>
+				</div>
+					
 					<div class="wrap-input validate-input" data-validate = "Ingrese su contraseña">
-						<input class="input" type="password" name="password" placeholder="Contraseña">
+						<input class="input" type="password" name="password" placeholder="Contraseña nueva">
+						<span class="focus-input"></span>
+						<span class="symbol-input">
+							<i class="fa fa-lock" aria-hidden="true"></i>
+						</span>
+					</div>
+					<div class="wrap-input validate-input" data-validate = "Reingrese su contraseña ">
+						<input class="input" type="password" placeholder="Confirme su contraseña nueva">
 						<span class="focus-input"></span>
 						<span class="symbol-input">
 							<i class="fa fa-lock" aria-hidden="true"></i>
@@ -308,27 +327,20 @@ iframe {
 					
 					<div class="container-login-form-btn">
 						<button class="login-form-btn">
-							Ingresar
+							Cambiar contraseña
 						</button>
 					</div>
-
-					<div class="text-center pt-2 pb-4">
-						<span class="txt1">
-							Cambiar
-						</span>
-						<a class="txt2" href="#">
-							Usuario / Contraseña
-						</a>
-					</div>
-
+					
 					<div class="text-center pt-5 mt-5">
-						<a class="txt2" href="#">
-							Crear cuenta
-							<i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
+					  <i class="fa fa-long-arrow-left m-l-5" aria-hidden="true"></i>
+						<a class="txt2" href="/login">
+							Volver
 						</a>
 					</div>
-				</form>
+					
+					</form>
 
+			</div>
 			</div>
 		</div>
 

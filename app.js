@@ -12,8 +12,12 @@ var bodyParser = require("body-parser"),
     
 
 //Configuraciones generales para funcionamiento (utilizamos ejs para combinar js y html en un solo archivo)
-//mongoose.connect("mongodb://localhost/proyecto_app", { useNewUrlParser: true, useFindAndModify: false, useCreateIndex: true, useUnifiedTopology: true});
-mongoose.connect("mongodb+srv://leo:polanco@uptag-qexum.mongodb.net/test?retryWrites=true&w=majority", {
+
+//Esta base de datos es de localhost
+//mongoose.connect("mongodb://localhost/proyecto_app", { useNewUrlParser: true, useFindAndModify: false, useCreateIndex: true, useUnifiedTopology: true}); 
+
+//Esta base de datos es remota (recomendada)
+mongoose.connect("mongodb+srv://leo:polanco@uptag-qexum.mongodb.net/test?retryWrites=true&w=majority", { 
     useNewUrlParser: true,
     useFindAndModify: false,
     useCreateIndex: true,
@@ -103,8 +107,6 @@ var Proy = mongoose.model("Proy", proySchema);
 
 proySchema.index({ '$**': 'text' });
 
-//SE NECESITA HABILITAR LA BUSQUEDA!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
 //Rutas de inicio
 app.get("/", function(req, res) {
     res.redirect("/inicio");
@@ -121,7 +123,9 @@ app.get("/registro", function(req, res) {
 //Registro de cada usuario
 app.post("/registro", function(req, res) {
     var newUser = new User({
-        username: req.body.username
+        username: req.body.username,
+        codigo: req.body.codigo,
+        email: req.body.email
     });
     User.register(newUser, req.body.password, function(err, User) {
         if (err) {
@@ -134,6 +138,7 @@ app.post("/registro", function(req, res) {
         });
     });
 });
+//Falta activar la funcion de validar ambas contrase;as
 
 //Login
 app.get("/login", function(req, res) {
@@ -146,6 +151,36 @@ app.post("/login", passport.authenticate('local', {
     res.redirect('/inicio');
 });
 
+//Cambio de contrase;as
+app.get("/cambio-de-contrasena", function(req, res) {
+    res.render("../views/cambio-de-contrasena.ejs");
+});
+
+app.post("/cambio-de-contrasena", function(req, res) {
+    User.findOne({email: req.body.email, codigo: req.body.codigo}, function(err, userVerified) {
+                if (err) {
+                    console.log(err);
+                } else {
+                    if (!userVerified) {
+                        req.flash("success", "No se pudo verificar su identidad.");
+                        res.redirect("/cambio-de-contrasena");
+                        console.log(err);
+                    } else {
+                        userVerified.setPassword(req.body.password, function(err){
+                            if (err) {
+                                console.log(err);
+                            } else {
+                                userVerified.save();
+                                req.flash("success", "Su contraseña fue cambiada con exito.");
+                                res.redirect("/login");
+                            }
+                        });
+                        
+                        
+                    }
+                }
+            });
+});
 
 
 
@@ -369,6 +404,7 @@ app.get("/js/main.js", function(req, res) {
 app.get("/datatables/css/buttons.dataTables.min.css", function(req, res) {
     res.sendFile("../static/css/buttons.dataTables.min.css");
 });
+
 app.get("/datatables/css/jquery.dataTables.min.css", function(req, res) {
     res.sendFile("../static/css/jquery.dataTables.min.css");
 });

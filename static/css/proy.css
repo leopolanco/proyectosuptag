@@ -8,6 +8,20 @@
          .btn-warning{
             padding: 10px 40px 10px 40px;
          }
+         
+         a {
+        	transition: all 0.4s;
+        	-webkit-transition: all 0.4s;
+            -o-transition: all 0.4s;
+            -moz-transition: all 0.4s;
+        }
+        
+
+        a:hover, .nav-link {
+            text-decoration: none;
+            color: rgb(255, 116, 23);
+        }
+         
          footer, nav, .bg-dark{
             background: #1C2331!important;
             background-color:#1C2331!important;
