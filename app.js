@@ -203,12 +203,10 @@ app.post("/login",  function(req, res, next) {
         }
         req.logIn(user, function(err) {
             if (err) {
-                //Para cuando el login falla por alguna razon
                 req.flash("error", err.message);
-                return res.redirect("/login")
+                return res.redirect("/login");
             }
-            //Para cuando el login es exitoso
-            return res.redirect("/inicio")
+            return res.redirect("/inicio");
         });
     })(req, res, next);
 });
