@@ -285,7 +285,7 @@ iframe {
 				<div class="float-center p-5  border bg-white" style="border-radius: 8%;">
 				    <div class="p-1 bg-white">
 				    <h4 class="font-weight-light"><%= error %></h4>
-			        <h4 class="font-weight-light"><%= success %></h4>
+			      <h4 class="font-weight-light"><%= success %></h4>
 				<form action="/login" method="POST" class="login-form validate-form">
 					<div class="h2 font-weight-light pt-4 pb-3 mb-5 ">
 						Ingresar como usuario
@@ -306,16 +306,21 @@ iframe {
 							<i class="fa fa-lock" aria-hidden="true"></i>
 						</span>
 					</div>
+          
+          
+            <div class="container-login-form-btn">
+              <% if(contadordeIntentos<3){ %>
+              <button class="login-form-btn">
+                Ingresar
+              </button>
+              <% } %>
+            </div>
+          
 					
-					<div class="container-login-form-btn">
-						<button class="login-form-btn">
-							Ingresar
-						</button>
-					</div>
 
 					<div class="text-center pt-2 pb-4">
 						<span class="txt1">
-							Cambiar
+              Cambiar
 						</span>
 						<a class="txt2" href="/cambio-de-contrasena">
 							Contraseña
@@ -334,7 +339,13 @@ iframe {
 			</div>
 		</div>
 
-
+<script>
+  window.addEventListener("keypress", function(event){
+    if (event.keyCode == 13){
+        event.preventDefault();
+    }
+}, false);
+</script>
 	
 	
 

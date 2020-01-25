@@ -1,6 +1,4 @@
 <% include ./partials/header %>
-	
-
 
 <style type="text/css">
 
@@ -294,7 +292,7 @@ iframe {
 					</div>
           
           <div class="wrap-input validate-input" data-validate = "Ingrese su nombre de usuario">
-						<input class="input" type="text" name="username" placeholder="Usuario">
+						<input minlength="5" class="input" type="text" name="username" placeholder="Usuario">
 						<span class="focus-input"></span>
 						<span class="symbol-input">
 							<i class="fa fa-user" aria-hidden="true"></i>
@@ -320,7 +318,7 @@ iframe {
 					</div>
 					</div>
 					<div class="wrap-input validate-input" data-validate = "Ingrese su contraseña">
-						<input class="input" type="password" id="password" data-rule-password="true" placeholder="Contraseña">
+						<input minlength="8" class="input" type="password" id="password" data-rule-password="true" placeholder="Contraseña">
 						<span class="focus-input"></span>
 						<span class="symbol-input">
 							<i class="fa fa-lock" aria-hidden="true"></i>
@@ -328,7 +326,7 @@ iframe {
 					</div>
 					
 					<div class="wrap-input validate-input" data-validate = "Ingrese su contraseña">
-						<input class="input" type="password" name="password" id="password_confirm" data-rule-password="true" data-rule-equalTo="#password" data-msg-equalTo="Su contraseña no coincide" placeholder="Confirme su contraseña">
+						<input minlength="8" class="input" type="password" name="password" id="password_confirm" data-rule-password="true" data-rule-equalTo="#password" data-msg-equalTo="Su contraseña no coincide" placeholder="Confirme su contraseña">
 						<span class="focus-input"></span>
 						<span class="symbol-input">
 							<i class="fa fa-lock" aria-hidden="true"></i>

@@ -8,8 +8,30 @@ var bodyParser = require("body-parser"),
     User = require("./static/js/user"), //archivo de user
     flash = require('connect-flash'),
     { exec } = require('child_process'),
+    http = require('http'),
     app = express();
     
+
+//Esta parte del codigo es super delicado, permite la utilizacion del localhost.
+var port = normalizePort(process.env.PORT || '0130');
+app.set('port', port);
+var server = http.createServer(app);
+server.listen(port);
+function normalizePort(val) {
+var port = parseInt(val, 10);
+
+  if (isNaN(port)) {
+    return val;
+  }
+
+  if (port >= 0) {
+    return port;
+  }
+  return false;
+}
+//Finalizacion de codigo super delicado
+
+
 
 //Configuraciones generales para funcionamiento (utilizamos ejs para combinar js y html en un solo archivo)
 
@@ -138,17 +160,56 @@ app.post("/registro", function(req, res) {
         });
     });
 });
+
+
 //Falta activar la funcion de validar ambas contrase;as
 
 //Login
+
+var limitedeTiempo=0,//Estos valores sirven para controlar el numero de intentos de login
+contadordeIntentos=0;
+
 app.get("/login", function(req, res) {
-    res.render("../views/login.ejs");
+    var temporizador = new Date().getTime();
+    if (temporizador > limitedeTiempo ){
+        contadordeIntentos=0;
+    };
+    res.render("../views/login.ejs", {
+        contadordeIntentos: contadordeIntentos
+    });
 });
-app.post("/login", passport.authenticate('local', {
-    successRedirect: "/inicio",
-    failureRedirect: "/login",
-}), function(req, res) {
-    res.redirect('/inicio');
+
+app.post("/login",  function(req, res, next) {
+    passport.authenticate('local', {session : false},
+    function(err, user, info) {
+        if (err) {
+            //Para cuando el login falla por alguna razon
+            req.flash("error", err.message);
+            return res.redirect("/login")
+            //Para cuando no se ingresan datos correctos
+        } else if (!user) {
+            if (contadordeIntentos<2) {
+                contadordeIntentos++;
+                limitedeTiempo = new Date().getTime()+12000;
+                req.flash("error", "Los datos ingresados son invalidos");
+                return res.redirect("/login");
+            } else {
+                contadordeIntentos++;
+                req.flash("error", "Ha superado el numero de intentos permitidos"); 
+                req.flash("success", "Actualice la página en 10 segundos");
+                return res.redirect("/login");
+            }
+        }
+        req.logIn(user, function(err) {
+            if (err) {
+                //Para cuando el login falla por alguna razon
+                req.flash("error", err.message);
+                return res.redirect("/login")
+            }
+            //Para cuando el login es exitoso
+            return res.redirect("/inicio")
+        });
+    })(req, res, next);
 });
 
 //Cambio de contrase;as
@@ -321,6 +382,9 @@ app.get("/BASE-DE-DATOS-DE-PROYECTOS-SOCIOINTEGRADORES-RESPALDO", function(req, 
     res.download("./public/BASE-DE-DATOS-DE-PROYECTOS-SOCIOINTEGRADORES-RESPALDO.json");
 });
 
+app.get("/MANUAL-DE-USUARIO-PROYECTOS-LL", function(req, res) {
+    res.download("./public/MANUAL-DE-USUARIO-PROYECTOS-LL.docx");
+});
 
 //Servimos los archivos estaticos
 
