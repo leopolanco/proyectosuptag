@@ -8,44 +8,21 @@ var bodyParser = require("body-parser"),
     User = require("./static/js/user"), //archivo de user
     flash = require('connect-flash'),
     { exec } = require('child_process'),
-//    http = require('http'),
+  //  http = require('http'),
     app = express();
     
-
 //Esta parte del codigo es super delicado, permite la utilizacion del localhost.
-//var port = normalizePort(process.env.PORT || '0130');
-//app.set('port', port);
-//var server = http.createServer(app);
-//server.listen(port);
-//function normalizePort(val) {
-//var port = parseInt(val, 10);
-
-//  if (isNaN(port)) {
- //   return val;
- // }
-
- // if (port >= 0) {
- //   return port;
- // }
- // return false;
-//}
 
 //Finalizacion de codigo super delicado
-
-
 
 //Configuraciones generales para funcionamiento (utilizamos ejs para combinar js y html en un solo archivo)
 
 //Esta base de datos es de localhost
-//mongoose.connect("mongodb://localhost/proyecto_app", { useNewUrlParser: true, useFindAndModify: false, useCreateIndex: true, useUnifiedTopology: true}); 
+mongoose.connect("mongodb://localhost/proyecto_app", { useNewUrlParser: true, useFindAndModify: false, useCreateIndex: true, useUnifiedTopology: true}); 
 
 //Esta base de datos es remota (recomendada)
-mongoose.connect("mongodb+srv://leo:polanco@uptag-qexum.mongodb.net/test?retryWrites=true&w=majority", { 
-    useNewUrlParser: true,
-    useFindAndModify: false,
-    useCreateIndex: true,
-    useUnifiedTopology: true
-});//Si se necesita entrar desde el cmd, se escribe "mongo mongodb+srv://leo:polanco@uptag-qexum.mongodb.net"
+//mongoose.connect("mongodb+srv://leo:polanco@uptag-qexum.mongodb.net/test?retryWrites=true&w=majority", {useNewUrlParser: true,useFindAndModify: false,useCreateIndex: true,useUnifiedTopology: true});
+//Si se necesita entrar desde el cmd a la base de datos remota, se escribe "mongo mongodb+srv://leo:polanco@uptag-qexum.mongodb.net"
 app.use(express.static("static"));
 app.use(methodOverride("_method"));
 app.use(bodyParser.json());
@@ -147,6 +124,7 @@ app.get("/registro", function(req, res) {
 app.post("/registro", function(req, res) {
     var newUser = new User({
         username: req.body.username,
+        preguntaSecreta: req.body.preguntaSecreta,
         codigo: req.body.codigo,
         email: req.body.email
     });
@@ -171,6 +149,7 @@ var limitedeTiempo=0,//Estos valores sirven para controlar el numero de intentos
 contadordeIntentos=0;
 
 app.get("/login", function(req, res) {
+    req.session.destroy();
     var temporizador = new Date().getTime();
     if (temporizador > limitedeTiempo ){
         contadordeIntentos=0;
@@ -213,11 +192,12 @@ app.post("/login",  function(req, res, next) {
 
 //Cambio de contrase;as
 app.get("/cambio-de-contrasena", function(req, res) {
+    req.session.destroy();
     res.render("../views/cambio-de-contrasena.ejs");
 });
 
 app.post("/cambio-de-contrasena", function(req, res) {
-    User.findOne({email: req.body.email, codigo: req.body.codigo}, function(err, userVerified) {
+    User.findOne({email: req.body.email}, function(err, userVerified) {
                 if (err) {
                     console.log(err);
                 } else {
@@ -226,23 +206,35 @@ app.post("/cambio-de-contrasena", function(req, res) {
                         res.redirect("/cambio-de-contrasena");
                         console.log(err);
                     } else {
-                        userVerified.setPassword(req.body.password, function(err){
-                            if (err) {
-                                console.log(err);
-                            } else {
-                                userVerified.save();
-                                req.flash("success", "Su contraseña fue cambiada con exito.");
-                                res.redirect("/login");
-                            }
-                        });
-                        
-                        
+                        req.session.user = userVerified;
+                        res.redirect("/cambio-de-contrasena2");                      
                     }
                 }
             });
 });
 
+app.get("/cambio-de-contrasena2", function(req, res) {
+    res.render("../views/cambio-de-contrasena2.ejs", {user: req.session.user});
+});
 
+app.post("/cambio-de-contrasena2", function(req, res) {
+    User.findOne({email: req.session.user.email, codigo: req.body.codigo}, function(err, userVerified) {
+        if(!userVerified) {
+            req.flash("success", "Su respuesta secreta es invalida.");
+            res.redirect("/cambio-de-contrasena");
+        } else {
+            userVerified.setPassword(req.body.password, function(err){
+                if (err) {                
+                    console.log(err);
+                } else {
+                    userVerified.save();
+                    req.flash("success", "Su contraseña fue cambiada con exito.");
+                    res.redirect("/login");
+                }
+            });
+        }                    
+    });
+});
 
 //Logout o salida
 app.get("/logout", function(req, res) {
@@ -254,7 +246,6 @@ app.get("/logout", function(req, res) {
 //Ruta de muestra general
 app.get("/index", function(req, res) {
         if (req.query.search) {
-   
             Proy.find({$text: { $search: `"${req.query.search}"`} }, function(err, proys) {
                 if (err) {
                     console.log(err);
@@ -263,13 +254,7 @@ app.get("/index", function(req, res) {
                 }
             });
         } else {
-            Proy.find({}).sort({ _id: 'desc' }).exec(function(err, proys) {
-                if (err) {
-                    console.log(err);
-                } else {
-                    res.render("../views/index.ejs", {proys: proys});
-                }
-            });
+            res.render("../views/index.ejs");
         }
 });
     

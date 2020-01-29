@@ -5,6 +5,7 @@ var mongoose                 = require("mongoose"),
 var UserSchema = new mongoose.Schema({
     username:   {type: String, required: [true, 'Por favor ingrese su nombre de usuario'], unique:true},
     email: {type: String, required: [true, 'Por favor ingrese su email'], unique:true},
+    preguntaSecreta:String,
     codigo:   {type: String, required: [true, 'Por favor ingrese su codigo']},
     password:String
 });

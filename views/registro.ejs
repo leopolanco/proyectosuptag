@@ -22,7 +22,11 @@ a:hover {
   color: rgb(255, 116, 23);
 }
 
-
+select {
+  border: 0;
+  outline: none;
+	border: none;
+}
 input {
 	outline: none;
 	border: none;
@@ -90,6 +94,17 @@ iframe {
   padding: 0 30px 0 68px;
 }
 
+.select-input {
+  font-size: 14px;
+  line-height: 1.1;
+  color: grey;
+  display: block;
+  width: 100%;
+  background: #e6e6e6;
+  height: 3.2em;
+  border-radius: 25px;
+  padding: 0 0 0 38px;
+}
 
 .focus-input {
   display: block;
@@ -307,16 +322,34 @@ iframe {
 							<i class="fa fa-envelope " aria-hidden="true"></i>
 						</span>
 					</div>
-					</div>
+          </div>
+          
+          <div class="">
+              <label class="pl-2 txt1" for="preguntaSecreta">Pregunta secreta</label>
+                                            <select name="preguntaSecreta" class="select-input wrap-input validate-input "  data-validate = "Ingrese su respuesta secreta"required>
+                                                <option>Elija su pregunta secreta</option>
+                                                <option value="¿Cuál es tu comida favorita?">¿Cuál es tu comida favorita?</option>
+                                                <option value="¿Cómo se llamaba tu primera mascota?">¿Cómo se llamaba tu primera mascota?</option>
+                                                <option value="¿Cuál es el nombre de tu primer profesor?">¿Cuál es el nombre de tu primer profesor?</option>
+                                                <option value="¿Cuál el segundo nombre de tu padre?">¿Cuál el segundo nombre de tu padre?</option>
+                                                <option value="¿Cuál el segundo apellido de tu madre?">¿Cuál el segundo apellido de tu madre?</option>
+                                                <option value="¿Cuál el año de nacimiento de tu abuela?">¿Cuál el año de nacimiento de tu abuela?</option>
+                                            </select>
+              <span class="focus-input"></span>
+            </div>
+
+
 					<div class="pb-3"> 
-          <div class="wrap-input validate-input" data-validate = "Ingrese su código de seguridad">
-						<input class="input" type="text" name="codigo" placeholder="Código de seguridad" >
+          <div class="wrap-input validate-input" data-validate = "Ingrese su respuesta secreta">
+						<input class="input" type="text" name="codigo" placeholder="Respuesta secreta" >
 						<span class="focus-input"></span>
 						<span class="symbol-input">
 							<i class="fa fa-key" aria-hidden="true"></i>
 						</span>
 					</div>
-					</div>
+          </div>
+          
+
 					<div class="wrap-input validate-input" data-validate = "Ingrese su contraseña">
 						<input minlength="8" class="input" type="password" id="password" data-rule-password="true" placeholder="Contraseña">
 						<span class="focus-input"></span>
