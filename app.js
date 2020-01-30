@@ -8,36 +8,36 @@ var bodyParser = require("body-parser"),
     User = require("./static/js/user"), //archivo de user
     flash = require('connect-flash'),
     { exec } = require('child_process'),
-//    http = require('http'),
+    http = require('http'),
     app = express();
     
 //Esta parte del codigo es super delicado, permite la utilizacion del localhost.
-//var port = normalizePort(process.env.PORT || '0130');
-//app.set('port', port);
-//var server = http.createServer(app);
-//server.listen(port);
-//function normalizePort(val) {
-//    var port = parseInt(val, 10);
+var port = normalizePort(process.env.PORT || '0130');
+app.set('port', port);
+var server = http.createServer(app);
+server.listen(port);
+function normalizePort(val) {
+   var port = parseInt(val, 10);
     
-//      if (isNaN(port)) {
-//        return val;
-//      }
+     if (isNaN(port)) {
+        return val;
+     }
     
-//      if (port >= 0) {
-//        return port;
-//      }
-//      return false;
-//    }
+     if (port >= 0) {
+       return port;
+     }
+      return false;
+    }
 
 //Finalizacion de codigo super delicado
 
 //Configuraciones generales para funcionamiento (utilizamos ejs para combinar js y html en un solo archivo)
 
 //Esta base de datos es de localhost
-//mongoose.connect("mongodb://localhost/proyecto_app", { useNewUrlParser: true, useFindAndModify: false, useCreateIndex: true, useUnifiedTopology: true}); 
+mongoose.connect("mongodb://localhost/proyecto_app", { useNewUrlParser: true, useFindAndModify: false, useCreateIndex: true, useUnifiedTopology: true}); 
 
 //Esta base de datos es remota (recomendada)
-mongoose.connect("mongodb+srv://leo:polanco@uptag-qexum.mongodb.net/test?retryWrites=true&w=majority", {useNewUrlParser: true,useFindAndModify: false,useCreateIndex: true,useUnifiedTopology: true});
+//mongoose.connect("mongodb+srv://leo:polanco@uptag-qexum.mongodb.net/test?retryWrites=true&w=majority", {useNewUrlParser: true,useFindAndModify: false,useCreateIndex: true,useUnifiedTopology: true});
 //Si se necesita entrar desde el cmd a la base de datos remota, se escribe "mongo mongodb+srv://leo:polanco@uptag-qexum.mongodb.net"
 app.use(express.static("static"));
 app.use(methodOverride("_method"));
@@ -87,28 +87,28 @@ function isLoggedIn(req, res, next) {
 //Schema de cada proyecto
 var proySchema = new mongoose.Schema({
     tituloProyecto:    {type: String, required: [true, 'Por favor ingrese el titulo del proyecto'], unique:true},      
-    pnf:               {type: String, required: [true, 'Por favor ingrese el pnf del proyecto']}, 
-    comunidad:         {type: String, required: [true, 'Por favor ingrese la comunidad del proyecto']},        
-    trayecto:          {type: String, required: [true, 'Por favor ingrese el trayecto del proyecto']},        
-    seccion:           {type: String,   text:true},        
-    profGuia:          {type: String,   text:true}, 
-    profTutor:         {type: String,   text:true}, 
+    pnf:               {type: String, required: [true, 'Por favor ingrese el pnf del proyecto'],  }, 
+    comunidad:         {type: String, required: [true, 'Por favor ingrese la comunidad del proyecto'],  },        
+    trayecto:          {type: String, required: [true, 'Por favor ingrese el trayecto del proyecto'],  },        
+    seccion:           {type: String,   },        
+    profGuia:          {type: String,   }, 
+    profTutor:         {type: String,   }, 
     resumenProyecto: String,
     statusProyecto:    {type: String, required: [true, 'Por favor ingrese el estatus del proyecto']},
     municipio:         {type: String, required: [true, 'Por favor ingrese el municipio del proyecto']},          
-    lapsoAcademico:    {type: String, required: [true, 'Por favor ingrese el lapso academico del proyecto']},
-    lineaInv:          {type: String,   text:true}, 
+    lapsoAcademico:    {type: String, required: [true, 'Por favor ingrese el lapso academico del proyecto'],  },
+    lineaInv:          {type: String,   }, 
     cantIntegrantes: String,
-    nombreEstudiante1: {type: String, required: [true, 'Por favor ingrese integrante/s del proyecto']},
-    nombreEstudiante2: {type: String,   text:true}, 
-    nombreEstudiante3: {type: String,   text:true}, 
-    nombreEstudiante4: {type: String,   text:true}, 
-    nombreEstudiante5: {type: String,   text:true}, 
+    nombreEstudiante1: {type: String, required: [true, 'Por favor ingrese integrante/s del proyecto'],   },
+    nombreEstudiante2: {type: String,   }, 
+    nombreEstudiante3: {type: String,   }, 
+    nombreEstudiante4: {type: String,   }, 
+    nombreEstudiante5: {type: String,   }, 
     cedulaEstudiante1: {type: String, required: [true, 'Por favor ingrese la cedula del integrante/s del proyecto']},
-    cedulaEstudiante2: {type: String,   text:true}, 
-    cedulaEstudiante3: {type: String,   text:true}, 
-    cedulaEstudiante4: {type: String,   text:true}, 
-    cedulaEstudiante5: {type: String,   text:true}, 
+    cedulaEstudiante2: {type: String,   }, 
+    cedulaEstudiante3: {type: String,   }, 
+    cedulaEstudiante4: {type: String,   }, 
+    cedulaEstudiante5: {type: String,   }, 
     notaEstudiante1: String,
     notaEstudiante2: String,
     notaEstudiante3: String,
@@ -124,6 +124,7 @@ var Proy = mongoose.model("Proy", proySchema);
 
 proySchema.set('autoIndex', false);
 proySchema.index({ '$**': 'text' });
+
 
 
 //Rutas de inicio

@@ -10,5 +10,7 @@ var UserSchema = new mongoose.Schema({
     password:String
 });
 
+UserSchema.set('autoIndex', false);
+
 UserSchema.plugin(passportLocalMongoose);
 module.exports = mongoose.model("User", UserSchema);
