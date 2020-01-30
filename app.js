@@ -8,36 +8,20 @@ var bodyParser = require("body-parser"),
     User = require("./static/js/user"), //archivo de user
     flash = require('connect-flash'),
     { exec } = require('child_process'),
-    http = require('http'),
+
     app = express();
     
 //Esta parte del codigo es super delicado, permite la utilizacion del localhost.
-var port = normalizePort(process.env.PORT || '0130');
-app.set('port', port);
-var server = http.createServer(app);
-server.listen(port);
-function normalizePort(val) {
-   var port = parseInt(val, 10);
-    
-     if (isNaN(port)) {
-        return val;
-     }
-    
-     if (port >= 0) {
-       return port;
-     }
-      return false;
-    }
 
 //Finalizacion de codigo super delicado
 
 //Configuraciones generales para funcionamiento (utilizamos ejs para combinar js y html en un solo archivo)
 
 //Esta base de datos es de localhost
-mongoose.connect("mongodb://localhost/proyecto_app", { useNewUrlParser: true, useFindAndModify: false, useCreateIndex: true, useUnifiedTopology: true}); 
+//mongoose.connect("mongodb://localhost/proyecto_app", { useNewUrlParser: true, useFindAndModify: false, useCreateIndex: true, useUnifiedTopology: true}); 
 
 //Esta base de datos es remota (recomendada)
-//mongoose.connect("mongodb+srv://leo:polanco@uptag-qexum.mongodb.net/test?retryWrites=true&w=majority", {useNewUrlParser: true,useFindAndModify: false,useCreateIndex: true,useUnifiedTopology: true});
+mongoose.connect("mongodb+srv://leo:polanco@uptag-qexum.mongodb.net/test?retryWrites=true&w=majority", {useNewUrlParser: true,useFindAndModify: false,useCreateIndex: true,useUnifiedTopology: true});
 //Si se necesita entrar desde el cmd a la base de datos remota, se escribe "mongo mongodb+srv://leo:polanco@uptag-qexum.mongodb.net"
 app.use(express.static("static"));
 app.use(methodOverride("_method"));
