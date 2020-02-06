@@ -1,4 +1,12 @@
 <% include ./partials/header %>
+
+<style type="text/css">
+ a[href$='/inicio'] {
+            text-decoration: none !important;
+            color: rgb(255, 116, 23) !important;
+        }
+</style>
+
        <div style="background:white">
          <div class="container-fluid pb-4">
       <div class="row">
@@ -7,13 +15,13 @@
        
     <div class="container-fluid mt-4 p-5 float-center">
       <div class="container-fluid pt-5 m-4 ">
-      <span class="display-4">Base de datos para</span> <br> <span class="display-4">proyectos socio-integradores</span>
+      <span class="display-4">Sistema para gestión </span> <br> <span class="display-4"> de proyectos socio-integradores</span>
       <br> 
       <br>
       
       	 
       <div class="text-justify" style="font-size:xx-large;">
-      <span class="lead font-weight-light">Base de datos que permite registrar mas de cinco mil proyectos culminados y no culminados, con toda información disponible, fácil de accesar y exportar. </span><br>
+      <span class="lead font-weight-light">Sistema que permite registrar miles de proyectos culminados y no culminados, con toda la información disponible, fácil de accesar y exportar. </span><br>
       </div>
       <% if(currentUser){%>
     	<a class="btn btn-dark  mt-3" href="#">Bienvenido <%=currentUser.username%></a>

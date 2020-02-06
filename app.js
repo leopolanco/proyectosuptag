@@ -8,15 +8,9 @@ var bodyParser = require("body-parser"),
     User = require("./static/js/user"), //archivo de user
     flash = require('connect-flash'),
     { exec } = require('child_process'),
-
+    autoIncrement = require('mongoose-auto-increment'),
     app = express();
     
-//Esta parte del codigo es super delicado, permite la utilizacion del localhost.
-
-//Finalizacion de codigo super delicado
-
-//Configuraciones generales para funcionamiento (utilizamos ejs para combinar js y html en un solo archivo)
-
 //Esta base de datos es de localhost
 //mongoose.connect("mongodb://localhost/proyecto_app", { useNewUrlParser: true, useFindAndModify: false, useCreateIndex: true, useUnifiedTopology: true}); 
 
@@ -43,7 +37,6 @@ passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
-
 //Para activar estas funciones en todas las paginas, documentacion: https://expressjs.com/es/guide/using-middleware.html
 app.use(function(req, res, next) {
     res.locals.error = req.flash("error");
@@ -68,6 +61,19 @@ function isLoggedIn(req, res, next) {
     res.redirect("/login");
 }
 
+function normalizarId(id, pnf, trayecto) {
+
+    if(pnf=="PNF en Instrumentacion y Control"){
+        pnf="IYC";
+    } else if(pnf=="PNF en Electricidad"){
+        pnf="ELC";
+    } else {
+        pnf="ECA";
+    }
+ finalId=pnf+trayecto+"0"+id;
+    return finalId;
+ }
+
 //Schema de cada proyecto
 var proySchema = new mongoose.Schema({
     tituloProyecto:    {type: String, required: [true, 'Por favor ingrese el titulo del proyecto'], unique:true},      
@@ -77,12 +83,12 @@ var proySchema = new mongoose.Schema({
     seccion:           {type: String,   },        
     profGuia:          {type: String,   }, 
     profTutor:         {type: String,   }, 
-    resumenProyecto: String,
+    resumenProyecto:   String,
     statusProyecto:    {type: String, required: [true, 'Por favor ingrese el estatus del proyecto']},
     municipio:         {type: String, required: [true, 'Por favor ingrese el municipio del proyecto']},          
     lapsoAcademico:    {type: String, required: [true, 'Por favor ingrese el lapso academico del proyecto'],  },
     lineaInv:          {type: String,   }, 
-    cantIntegrantes: String,
+    cantIntegrantes:   String,
     nombreEstudiante1: {type: String, required: [true, 'Por favor ingrese integrante/s del proyecto'],   },
     nombreEstudiante2: {type: String,   }, 
     nombreEstudiante3: {type: String,   }, 
@@ -93,23 +99,22 @@ var proySchema = new mongoose.Schema({
     cedulaEstudiante3: {type: String,   }, 
     cedulaEstudiante4: {type: String,   }, 
     cedulaEstudiante5: {type: String,   }, 
-    notaEstudiante1: String,
-    notaEstudiante2: String,
-    notaEstudiante3: String,
-    notaEstudiante4: String,
-    notaEstudiante5: String,
-    created: {
-        type: Date,
-        default: Date.now
-    }
+    notaEstudiante1:   String,
+    notaEstudiante2:   String,
+    notaEstudiante3:   String,
+    notaEstudiante4:   String,
+    notaEstudiante5:   String,
+    cod:               String,
+    created:           {type: Date, default: Date.now}
 });
-var Proy = mongoose.model("Proy", proySchema);
 
+autoIncrement.initialize(mongoose.connection);
+proySchema.plugin(autoIncrement.plugin, 'Proy');
+
+var Proy = mongoose.model("Proy", proySchema);
 
 proySchema.set('autoIndex', false);
 proySchema.index({ '$**': 'text' });
-
-
 
 //Rutas de inicio
 app.get("/", function(req, res) {
@@ -143,8 +148,6 @@ app.post("/registro", function(req, res) {
         });
     });
 });
-
-
 //Falta activar la funcion de validar ambas contrase;as
 
 //Login
@@ -250,7 +253,6 @@ app.get("/logout", function(req, res) {
 //Ruta de muestra general
 app.get("/index", function(req, res) {
     if (req.query.search) {
-
         Proy.find({$text: { $search: `"${req.query.search}"`} }, function(err, proys) {
             if (err) {
                 console.log(err);
@@ -268,7 +270,6 @@ app.get("/index", function(req, res) {
         });
     }
 });
-    
 
 //Envio de formulario de creacion
 app.post("/index", isLoggedIn, function(req, res) {
@@ -283,12 +284,21 @@ app.post("/index", isLoggedIn, function(req, res) {
                     console.log(err);
                     res.redirect("/archivar");
                 } else {
+                    req.body.proy.cod=normalizarId(newProy._id, req.body.proy.pnf, req.body.proy.trayecto); //Para colocar el codigo al documento
+                    Proy.findByIdAndUpdate(newProy._id, req.body.proy, {new: true}, function(err, finalNewProy){
+                        if (err) {
+                            req.flash("error", err.message);
+                            console.log(err);
+                        }})
                     res.redirect("/index");
                 }
             });
         }
     });
 });
+
+
+
 
 //Ruta de vista simple
 app.get("/indexsimple", function(req, res) {
@@ -299,7 +309,6 @@ app.get("/indexsimple", function(req, res) {
 app.get("/archivar", isLoggedIn, function(req, res) {
         res.render("../views/archivar.ejs");
 });
-
 
 //Ruta de muestra individual
 app.get("/index/:id", function(req, res) {
@@ -486,14 +495,11 @@ app.get("/datatables/js/jquery.dataTables.min.js", function(req, res) {
 app.get("/datatables/js/jszip.min.js", function(req, res) {
     res.sendFile("../static/js/jszip.min.js");
 });
-
-
-
 app.get("/test", function(req, res) {
             res.render("../views/test.ejs");
 });
 
 //Aviso de funcionamiento
 app.listen(process.env.PORT, process.env.IP, function() {
-    console.log("Activo!");
+    console.log("Funcionando!");
 })

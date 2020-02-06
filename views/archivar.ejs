@@ -1,5 +1,10 @@
 <% include ./partials/header %> <!-- PARA INCLUIR EL HEADER, DEBAJO HAY OTRO PARA INCLUIR FOOTER TAMBIEN -->
-
+<style type="text/css">
+  a[href$='/archivar'] {
+             text-decoration: none !important;
+             color: rgb(255, 116, 23) !important;
+         }
+ </style>
 <!-- CONDICIONALES PARA LOS ANUNCIOS, EN EL ARCHIVO PRINCIPAL(APP.JS) ESTAN SUS VALORES (LO QUE ALERTAN) --> 
 <div class="container pt-5 mt-4">
    <% if(error && error.length > 0){ %>
