@@ -22,74 +22,144 @@
 <% } %>
 <a class="btn btn-dark" href="/indexsimple">Vista Simple</a></div>
 
+<% if(proys && proy){ %> 
+  <% proy.forEach(function(proy){ %>
+    <div id="fichaMostrar" class="mt-3">
+       <div class="container text-uppercase">
+          <div class="jumbotron ">
+             <div class="text-center">
+                <h4><%=proy.tituloProyecto%></h4>
+             </div>
+             <div class="form-row mb-2 mt-5">
+                <div class="col-md-6">
+                   <div class="col">
+                   <small class="text-secondary">P.N.F:</small>    
+                   <h6><%=proy.pnf%></h6>
+                </div>
+                </div>
+                <div class="col-md-6 text-right">
+                   <div class="col-md-8 float-right">
+                   <small class="text-secondary">Comunidad:</small>      
+                   <h6><%=proy.comunidad%></h6>
+                </div>
+                </div>
+             </div>
+             <div class="form-row">
+                <div class="col-md-6">
+                   <div class="col-md-6">
+                      <small class="text-secondary">Profesor Tutor:</small> 
+                      <h6><%=proy.profTutor%></h6>
+                      </div>
+                   <div class="col-md-6">
+                      <small class="text-secondary">Profesor Guia:</small>     
+                      <h6><%=proy.profGuia%></h6>
+                   </div>
+             </div>
+                <div class="col-md-6 text-right">
+                   <div class="col-md-6 float-right">
+                      <small class="text-secondary">Autores:</small>     
+                      <h6><%=proy.nombreEstudiante1%></h6>
+                      <h6><%=proy.nombreEstudiante2%></h6>
+                      <h6><%=proy.nombreEstudiante3%></h6>
+                      <h6><%=proy.nombreEstudiante4%></h6>
+                      <h6><%=proy.nombreEstudiante5%></h6>
+                   </div>
+                </div>
+             </div>
+    
+             <div class="form-row mb-2 mt-2">
+                <div class="col-md-6">
+                   <div class="col">
+                   <small class="text-secondary">Status:</small>    
+                   <h6><%=proy.statusProyecto%></h6>
+                </div>
+                </div>
+                <div class="col text-right">
+                   <div class="col float-right">
+                      <small class="text-secondary">Trayecto:</small>     
+                      <h4><%=proy.trayecto%></h4>
+                   </div>
+                </div>
+                </div>
+             <div class="form-row">
+                
+             </div>
+             <h5><a class="mt-3 btn btn-info" href="/index/<%=proy.id %>">Ver más</a></h5>
+             <small class="float-right text-secondary"><%=proy.cod%></small> 
+          </div>
+       </div>
+    </div>
+  <% }) %>
 
-<% proys.forEach(function(proy){ %>
-<div id="fichaMostrar" class="mt-3">
-   <div class="container text-uppercase">
-      <div class="jumbotron ">
-         <div class="text-center">
-            <h4><%=proy.tituloProyecto%></h4>
-         </div>
-         <div class="form-row mb-2 mt-5">
-            <div class="col-md-6">
-               <div class="col">
-               <small class="text-secondary">P.N.F:</small>    
-               <h6><%=proy.pnf%></h6>
-            </div>
-            </div>
-            <div class="col-md-6 text-right">
-               <div class="col-md-8 float-right">
-               <small class="text-secondary">Comunidad:</small>      
-               <h6><%=proy.comunidad%></h6>
-            </div>
-            </div>
-         </div>
-         <div class="form-row">
-            <div class="col-md-6">
-               <div class="col-md-6">
-                  <small class="text-secondary">Profesor Tutor:</small> 
-                  <h6><%=proy.profTutor%></h6>
-                  </div>
-               <div class="col-md-6">
-                  <small class="text-secondary">Profesor Guia:</small>     
-                  <h6><%=proy.profGuia%></h6>
-               </div>
-         </div>
-            <div class="col-md-6 text-right">
-               <div class="col-md-6 float-right">
-                  <small class="text-secondary">Autores:</small>     
-                  <h6><%=proy.nombreEstudiante1%></h6>
-                  <h6><%=proy.nombreEstudiante2%></h6>
-                  <h6><%=proy.nombreEstudiante3%></h6>
-                  <h6><%=proy.nombreEstudiante4%></h6>
-                  <h6><%=proy.nombreEstudiante5%></h6>
-               </div>
-            </div>
-         </div>
-
-         <div class="form-row mb-2 mt-2">
-            <div class="col-md-6">
-               <div class="col">
-               <small class="text-secondary">Status:</small>    
-               <h6><%=proy.statusProyecto%></h6>
-            </div>
-            </div>
-            <div class="col text-right">
-               <div class="col float-right">
-                  <small class="text-secondary">Trayecto:</small>     
-                  <h4><%=proy.trayecto%></h4>
-               </div>
-            </div>
-            </div>
-         <div class="form-row">
-            
-         </div>
-         <h5><a class="mt-3 btn btn-info" href="/index/<%=proy.id %>">Ver más</a></h5>
-         <small class="float-right text-secondary"><%=proy.cod%></small> 
-      </div>
-   </div>
-</div>
-<% }) %>
+<% } else { %> 
+  <% proys.forEach(function(proy){ %>
+    <div id="fichaMostrar" class="mt-3">
+       <div class="container text-uppercase">
+          <div class="jumbotron ">
+             <div class="text-center">
+                <h4><%=proy.tituloProyecto%></h4>
+             </div>
+             <div class="form-row mb-2 mt-5">
+                <div class="col-md-6">
+                   <div class="col">
+                   <small class="text-secondary">P.N.F:</small>    
+                   <h6><%=proy.pnf%></h6>
+                </div>
+                </div>
+                <div class="col-md-6 text-right">
+                   <div class="col-md-8 float-right">
+                   <small class="text-secondary">Comunidad:</small>      
+                   <h6><%=proy.comunidad%></h6>
+                </div>
+                </div>
+             </div>
+             <div class="form-row">
+                <div class="col-md-6">
+                   <div class="col-md-6">
+                      <small class="text-secondary">Profesor Tutor:</small> 
+                      <h6><%=proy.profTutor%></h6>
+                      </div>
+                   <div class="col-md-6">
+                      <small class="text-secondary">Profesor Guia:</small>     
+                      <h6><%=proy.profGuia%></h6>
+                   </div>
+             </div>
+                <div class="col-md-6 text-right">
+                   <div class="col-md-6 float-right">
+                      <small class="text-secondary">Autores:</small>     
+                      <h6><%=proy.nombreEstudiante1%></h6>
+                      <h6><%=proy.nombreEstudiante2%></h6>
+                      <h6><%=proy.nombreEstudiante3%></h6>
+                      <h6><%=proy.nombreEstudiante4%></h6>
+                      <h6><%=proy.nombreEstudiante5%></h6>
+                   </div>
+                </div>
+             </div>
+    
+             <div class="form-row mb-2 mt-2">
+                <div class="col-md-6">
+                   <div class="col">
+                   <small class="text-secondary">Status:</small>    
+                   <h6><%=proy.statusProyecto%></h6>
+                </div>
+                </div>
+                <div class="col text-right">
+                   <div class="col float-right">
+                      <small class="text-secondary">Trayecto:</small>     
+                      <h4><%=proy.trayecto%></h4>
+                   </div>
+                </div>
+                </div>
+             <div class="form-row">
+                
+             </div>
+             <h5><a class="mt-3 btn btn-info" href="/index/<%=proy.id %>">Ver más</a></h5>
+             <small class="float-right text-secondary"><%=proy.cod%></small> 
+          </div>
+       </div>
+    </div>
+  <% }) %>
+<% } %>
 
 
 <% include ./partials/footer %>

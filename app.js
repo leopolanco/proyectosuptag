@@ -8,9 +8,12 @@ var bodyParser = require("body-parser"),
     User = require("./static/js/user"), //archivo de user
     flash = require('connect-flash'),
     { exec } = require('child_process'),
+ //   http = require('http'),
     autoIncrement = require('mongoose-auto-increment'),
     app = express();
     
+
+
 //Esta base de datos es de localhost
 //mongoose.connect("mongodb://localhost/proyecto_app", { useNewUrlParser: true, useFindAndModify: false, useCreateIndex: true, useUnifiedTopology: true}); 
 
@@ -19,10 +22,8 @@ mongoose.connect("mongodb+srv://leo:polanco@uptag-qexum.mongodb.net/test?retryWr
 //Si se necesita entrar desde el cmd a la base de datos remota, se escribe "mongo mongodb+srv://leo:polanco@uptag-qexum.mongodb.net"
 app.use(express.static("static"));
 app.use(methodOverride("_method"));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({
-    extended: true
-}));
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
 app.use(flash());
 
 //Configuraciones de sessions y passport (para login)
@@ -36,6 +37,7 @@ app.use(passport.session());
 passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
+
 
 //Para activar estas funciones en todas las paginas, documentacion: https://expressjs.com/es/guide/using-middleware.html
 app.use(function(req, res, next) {
@@ -61,22 +63,9 @@ function isLoggedIn(req, res, next) {
     res.redirect("/login");
 }
 
-function normalizarId(id, pnf, trayecto) {
-
-    if(pnf=="PNF en Instrumentacion y Control"){
-        pnf="IYC";
-    } else if(pnf=="PNF en Electricidad"){
-        pnf="ELC";
-    } else {
-        pnf="ECA";
-    }
- finalId=pnf+trayecto+"0"+id;
-    return finalId;
- }
-
 //Schema de cada proyecto
 var proySchema = new mongoose.Schema({
-    tituloProyecto:    {type: String, required: [true, 'Por favor ingrese el titulo del proyecto'], unique:true},      
+    tituloProyecto:    {type: String, required: [true, 'Por favor ingrese el titulo del proyecto']},      
     pnf:               {type: String, required: [true, 'Por favor ingrese el pnf del proyecto'],  }, 
     comunidad:         {type: String, required: [true, 'Por favor ingrese la comunidad del proyecto'],  },        
     trayecto:          {type: String, required: [true, 'Por favor ingrese el trayecto del proyecto'],  },        
@@ -104,7 +93,7 @@ var proySchema = new mongoose.Schema({
     notaEstudiante3:   String,
     notaEstudiante4:   String,
     notaEstudiante5:   String,
-    cod:               String,
+    cod:               {type: String, unique:true},
     created:           {type: Date, default: Date.now}
 });
 
@@ -113,7 +102,7 @@ proySchema.plugin(autoIncrement.plugin, 'Proy');
 
 var Proy = mongoose.model("Proy", proySchema);
 
-proySchema.set('autoIndex', false);
+//proySchema.set('autoIndex', true);
 proySchema.index({ '$**': 'text' });
 
 //Rutas de inicio
@@ -148,6 +137,8 @@ app.post("/registro", function(req, res) {
         });
     });
 });
+
+
 //Falta activar la funcion de validar ambas contrase;as
 
 //Login
@@ -253,11 +244,20 @@ app.get("/logout", function(req, res) {
 //Ruta de muestra general
 app.get("/index", function(req, res) {
     if (req.query.search) {
-        Proy.find({$text: { $search: `"${req.query.search}"`} }, function(err, proys) {
+        Proy.find({$text: { $search: `"${req.query.search}"`} }, function(err, foundProys) {
             if (err) {
                 console.log(err);
             } else {
-                res.render("../views/index.ejs", {proys: proys});
+                Proy.find({}).sort({ _id: 'desc' }).exec(function(err, proys) {
+                    if (err) {
+                        console.log(err);
+                    } else {
+                        res.render("../views/index.ejs", {
+                            proy: foundProys,
+                            proys: proys
+                        });
+                    }
+                });
             }
         });
     } else {
@@ -265,11 +265,26 @@ app.get("/index", function(req, res) {
             if (err) {
                 console.log(err);
             } else {
-                res.render("../views/index.ejs", {proys: proys});
+                res.render("../views/index.ejs", {proys: proys, proy:false});
             }
         });
     }
 });
+    
+
+function normalizarId(id, pnf, trayecto) {
+
+    if(pnf=="PNF en Instrumentacion y Control"){
+        pnf="IYC";
+    } else if(pnf=="PNF en Electricidad"){
+        pnf="ELC";
+    } else {
+        pnf="ECA";
+    }
+ finalId=pnf+trayecto+"0"+id;
+    return finalId;
+ }
+
 
 //Envio de formulario de creacion
 app.post("/index", isLoggedIn, function(req, res) {
@@ -310,6 +325,7 @@ app.get("/archivar", isLoggedIn, function(req, res) {
         res.render("../views/archivar.ejs");
 });
 
+
 //Ruta de muestra individual
 app.get("/index/:id", function(req, res) {
     Proy.findById(req.params.id, function(err, foundProy) {
@@ -330,7 +346,6 @@ app.get("/index/:id/edit",isLoggedIn, function(req, res) {
             req.flash("error", "Su proyecto no pudo ser editado.");
             console.log(err);
             res.redirect("/index");
-
         } else {
             Proy.find({}, function(err, proys) {
                 if (err) {
@@ -495,6 +510,9 @@ app.get("/datatables/js/jquery.dataTables.min.js", function(req, res) {
 app.get("/datatables/js/jszip.min.js", function(req, res) {
     res.sendFile("../static/js/jszip.min.js");
 });
+
+
+
 app.get("/test", function(req, res) {
             res.render("../views/test.ejs");
 });
