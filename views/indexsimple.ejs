@@ -1,7 +1,8 @@
 <% include ./partials/header %>
          
-<div class="mt-5 pt-5" style="background:white">
-<table id="tablaProy" class="display table table-md table-bordered table-responsive-md " style="width:100%">
+<div class="mt-5 pt-5 table-responsive" style="background:white">
+
+<table id="tablaProy" class=" display table table-md table-bordered" style="width:100%">
         <thead class="thead-dark">
             <tr>
                <th >PNF</th>
@@ -10,11 +11,11 @@
                <th >SECCIÓN</th>
                <th >TITULO</th>
                <th >COMUNIDAD</th>
-               <th >AUTOR  1</th>
+               <th >AUTOR <br/> 1</th>
                <th >AUTOR <br/> 2</th>
-               <th >AUTOR  3</th>
+               <th >AUTOR <br/> 3</th>
                <th >AUTOR <br/> 4</th>
-               <th >AUTOR  5</th>
+               <th >AUTOR <br/> 5</th>
                <th></th>
             </tr>
         </thead>
@@ -27,7 +28,8 @@
                 <td><%=proy.lapsoAcademico%></td>
                 <td><%=proy.trayecto%></td>
                 <td><%=proy.seccion%></td>
-                <td class="comment"><%=proy.tituloProyecto%> </td>
+                
+                <td><span class="titulo"><%=proy.tituloProyecto%></span> </td>
                 <td><%=proy.comunidad%></td>
                 <td><%=proy.nombreEstudiante1%> <br/><%=proy.cedulaEstudiante1%></td>
                 <td><%=proy.nombreEstudiante2%> <br/><%=proy.cedulaEstudiante2%></td>
@@ -42,65 +44,72 @@
     </table>
 </div>
 
-<footer class="text-white-50 footer-dark pt-3 w-100">
-   <div class="container">
-      <div class="row">
-         <div class=" col-md-3 mx-auto ">
-            <h6 class="text-uppercase font-weight-bold">Base de datos</h6>
-            <hr class="style13 accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
-            <p >Herramienta creada para el almacenamiento de proyectos socio-integradores de los PNF en Electricidad, Electronica
-               e Instrumentacion y Control. Por estudiantes del PNF de Informatica
-            </p>
-         </div>
-         <div class=" col-md-3 mx-auto ">
-            <h6 class="text-uppercase font-weight-bold">Links</h6>
-            <hr class="style13 accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
-            <br>
-            <a href="/inicio">Inicio</a>
-            <br>
-            <a href="/index">Base de datos</a>
-            <br>
-            <a href="/archivar">Archivar</a>
-            <br>
-            <a href="#">Ayuda</a>
-         </div>
-         <div class="col-md-3 mx-auto ">
-            <h6 class="text-uppercase font-weight-bold">Paginas U.P.T.A.G.</h6>
-            <hr class="style13 accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
-            <br>
-            <a href="http://www.uptag.edu.ve/">Principal</a>
-            <br>
-            <a href="http://www.uptag.net/">Estudiantes</a>
-            <br>
-            <a href="http://www.uptag.net/">DACE UPTAG</a>
-         </div>
-         <div class="col-md-3 mx-auto">
-            <h6 class="text-uppercase font-weight-bold">Creadores</h6>
-            <hr class="style13 accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
-            <br>
-            <span>Leo Polanco</span>
-            <br>
-            <span>Luzmary Lopez</span>
-            <br>
-            <br>
-            <br>
-            <img src="/images/cclogo.png" width="120" height="30">
-         </div>
-      </div>
-   </div>
-   </footer>
+<footer class="text-white-50 footer-dark pt-3 w-100" >
+    <div class="container">
+       <div class="row">
+          <div class=" col-md-3 mx-auto ">
+             <h6 class="text-uppercase font-weight-bold">Base de datos</h6>
+             <hr class="style13 accent-2 mb-4 mt-0 d-inline-block mx-auto">
+             <p >Herramienta creada para el almacenamiento de proyectos socio-integradores de los PNF en Electricidad, Electronica
+                e Instrumentacion y Control. Por estudiantes del PNF de Informatica
+             </p>
+          </div>
+          <div class=" col-md-3 mx-auto ">
+             <h6 class="text-uppercase font-weight-bold">Enlaces</h6>
+             <hr class="style13 accent-2 mb-4 mt-0 d-inline-block mx-auto">
+             <br>
+             <a href="/inicio">Inicio</a>
+             <br>
+             <a href="/index">Base de datos</a>
+             <br>
+             <a href="/archivar">Archivar</a>
+             <br>
+             <a href="/ayuda">Ayuda</a>
+          </div>
+          <div class="col-md-3 mx-auto ">
+             <h6 class="text-uppercase font-weight-bold">Paginas U.P.T.A.G.</h6>
+             <hr class="style13 accent-2 mb-4 mt-0 d-inline-block mx-auto">
+             <br>
+             <a href="http://www.uptag.net/">Principal</a>
+             <br>
+             <a href="http://www.uptag.net/">Estudiantes</a>
+             <br>
+             <a href="http://www.uptag.net/">DACE UPTAG</a>
+          </div>
+          <div class="col-md-3 mx-auto">
+             <h6 class="text-uppercase font-weight-bold">Creadores</h6>
+             <hr class="style13 accent-2 mb-4 mt-0 d-inline-block mx-auto">
+             <br>
+             <span>Leo Polanco</span>
+             <br>
+             <span>Luzmary López</span>
+             <br>
+             <br>
+             <br>
+             <img src="/images/cclogo.png" width="120" height="30">
+          </div>
+       </div>
+    </div>
+ </footer>
 
 
-<script>
-      $(document).ready(function(){
-        $(".fa-search").click(function(){
-          $(".busqueda, .input-busqueda, .select-busqueda").toggleClass("active");
-        });
+
+
+
+
+
+
+
+
+
+
+   <script>
+    $(document).ready(function(){
+      $(".fa-search").click(function(){
+        $(".busqueda, .input-busqueda, .select-busqueda").toggleClass("active");
       });
+    });
 </script>
-
-
-
 
 <script type="text/javascript" src="/datatables/js/jquery-3.3.1.js"></script>
 <script type="text/javascript" src="/datatables/js/jquery.dataTables.min.js"></script>
@@ -108,12 +117,7 @@
 <script type="text/javascript" src="/datatables/js/buttons.jqueryui.min.js"></script>
 <script type="text/javascript" src="/datatables/js/jszip.min.js"></script>
 <script type="text/javascript" src="/datatables/js/buttons.html5.min.js"></script>
-
 <script src="/js/main.js"></script> 
-
-
-
-
 
 <script>
 $(document).ready(function() {
@@ -124,19 +128,42 @@ $(document).ready(function() {
         ]
     } );
 } );
+
+</script>
+<script>
+$(document).ready(function() {
+            
+		$(".titulo").shorten({
+            
+	        "showChars" : 50,
+	        "moreText"	: "más",
+	        "lessText"	: "menos",
+        });
+        $(".paginate_button").click(function(){
+	        $(".titulo").shorten({
+	        "showChars" : 50,
+	        "moreText"	: "más",
+	        "lessText"	: "menos",
+            });
+        });
+        $("sorting_asc").click(function(){
+	        $(".titulo").shorten({
+	        "showChars" : 50,
+	        "moreText"	: "más",
+	        "lessText"	: "menos",
+            });
+        });
+        $("sorting_desc").click(function(){
+	        $(".titulo").shorten({
+	        "showChars" : 50,
+	        "moreText"	: "más",
+	        "lessText"	: "menos",
+            });
+        });
+    });
+
 </script>
 
-<script type="text/javascript">
-	$(document).ready(function() {
-	
-		$(".comment").shorten({
-	"showChars" : 50,
-	"moreText"	: "más",
-	"lessText"	: "menos",
-});
-	
-	});
-</script>
 
 </body>
 </html>

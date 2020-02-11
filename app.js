@@ -8,7 +8,7 @@ var bodyParser = require("body-parser"),
     User = require("./static/js/user"), //archivo de user
     flash = require('connect-flash'),
     { exec } = require('child_process'),
- //   http = require('http'),
+
     autoIncrement = require('mongoose-auto-increment'),
     app = express();
     
@@ -102,7 +102,7 @@ proySchema.plugin(autoIncrement.plugin, 'Proy');
 
 var Proy = mongoose.model("Proy", proySchema);
 
-//proySchema.set('autoIndex', true);
+proySchema.set('autoIndex', false);
 proySchema.index({ '$**': 'text' });
 
 //Rutas de inicio
