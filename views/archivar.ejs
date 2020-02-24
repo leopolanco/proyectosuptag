@@ -5,6 +5,45 @@
              color: rgb(255, 116, 23) !important;
          }
  </style>
+
+ <!-- JS PARA CREAR ARRAYS DE CAMPOS -->
+    <%var arrayauxiliar=[];%>
+    <%proys.forEach(function(proy){ %>
+    <%    arrayauxiliar.push(proy.comunidad);%>
+    <% }); %>
+    <%let arrayfinalcomunidad =[...new Set(arrayauxiliar)]%>
+
+    <%arrayauxiliar=[];%>
+    <%proys.forEach(function(proy){ %>
+    <%    arrayauxiliar.push(proy.municipio);%>
+    <% }); %>
+    <%let arrayfinalmunicipio =[...new Set(arrayauxiliar)]%>
+
+    <%arrayauxiliar=[];%>
+    <%proys.forEach(function(proy){ %>
+    <%    arrayauxiliar.push(proy.profGuia);%>
+    <% }); %>
+    <%let arrayfinalguia =[...new Set(arrayauxiliar)]%>
+
+    <%arrayauxiliar=[];%>
+    <%proys.forEach(function(proy){ %>
+    <%    arrayauxiliar.push(proy.profTutor);%>
+    <% }); %>
+    <%let arrayfinaltutor =[...new Set(arrayauxiliar)]%>
+
+    <%arrayauxiliar=[];%>
+    <%proys.forEach(function(proy){ %>
+    <%    arrayauxiliar.push(proy.seccion);%>
+    <% }); %>
+    <%let arrayfinalseccion =[...new Set(arrayauxiliar)]%>
+
+    <%arrayauxiliar=[];%>
+    <%proys.forEach(function(proy){ %>
+    <%    arrayauxiliar.push(proy.lapsoAcademico);%>
+    <% }); %>
+    <%let arrayfinallapsoAcademico =[...new Set(arrayauxiliar)]%>
+
+
 <!-- CONDICIONALES PARA LOS ANUNCIOS, EN EL ARCHIVO PRINCIPAL(APP.JS) ESTAN SUS VALORES (LO QUE ALERTAN) --> 
 <div class="container pt-5 mt-4">
    <% if(error && error.length > 0){ %>
@@ -13,11 +52,9 @@
 </div>
 <% } %>
    <div class="jumbotron">
-      <form method="POST" action="/index">
+      <form method="POST" action="/index" enctype="multipart/form-data">
          <small>Seleccione su PNF</small>
-         <br>
-         
-         
+         <br>    
          <div class="btn-group btn-group-toggle" data-toggle="buttons">
          <div>
             <label class=" btn btn-secondary mr-2">
@@ -42,11 +79,7 @@
          </div>
     <!-- ALGORITMO PARA ELIMINAR REPETIDOS Y RECORDAR DATOS DE LA DB, SE UTILIZA EN CADA INPUT QUE SE NECESITE RECORDAR, HACE FALTA OPTIMIZAR ESTO, AUNQUE ASI FUNCIONA --> 
 
-    <%var arrayauxiliar=[];%>
-    <%proys.forEach(function(proy){ %>
-    <%    arrayauxiliar.push(proy.comunidad);%>
-    <% }); %>
-    <%let arrayfinalcomunidad =[...new Set(arrayauxiliar)]%>
+    
         <div class="form-row mb-3">
             <div class="col">
                <label for="proy[comunidad]">Comunidad:</label>
@@ -57,11 +90,7 @@
                      <% }) %>
                </datalist>
             </div>
-    <%var arrayauxiliar=[];%>
-    <%proys.forEach(function(proy){ %>
-    <%    arrayauxiliar.push(proy.municipio);%>
-    <% }); %>
-    <%let arrayfinalmunicipio =[...new Set(arrayauxiliar)]%>
+    
         <div class="col">
             <label for="proy[municipio]">Municipio:</label>
             <input oninput="this.value = this.value.toUpperCase()" list="municipios" class="form-control text-uppercase" placeholder="Municipio" name="proy[municipio]" required>
@@ -72,11 +101,7 @@
             </datalist>
         </div>
          </div>
-    <%var arrayauxiliar=[];%>
-    <%proys.forEach(function(proy){ %>
-    <%    arrayauxiliar.push(proy.profGuia);%>
-    <% }); %>
-    <%let arrayfinalguia =[...new Set(arrayauxiliar)]%>
+    
          <div class="form-row mb-3">
          <div class="col-md-6 mb-3">
          <label for="proy[profGuia]">Profesor Guia:</label>
@@ -87,11 +112,7 @@
          <% }) %>
          </datalist>
          </div>
-    <%var arrayauxiliar=[];%>
-    <%proys.forEach(function(proy){ %>
-    <%    arrayauxiliar.push(proy.profTutor);%>
-    <% }); %>
-    <%let arrayfinaltutor =[...new Set(arrayauxiliar)]%>
+    
          <div class="col-md-6 ">
          <label for="proy[profTutor]">Tutor:</label>
          <input oninput="this.value = this.value.toUpperCase()" list="tutores" class="form-control" name="proy[profTutor]" placeholder="Profesor Tutor" required>
@@ -117,11 +138,7 @@
          <option value="T4">T4</option>
          </select>
          </div>
-    <%var arrayauxiliar=[];%>
-    <%proys.forEach(function(proy){ %>
-    <%    arrayauxiliar.push(proy.seccion);%>
-    <% }); %>
-    <%let arrayfinalseccion =[...new Set(arrayauxiliar)]%>
+    
         <div class="col-md-2">
          <label for="proy[seccion]">Seccion:</label>
          <input oninput="this.value = this.value.toUpperCase()" list="secciones" class="form-control" name="proy[seccion]" placeholder="Sección" required>
@@ -131,11 +148,7 @@
          <% }) %>
          </datalist>
          </div>
-    <%var arrayauxiliar=[];%>
-    <%proys.forEach(function(proy){ %>
-    <%    arrayauxiliar.push(proy.lapsoAcademico);%>
-    <% }); %>
-    <%let arrayfinallapsoAcademico =[...new Set(arrayauxiliar)]%>
+    
          <div class="col-md-2">
          <label for="proy[lapsoAcademico]">Lapso Academico:</label>
          <input oninput="this.value = this.value.toUpperCase()" list="lapsosacademicos" class="form-control" name="proy[lapsoAcademico]" required>
@@ -149,7 +162,11 @@
          <label for="lineaInv">Linea de Investigacion</label>
          <select id="lineaInvIyC" style="display: none;" name="proy[lineaInv]" class="custom-select">
          <option value="-">-</option>
-         <option value="LineaInvestigacionInstrYCntrl">LineaInvestigacionInstrYCntrl</option>
+         <option value="INSTRUMENTACIÓN MÉDICA">INSTRUMENTACIÓN MÉDICA</option>
+         <option value="DESARROLLO DE SENSORES E INSTRUMENTOS">DESARROLLO DE SENSORES E INSTRUMENTOS</option>
+         <option value="SISTEMA DE CONTROL DE PROCESOS">SISTEMA DE CONTROL DE PROCESOS</option>
+         <option value="DESARROLLO DE SOFTWARE EN EL AREA DE INSTRUMENTACIÓN Y CONTROL">DESARROLLO DE SOFTWARE EN EL AREA DE INSTRUMENTACIÓN Y CONTROL</option>
+         <option value="ROBÓTICA, AUTOMATIZACIÓN Y TELEMETRÍA">ROBÓTICA, AUTOMATIZACIÓN Y TELEMETRÍA</option>
          </select>
          <select id="lineaInvElectricidad" style="display: none;" name="proy[lineaInv]" class="custom-select">
          <option value="-">-</option>
@@ -161,7 +178,15 @@
          </select>
          <select id="lineaInvElectronica" style="display: none;" name="proy[lineaInv]" class="custom-select">
          <option value="-">-</option>
-         <option value="LineaInvestigacionElectronica">LineaInvestigacionElectronica</option>
+         <option value="DISEÑO ELECTRONICO">DISEÑO ELECTRONICO</option>
+         <option value="SOFTWARE">SOFTWARE</option>
+         <option value="TELECOMUNICACIONES">TELECOMUNICACIONES</option>
+         <option value="TELEMATICAS">TELEMATICAS</option>
+         <option value="PROCESAMIENTO DIGITAL DE SEÑALES">PROCESAMIENTO DIGITAL DE SEÑALES</option>
+         <option value="ELECTRO-MEDICINA">ELECTRO-MEDICINA</option>
+         <option value="TELE-EDUCACION Y TELE-MEDICINA">TELE-EDUCACION Y TELE-MEDICINA</option>
+         <option value="AUTOMATIZACIÓN Y CONTROL">AUTOMATIZACIÓN Y CONTROL</option>
+         <option value="ROBÓTICA">ROBÓTICA</option>
          </select>
          </div>
          </div>
@@ -180,15 +205,15 @@
          <div id="estud1" class="form-row">
             <div class="col-md-3">
                <label>Nombre y Apellido:</label>
-               <input oninput="this.value = this.value.toUpperCase()" id="estud1" name="proy[nombreEstudiante1]" type="text" class="form-control" required>
+               <input oninput="this.value = this.value.toUpperCase()" " name="proy[nombreEstudiante1]" type="text" class="form-control" required>
             </div>
             <div class="col-md-2">
                <label>Cédula:</label>
-               <input oninput="this.value = this.value.toUpperCase()" id="estud1" name="proy[cedulaEstudiante1]" type="text" class="form-control" required>
+               <input oninput="this.value = this.value.toUpperCase()"  name="proy[cedulaEstudiante1]" type="text" class="form-control" required>
             </div>
              <div id="notas" style="display: none;" class="col-md-2">
                <label>Nota asignada:</label>
-               <select id="estud1" name="proy[notaEstudiante1]" class="custom-select" >
+               <select  name="proy[notaEstudiante1]" class="custom-select" >
                   <option value="">-</option>
                   <option value="16">16</option>
                   <option value="17">17</option>
@@ -201,15 +226,15 @@
          <div id="estud2" class="form-row" style="display: none;">
             <div class="col-md-3">
                <label>Nombre y Apellido:</label>
-               <input oninput="this.value = this.value.toUpperCase()" id="estud2" name="proy[nombreEstudiante2]" type="text" class="form-control">
+               <input oninput="this.value = this.value.toUpperCase()"  name="proy[nombreEstudiante2]" type="text" class="form-control">
             </div>
             <div class="col-md-2">
                <label>Cédula:</label>
-               <input oninput="this.value = this.value.toUpperCase()" id="estud1" name="proy[cedulaEstudiante2]" type="text" class="form-control">
+               <input oninput="this.value = this.value.toUpperCase()"  name="proy[cedulaEstudiante2]" type="text" class="form-control">
             </div>
              <div id="notas2" style="display: none;" class="col-md-2">
                <label>Nota asignada:</label>
-               <select id="estud2" name="proy[notaEstudiante2]" class="custom-select" >
+               <select  name="proy[notaEstudiante2]" class="custom-select" >
                   <option value="">-</option>
                   <option value="16">16</option>
                   <option value="17">17</option>
@@ -222,15 +247,15 @@
          <div id="estud3" class="form-row" style="display: none;">
             <div class="col-md-3">
                <label>Nombre y Apellido:</label>
-               <input oninput="this.value = this.value.toUpperCase()" id="estud3" name="proy[nombreEstudiante3]" type="text" class="form-control">
+               <input oninput="this.value = this.value.toUpperCase()"  name="proy[nombreEstudiante3]" type="text" class="form-control">
             </div>
             <div class="col-md-2">
                <label>Cédula:</label>
-               <input oninput="this.value = this.value.toUpperCase()" id="estud1" name="proy[cedulaEstudiante3]" type="text" class="form-control" >
+               <input oninput="this.value = this.value.toUpperCase()"  name="proy[cedulaEstudiante3]" type="text" class="form-control" >
             </div>
              <div id="notas3" style="display: none;" class="col-md-2">
                <label>Nota asignada:</label>
-               <select id="estud3" name="proy[notaEstudiante3]" class="custom-select" >
+               <select  name="proy[notaEstudiante3]" class="custom-select" >
                   <option value="">-</option>
                   <option value="16">16</option>
                   <option value="17">17</option>
@@ -243,15 +268,15 @@
          <div id="estud4" class="form-row" style="display: none;">
             <div class="col-md-3">
                <label>Nombre y Apellido:</label>
-               <input oninput="this.value = this.value.toUpperCase()" id="estud4" name="proy[nombreEstudiante4]" type="text" class="form-control">
+               <input oninput="this.value = this.value.toUpperCase()" i name="proy[nombreEstudiante4]" type="text" class="form-control">
             </div>
             <div class="col-md-2">
                <label>Cédula:</label>
-               <input oninput="this.value = this.value.toUpperCase()" id="estud1" name="proy[cedulaEstudiante4]" type="text" class="form-control" >
+               <input oninput="this.value = this.value.toUpperCase()"  name="proy[cedulaEstudiante4]" type="text" class="form-control" >
             </div>
              <div id="notas4" style="display: none;" class="col-md-2">
                <label>Nota asignada:</label>
-               <select id="estud4" name="proy[notaEstudiante4]" class="custom-select" >
+               <select  name="proy[notaEstudiante4]" class="custom-select" >
                   <option value="">-</option>
                   <option value="16">16</option>
                   <option value="17">17</option>
@@ -264,15 +289,15 @@
          <div id="estud5" class="form-row" style="display: none;">
             <div class="col-md-3">
                <label>Nombre y Apellido:</label>
-               <input oninput="this.value = this.value.toUpperCase()" id="estud5" name="proy[nombreEstudiante5]" type="text" class="form-control">
+               <input oninput="this.value = this.value.toUpperCase()"  name="proy[nombreEstudiante5]" type="text" class="form-control">
             </div>
             <div class="col-md-2">
                <label>Cédula:</label>
-               <input oninput="this.value = this.value.toUpperCase()" id="estud1" name="proy[cedulaEstudiante5]" type="text" class="form-control" >
+               <input oninput="this.value = this.value.toUpperCase()"  name="proy[cedulaEstudiante5]" type="text" class="form-control" >
             </div>
              <div id="notas5" style="display: none;" class="col-md-2">
                <label>Nota asignada:</label>
-               <select id="estud5" name="proy[notaEstudiante5]" class="custom-select" >
+               <select name="proy[notaEstudiante5]" class="custom-select" >
                   <option value="">-</option>
                   <option value="16">16</option>
                   <option value="17">17</option>
@@ -286,6 +311,8 @@
             <small>Ingrese un resumen del proyecto</small>
             <textarea oninput="this.value = this.value.toUpperCase()" name="proy[resumenProyecto]" class="form-control text-uppercase" rows="3" placeholder="Resumen del proyecto"></textarea>
          </div>
+         <label>Seleccione el archivo pdf</label></br>
+         <input type="file" name='file' accept="application/pdf"></input>
          <div style="float: right;">
             <button type="submit" class="btn btn-warning">Archivar proyecto</button>
          </div>

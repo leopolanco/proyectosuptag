@@ -1,18 +1,33 @@
 //Dependencias
-var bodyParser = require("body-parser"),
-    methodOverride = require("method-override"),
-    express = require("express"),
+var methodOverride = require("method-override"), //para utilizar metodos put y delete
+    express = require("express"), 
     mongoose = require("mongoose"),
-    passport = require("passport"),
+    passport = require("passport"), //para controlar los logins y registros
     LocalStrategy = require("passport-local"),
     User = require("./static/js/user"), //archivo de user
-    flash = require('connect-flash'),
-    { exec } = require('child_process'),
-
+    flash = require('connect-flash'), //para mensajes
+    { exec } = require('child_process'), //para los respaldos
+    http = require('http') //para localhost
     autoIncrement = require('mongoose-auto-increment'),
+    multer = require("multer"), //para leer formulario multipartes
+    fs = require("fs"), //leer y cambiar nombre de archivos
     app = express();
     
-
+//para habilitar el localhost    
+//var port = normalizePort(process.env.PORT || '0130');
+//app.set('port', port);
+//var server = http.createServer(app);
+//server.listen(port);
+//function normalizePort(val) {
+ //   var port= parseInt(val, 10);
+  //  if (isNaN(port)) {
+   //     return val;
+   // }
+   // if (port >= 0) {
+    //    return port;
+   // }
+   // return false;
+// }
 
 //Esta base de datos es de localhost
 //mongoose.connect("mongodb://localhost/proyecto_app", { useNewUrlParser: true, useFindAndModify: false, useCreateIndex: true, useUnifiedTopology: true}); 
@@ -271,7 +286,6 @@ app.get("/index", function(req, res) {
     }
 });
     
-
 function normalizarId(id, pnf, trayecto) {
 
     if(pnf=="PNF en Instrumentacion y Control"){
@@ -285,13 +299,17 @@ function normalizarId(id, pnf, trayecto) {
     return finalId;
  }
 
+var upload = multer({ 
+    dest: './pdfProyectos/' 
+})
 
 //Envio de formulario de creacion
-app.post("/index", isLoggedIn, function(req, res) {
+app.post("/index", upload.single("file"), isLoggedIn, function(req, res) {
     req.flash("success", "Su proyecto fue agregado.");
     Proy.find({}, function(err, proys) {
         if (err) {
             console.log(err);
+            res.redirect("/index");
         } else {
             Proy.create(req.body.proy, function(err, newProy) {
                 if (err) {
@@ -304,16 +322,21 @@ app.post("/index", isLoggedIn, function(req, res) {
                         if (err) {
                             req.flash("error", err.message);
                             console.log(err);
-                        }})
+                        }});
+                    if(req.file){
+                        fs.rename(req.file.path, 'pdfProyectos\\'+req.body.proy.cod+'.pdf', function(err){
+                            if (err){
+                            console.log(err);
+                            res.redirect("/index");
+                            }
+                        });
+                    };    
                     res.redirect("/index");
                 }
             });
         }
     });
 });
-
-
-
 
 //Ruta de vista simple
 app.get("/indexsimple", function(req, res) {
@@ -339,6 +362,20 @@ app.get("/index/:id", function(req, res) {
     });
 });
 
+app.get("/pdfProyectos/:cod", function(req,res){
+    fs.readFile('.\\pdfProyectos\\'+req.params.cod+'.pdf', "binary", function(err,file){
+        if(err){
+            console.log(err);
+            req.flash("error", "Su archivo no se encontró"); 
+            res.redirect("/index");
+        } else {
+            res.writeHead(200, {"Content-Type" : "application/pdf" });
+            res.write(file, "binary" );
+            res.end();
+        }
+    })
+});
+
 //Ruta de edicion
 app.get("/index/:id/edit",isLoggedIn, function(req, res) {
     Proy.findById(req.params.id, function(err, foundProy) {
@@ -362,7 +399,13 @@ app.get("/index/:id/edit",isLoggedIn, function(req, res) {
 });
 
 //Envio de formulario editado
-app.put("/index/:id", isLoggedIn, function(req, res) {
+app.put("/index/:id", upload.single('file'),isLoggedIn, function(req, res) {
+    if(req.file){
+        fs.rename(req.file.path, 'pdfProyectos\\'+req.body.proy.cod+'.pdf', function(err){
+            if (err){
+            console.log(err);
+            }
+    })}
     Proy.findByIdAndUpdate(req.params.id, req.body.proy, function(err, updatedProy) {
         if (err) {
             req.flash("error", "Su proyecto no pudo ser editado.");
@@ -378,20 +421,33 @@ app.put("/index/:id", isLoggedIn, function(req, res) {
 //Ruta de eliminado
 app.delete("/index/:id", isLoggedIn, function(req, res) {
     req.flash("error", "Su proyecto fue eliminado con exito.");
-    Proy.findByIdAndRemove(req.params.id, function(err) {
+    Proy.findById(req.params.id, function(err, foundProy) {
         if (err) {
-            res.redirect("/index");
-            console.log("Error deleting");
-        } else {
-            res.redirect("/index/");
+            res.redirect("../views/index.ejs");
+            console.log(err);
+        } else {//Este codigo comprueba si existe el archivo y luego lo elimina
+            if(fs.existsSync('pdfProyectos\\'+foundProy.cod+'.pdf')) {
+                fs.unlink('pdfProyectos\\'+foundProy.cod+'.pdf', function(err){
+                    if(err){console.log(err); res.redirect("/index")}
+                });
+            }
+            Proy.findByIdAndRemove(req.params.id, function(err) {
+                if (err) {
+                    res.redirect("/index");
+                    console.log(err);
+                } else {
+                    res.redirect("/index/");
+                }
+            });
         }
     });
 });
 
+
 //Pagina de ayuda, seguida por los archivos descargables
 app.get("/ayuda", function(req, res) { 
     //El comando crea el respaldo de la base de datos desde la cmd
-    exec('mongoexport --forceTableScan --host uptag-shard-0/uptag-shard-00-00-qexum.mongodb.net:27017,uptag-shard-00-01-qexum.mongodb.net:27017,uptag-shard-00-02-qexum.mongodb.net:27017 --ssl --username leo --password polanco --authenticationDatabase admin --db test --collection proys --type json  --out ./public/BASE-DE-DATOS-DE-PROYECTOS-SOCIOINTEGRADORES-RESPALDO.json');
+    exec('mongoexport --collection=proys --db=proyecto_app  --out=./public/BASE-DE-DATOS-DE-PROYECTOS-SOCIOINTEGRADORES-RESPALDO.json');
     res.render("../views/ayuda.ejs");
 });
 app.get("/MANUAL-DE-SISTEMA-DE-BASE-DE-DATOS-DE-PROYECTOS-SOCIOINTEGRADORES", function(req, res) {
@@ -431,14 +487,14 @@ app.get("/images/iconuptag.jpg", function(req, res) {
 app.get("/images/cclogo.png", function(req, res) {
     res.sendFile("../static/images/cclogo.png");
 });
-app.get("/images/logopnfe.png", function(req, res) {
-    res.sendFile("../static/images/logopnfe.png");
+app.get("/images/logopnfe.jpg", function(req, res) {
+    res.sendFile("../static/images/logopnfe.jpg");
 });
-app.get("/images/imageslogopnfiyc", function(req, res) {
-    res.sendFile("../static/imageslogopnfiyc.png");
+app.get("/images/logopnfiyc.jpg", function(req, res) {
+    res.sendFile("../static/logopnfiyc.jpg");
 });
-app.get("/images/logopnfelectronica.png", function(req, res) {
-    res.sendFile("../static/images/logopnfelectronica.png");
+app.get("/images/logopnfelectronica.jpg", function(req, res) {
+    res.sendFile("../static/images/logopnfelectronica.jpg");
 });
 app.get("/images/bg-01.png", function(req, res) {
     res.sendFile("../static/images/bg-01.png");
@@ -449,8 +505,8 @@ app.get("/images/logouptag.jpg", function(req, res) {
 app.get("/images/logopnfi.jpg", function(req, res) {
     res.sendFile("../static/images/logopnfi.jpg");
 });
-app.get("/images/fotoindex.png", function(req, res) {
-    res.sendFile("../static/images/fotoindex.png");
+app.get("/images/fotoindex.jpg", function(req, res) {
+    res.sendFile("../static/images/fotoindex.jpg");
 });
 app.get("/images/mirarabajo.png", function(req, res) {
     res.sendFile("../static/images/mirarabajo.png");
@@ -458,8 +514,8 @@ app.get("/images/mirarabajo.png", function(req, res) {
 app.get("/images/fotoshow.jpg", function(req, res) {
     res.sendFile("../static/images/fotoshow.jpg");
 });
-app.get("/images/fotobotonvistasimple.png", function(req, res) {
-    res.sendFile("../static/images/fotobotonvistasimple.png");
+app.get("/images/fotobotonvistasimple.jpg", function(req, res) {
+    res.sendFile("../static/images/fotobotonvistasimple.jpg");
 });
 app.get("/images/botonesexportar.png", function(req, res) {
     res.sendFile("../static/images/botonesexportar.png");
@@ -467,14 +523,14 @@ app.get("/images/botonesexportar.png", function(req, res) {
 app.get("/images/fotoexcel.png", function(req, res) {
     res.sendFile("../static/images/fotoexcel.png");
 });
-app.get("/images/indexsimple.png", function(req, res) {
-    res.sendFile("../static/images/indexsimple.png");
+app.get("/images/indexsimple.jpg", function(req, res) {
+    res.sendFile("../static/images/indexsimple.jpg");
 });
 app.get("/images/flechanaranja.png", function(req, res) {
     res.sendFile("../static/images/flechanaranja.png");
 });
-app.get("/images/fotoarchivar.png", function(req, res) {
-    res.sendFile("../static/images/fotoarchivar.png");
+app.get("/images/fotoarchivar.jpg", function(req, res) {
+    res.sendFile("../static/images/fotoarchivar.jpg");
 });
 //js
 app.get("/js/main.js", function(req, res) {
@@ -519,5 +575,5 @@ app.get("/test", function(req, res) {
 
 //Aviso de funcionamiento
 app.listen(process.env.PORT, process.env.IP, function() {
-    console.log("Funcionando!");
+    console.log("Activo!");
 })
