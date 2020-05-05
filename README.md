@@ -37,3 +37,14 @@ Cuenta con:
 - Edicion de datos (Para usuarios con permisos).
 - Eliminacion de datos (Para usuarios con permisos).
 - Y más!
+.
+
+
+
+Created using:
+
+NodeJS
+  EJS
+  Express
+  Passport
+MongoDB
