@@ -41,11 +41,14 @@ Cuenta con:
 
 
 
-Created with:
+Creado con / Created with:
 
 NodeJS
 
   EJS
+  
   Express
+  
   Passport
+  
 MongoDB
