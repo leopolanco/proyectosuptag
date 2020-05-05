@@ -11,7 +11,7 @@ This system has:
 - Data exportation (.json and .xls).
 - Manuals.
 - Entry of data (With suggestion of previous entries).
-- Listing of projects ( In sheets and tables).
+- Listing of projects (In individual cards and general tables).
 - Edition of data.
 - Removal of data (Only for users with permissions).
 - And more!
