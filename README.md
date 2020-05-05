@@ -1,6 +1,6 @@
 # proyectosuptag
 
-<b>A</b>English:
+<b>English:</b>
 
 System made for the National Programs of Formation in Instrumentation and Control, Electronics and Electricity of the Universidad Politecnica Territorial Alonso Gamero to store sociointegrating projects and all the data related to each one of them.
 
@@ -19,11 +19,7 @@ This system has:
 
 
 
-
-
-
-
-Spanish:
+<b>Spanish:</b>
 
 Sistema de base de datos creada para almacenar proyectos sociointegradores
 de los P.N.F en Instrumentación y Control, Electrónica y Electricidad de la Universidad Politécnica Territorial Alonso Gamero.
