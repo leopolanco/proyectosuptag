@@ -1,6 +1,6 @@
 # proyectosuptag
 
-<t2><b>Hosted in http://proyectosuptag.herokuapp.com/</b></t2>
+<t1><b>Hosted in http://proyectosuptag.herokuapp.com/</b></t1>
 
 <b>English:</b>
 
