@@ -33,8 +33,8 @@ function normalizePort(val) {
 mongoose.connect("mongodb://localhost/proyecto_app", { useNewUrlParser: true, useFindAndModify: false, useCreateIndex: true, useUnifiedTopology: true}); 
 
 //Esta base de datos es remota (recomendada)
-//mongoose.connect("mongodb+srv://leo:polanco@uptag-qexum.mongodb.net/test?retryWrites=true&w=majority", {useNewUrlParser: true,useFindAndModify: false,useCreateIndex: true,useUnifiedTopology: true});
-//Si se necesita entrar desde el cmd a la base de datos remota, se escribe "mongo mongodb+srv://leo:polanco@uptag-qexum.mongodb.net"
+//mongoose.connect("mongodb+srv://(Contactar al desarrollador para acceso)@uptag-qexum.mongodb.net/test?retryWrites=true&w=majority", {useNewUrlParser: true,useFindAndModify: false,useCreateIndex: true,useUnifiedTopology: true});
+//Si se necesita entrar desde el cmd a la base de datos remota, se escribe "mongo mongodb+srv://(Contactar al desarrollador para acceso)@uptag-qexum.mongodb.net"
 app.use(express.static("static"));
 app.use(methodOverride("_method"));
 app.use(express.json())
