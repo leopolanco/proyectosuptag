@@ -1,7 +1,5 @@
 # proyectosuptag
 
-<t1><b>Hosted in http://proyectosuptag.herokuapp.com/</b></t1>
-
 <b>English:</b>
 
 System made for the National Programs of Formation in Instrumentation and Control, Electronics and Electricity of the Universidad Politecnica Territorial Alonso Gamero to store sociointegrating projects and all the data related to each one of them.
